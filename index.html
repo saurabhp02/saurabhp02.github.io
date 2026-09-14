@@ -1,338 +1,1633 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Saurabh Patel | Electronics & Embedded Systems</title>
-<meta name="description" content="Saurabh Patel's personal portfolio — embedded systems, robotics, IoT and AI projects.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-<style>
-:root {
-  --bg: #f8fafc; /* Soft off-white background */
-  --card: #ffffff; /* Pure white cards */
-  --text: #0f172a; /* Deep slate for primary text */
-  --muted: #475569; /* Medium slate for secondary text */
-  --accent: #2563eb; /* Sharp royal blue */
-  --accent-glow: rgba(37, 99, 235, 0.15);
-  --accent2: #6366f1; /* Indigo for gradients */
-  --line: #e2e8f0; /* Light elegant borders */
-  --max: 1120px;
-}
-* { box-sizing: border-box; margin: 0; padding: 0; }
-html { scroll-behavior: smooth; }
-body { 
-  font-family: 'Inter', system-ui, sans-serif; 
-  background-color: var(--bg);
-  /* Subtle light dot grid for a technical feel */
-  background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-  background-size: 24px 24px;
-  color: var(--text); 
-  line-height: 1.7; 
-}
-a { color: inherit; text-decoration: none; transition: 0.2s ease; }
-.container { width: min(var(--max), 92%); margin: auto; }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-/* Entrance Animation */
-@keyframes fadeUp {
-  from { opacity: 0; transform: translateY(20px); }
-  to { opacity: 1; transform: translateY(0); }
-}
-.animate-in { animation: fadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards; }
-.delay-1 { animation-delay: 0.1s; opacity: 0; }
-.delay-2 { animation-delay: 0.2s; opacity: 0; }
-.delay-3 { animation-delay: 0.3s; opacity: 0; }
+    <title>Saurabh Patel | Electronics & Embedded Systems</title>
+    <meta name="description" content="Portfolio of Saurabh Patel — Electronics, Embedded Systems, Robotics, IoT and AI projects.">
 
-/* Navigation */
-nav { 
-  position: sticky; top: 0; z-index: 20; 
-  background: rgba(255, 255, 255, 0.85); 
-  backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--line);
-  transition: all 0.3s ease;
-}
-.navin { height: 72px; display: flex; align-items: center; justify-content: space-between; }
-.brand { font-weight: 800; font-size: 1.2rem; letter-spacing: -0.02em; }
-.brand span { color: var(--accent); }
-.navlinks { display: flex; gap: 30px; color: var(--muted); font-size: 0.95rem; font-weight: 500; }
-.navlinks a:hover { color: var(--accent); }
+    <style>
+        /* =========================
+           RESET & GLOBAL
+        ========================== */
 
-/* Hero Section */
-.hero { min-height: calc(100vh - 72px); display: grid; place-items: center; padding: 80px 0; }
-.hero-grid { display: grid; grid-template-columns: 1.35fr 0.65fr; gap: 55px; align-items: center; }
-.eyebrow { color: var(--accent); font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 20px; }
-h1 { font-size: clamp(2.8rem, 7vw, 5.5rem); line-height: 1.05; letter-spacing: -0.04em; margin-bottom: 24px; color: #020617; }
-.gradient { 
-  background: linear-gradient(90deg, var(--accent), var(--accent2)); 
-  -webkit-background-clip: text; background-clip: text; 
-  color: transparent; 
-}
-.hero p { color: var(--muted); font-size: 1.15rem; max-width: 600px; }
-.buttons { display: flex; gap: 16px; flex-wrap: wrap; margin-top: 35px; }
-.btn { 
-  padding: 14px 24px; border-radius: 12px; font-weight: 600; font-size: 0.95rem; 
-  transition: all 0.2s ease; cursor: pointer; display: inline-flex; align-items: center; justify-content: center;
-}
-.primary { background: var(--accent); color: #ffffff; box-shadow: 0 4px 14px var(--accent-glow); }
-.primary:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(37, 99, 235, 0.3); }
-.secondary { background: #ffffff; border: 1px solid var(--line); color: var(--text); }
-.secondary:hover { border-color: var(--accent); color: var(--accent); background: #f0f9ff; }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-/* Profile Image / Initials */
-.profile { 
-  width: 300px; height: 300px; border-radius: 32px; 
-  border: 1px solid var(--line); 
-  background: #ffffff; 
-  display: grid; place-items: center; 
-  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.06);
-  position: relative;
-  overflow: hidden;
-}
-.profile::before {
-  content: ''; position: absolute; top: -50%; left: -50%; width: 200%; height: 200%;
-  background: conic-gradient(transparent, var(--accent), transparent 30%);
-  animation: rotate 6s linear infinite; opacity: 0.08;
-}
-@keyframes rotate { 100% { transform: rotate(360deg); } }
-.initials { font-size: 5.5rem; font-weight: 800; color: var(--accent); position: relative; z-index: 2; }
+        html {
+            scroll-behavior: smooth;
+        }
 
-/* Sections */
-section { padding: 100px 0; }
-.section-title { font-size: 2.2rem; letter-spacing: -0.03em; margin-bottom: 12px; color: #020617; }
-.section-sub { color: var(--muted); margin-bottom: 45px; font-size: 1.05rem; }
+        body {
+            font-family: Arial, Helvetica, sans-serif;
+            background: #ffffff;
+            color: #172033;
+            line-height: 1.6;
+        }
 
-/* Stylish Cards (Soft Shadows & Clean Borders) */
-.panel, .project, .item, .contact-card {
-  background: var(--card);
-  border: 1px solid var(--line);
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
-  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
-}
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
 
-/* About & Skills */
-.about { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-.panel { padding: 35px; }
-.panel:hover { border-color: var(--accent-glow); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06); }
-.panel p { color: var(--muted); margin-bottom: 15px; }
-.panel p:last-child { margin-bottom: 0; }
-.skills { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 25px; }
-.tag { 
-  border: 1px solid var(--line); background: #f1f5f9; 
-  padding: 8px 14px; border-radius: 999px; color: var(--text); font-size: 0.85rem; font-weight: 600;
-  transition: all 0.2s;
-}
-.tag:hover { background: #eff6ff; border-color: var(--accent); color: var(--accent); }
+        img {
+            max-width: 100%;
+            display: block;
+        }
 
-/* Projects */
-.projects { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
-.project { 
-  padding: 30px; display: flex; flex-direction: column;
-}
-.project:hover { 
-  transform: translateY(-8px); 
-  border-color: rgba(37, 99, 235, 0.4); 
-  box-shadow: 0 20px 40px rgba(37, 99, 235, 0.08);
-}
-.icon { font-size: 2.2rem; margin-bottom: 20px; }
-.project h3 { margin-bottom: 10px; font-size: 1.2rem; color: #020617; }
-.project p { color: var(--muted); font-size: 0.95rem; flex-grow: 1; }
-.stack { color: var(--accent); font-size: 0.8rem; font-weight: 700; margin-top: 25px; letter-spacing: 0.05em; }
+        .container {
+            width: 90%;
+            max-width: 1180px;
+            margin: auto;
+        }
 
-/* Timeline (Experience) */
-.timeline { display: grid; gap: 20px; }
-.item { 
-  display: flex; gap: 24px; padding: 25px; border-radius: 16px; 
-}
-.item:hover { border-color: var(--accent-glow); box-shadow: 0 8px 25px rgba(0, 0, 0, 0.06); transform: translateX(4px); }
-.dot { 
-  width: 12px; height: 12px; background: var(--accent); border-radius: 50%; 
-  margin-top: 8px; flex: none; box-shadow: 0 0 8px var(--accent-glow);
-}
-.item h3 { margin-bottom: 6px; color: #020617; }
-.item p { color: var(--muted); font-size: 0.95rem; }
+        /* =========================
+           NAVBAR
+        ========================== */
 
-/* Contact */
-.contact { display: grid; grid-template-columns: 1fr 1fr; gap: 30px; }
-.contact-card { padding: 40px; }
-.contact-links { display: grid; gap: 16px; margin-top: 25px; }
-.contact-links a { 
-  padding: 16px 20px; border: 1px solid var(--line); border-radius: 12px; 
-  color: var(--text); font-weight: 600; display: flex; justify-content: space-between;
-  background: #f8fafc; transition: 0.2s;
-}
-.contact-links a:hover { border-color: var(--accent); background: #eff6ff; padding-left: 25px; color: var(--accent); }
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid #e5e7eb;
+            backdrop-filter: blur(10px);
+        }
 
-/* Footer */
-footer { border-top: 1px solid var(--line); padding: 35px 0; color: var(--muted); font-size: 0.9rem; text-align: center; }
+        nav {
+            min-height: 72px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
 
-/* Responsive */
-@media(max-width: 900px) {
-  .hero-grid, .about, .contact { grid-template-columns: 1fr; }
-  .profile { width: 220px; height: 220px; margin: 0 auto; }
-  .initials { font-size: 4rem; }
-  .projects { grid-template-columns: 1fr 1fr; }
-  .hero { text-align: center; }
-  .hero-grid { justify-items: center; gap: 40px; }
-  .buttons { justify-content: center; }
-}
-@media(max-width: 600px) {
-  .navlinks a:nth-child(-n+2) { display: none; }
-  .projects { grid-template-columns: 1fr; }
-  section { padding: 70px 0; }
-  h1 { font-size: 2.5rem; }
-  .profile { display: none; }
-  .contact-card { padding: 30px 20px; }
-}
-</style>
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 800;
+            letter-spacing: -0.5px;
+            color: #111827;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            font-size: 0.92rem;
+            font-weight: 600;
+            color: #4b5563;
+            transition: 0.25s ease;
+        }
+
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+
+        .menu-btn {
+            display: none;
+            border: none;
+            background: none;
+            font-size: 1.7rem;
+            cursor: pointer;
+            color: #111827;
+        }
+
+        /* =========================
+           HERO
+        ========================== */
+
+        .hero {
+            min-height: calc(100vh - 72px);
+            display: flex;
+            align-items: center;
+            padding: 80px 0;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 70px;
+            align-items: center;
+        }
+
+        .eyebrow {
+            display: inline-block;
+            padding: 7px 13px;
+            border: 1px solid #dbeafe;
+            border-radius: 50px;
+            background: #eff6ff;
+            color: #2563eb;
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 {
+            font-size: clamp(2.8rem, 6vw, 5.2rem);
+            line-height: 1.02;
+            letter-spacing: -3px;
+            color: #111827;
+            margin-bottom: 22px;
+        }
+
+        .hero h1 span {
+            color: #2563eb;
+        }
+
+        .hero-description {
+            max-width: 680px;
+            color: #5b6472;
+            font-size: 1.08rem;
+            margin-bottom: 32px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 13px;
+        }
+
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px 20px;
+            border-radius: 9px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            border: 1px solid #d1d5db;
+            transition: 0.25s ease;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            border-color: #2563eb;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background: white;
+            color: #1f2937;
+        }
+
+        .btn-secondary:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+            transform: translateY(-2px);
+        }
+
+        /* =========================
+           TECHNICAL VISUAL
+        ========================== */
+
+        .tech-visual {
+            position: relative;
+            width: 360px;
+            height: 360px;
+            margin: auto;
+        }
+
+        .orbit {
+            position: absolute;
+            border: 1px solid #bfdbfe;
+            border-radius: 50%;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+
+        .orbit.one {
+            width: 260px;
+            height: 260px;
+        }
+
+        .orbit.two {
+            width: 190px;
+            height: 190px;
+        }
+
+        .orbit.three {
+            width: 120px;
+            height: 120px;
+        }
+
+        .core {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: #2563eb;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: 800;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 0 15px 40px rgba(37, 99, 235, 0.25);
+        }
+
+        .node {
+            position: absolute;
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background: white;
+            border: 2px solid #2563eb;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.68rem;
+            font-weight: 800;
+            color: #2563eb;
+            box-shadow: 0 8px 20px rgba(15, 23, 42, 0.08);
+        }
+
+        .node.n1 {
+            top: 18px;
+            left: 155px;
+        }
+
+        .node.n2 {
+            right: 8px;
+            top: 150px;
+        }
+
+        .node.n3 {
+            bottom: 20px;
+            left: 150px;
+        }
+
+        .node.n4 {
+            left: 5px;
+            top: 150px;
+        }
+
+        /* =========================
+           STATS
+        ========================== */
+
+        .stats {
+            padding: 0 0 70px;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid #e5e7eb;
+            border-bottom: 1px solid #e5e7eb;
+        }
+
+        .stat {
+            padding: 25px 20px;
+            text-align: center;
+            border-right: 1px solid #e5e7eb;
+        }
+
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat h3 {
+            font-size: 1.8rem;
+            color: #111827;
+            margin-bottom: 3px;
+        }
+
+        .stat p {
+            color: #6b7280;
+            font-size: 0.85rem;
+        }
+
+        /* =========================
+           SECTION COMMON
+        ========================== */
+
+        section {
+            padding: 95px 0;
+        }
+
+        .section-heading {
+            margin-bottom: 45px;
+        }
+
+        .section-label {
+            color: #2563eb;
+            font-size: 0.78rem;
+            font-weight: 800;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-bottom: 9px;
+        }
+
+        .section-heading h2 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            line-height: 1.1;
+            letter-spacing: -1.5px;
+            color: #111827;
+        }
+
+        .section-heading p {
+            max-width: 700px;
+            margin-top: 13px;
+            color: #6b7280;
+        }
+
+        /* =========================
+           ABOUT
+        ========================== */
+
+        .about {
+            background: #f8fafc;
+            border-top: 1px solid #eef2f7;
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+        }
+
+        .about-text p {
+            color: #596273;
+            margin-bottom: 18px;
+        }
+
+        .skills {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 12px;
+        }
+
+        .skill {
+            padding: 16px;
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+        }
+
+        .skill strong {
+            display: block;
+            color: #111827;
+            font-size: 0.9rem;
+            margin-bottom: 4px;
+        }
+
+        .skill span {
+            color: #6b7280;
+            font-size: 0.78rem;
+        }
+
+        /* =========================
+           PROJECTS
+        ========================== */
+
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .project-card {
+            border: 1px solid #e5e7eb;
+            border-radius: 14px;
+            padding: 27px;
+            background: white;
+            transition: 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .project-card::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 0;
+            height: 3px;
+            width: 100%;
+            background: #2563eb;
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: 0.3s ease;
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(15, 23, 42, 0.08);
+        }
+
+        .project-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .project-number {
+            color: #2563eb;
+            font-size: 0.75rem;
+            font-weight: 800;
+            margin-bottom: 18px;
+        }
+
+        .project-card h3 {
+            color: #111827;
+            font-size: 1.15rem;
+            line-height: 1.35;
+            margin-bottom: 11px;
+        }
+
+        .project-card p {
+            color: #697386;
+            font-size: 0.88rem;
+            margin-bottom: 18px;
+        }
+
+        .tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 7px;
+        }
+
+        .tag {
+            padding: 5px 9px;
+            border-radius: 5px;
+            background: #eff6ff;
+            color: #2563eb;
+            font-size: 0.7rem;
+            font-weight: 700;
+        }
+
+        /* =========================
+           ADDITIONAL PROJECTS
+        ========================== */
+
+        .additional {
+            background: #f8fafc;
+            border-top: 1px solid #eef2f7;
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        .additional-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+        }
+
+        .additional-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .additional-card h3 {
+            font-size: 0.95rem;
+            color: #111827;
+            margin-bottom: 5px;
+        }
+
+        .additional-card p {
+            font-size: 0.8rem;
+            color: #6b7280;
+        }
+
+        /* =========================
+           LEADERSHIP
+        ========================== */
+
+        .leadership-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .leadership-card {
+            border-left: 3px solid #2563eb;
+            background: #f8fafc;
+            padding: 24px;
+        }
+
+        .leadership-card h3 {
+            font-size: 1rem;
+            color: #111827;
+            margin-bottom: 7px;
+        }
+
+        .leadership-card p {
+            font-size: 0.82rem;
+            color: #687385;
+        }
+
+        /* =========================
+           HACKATHONS & EXPO
+        ========================== */
+
+        .events {
+            background: #f8fafc;
+            border-top: 1px solid #eef2f7;
+            border-bottom: 1px solid #eef2f7;
+        }
+
+        .events-controls {
+            margin-bottom: 25px;
+        }
+
+        .toggle-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            border: 1px solid #d1d5db;
+            background: white;
+            color: #1f2937;
+            border-radius: 8px;
+            padding: 10px 15px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: 0.25s ease;
+        }
+
+        .toggle-btn:hover {
+            border-color: #2563eb;
+            color: #2563eb;
+        }
+
+        .toggle-icon {
+            font-size: 0.8rem;
+            transition: transform 0.25s ease;
+        }
+
+        .events-list {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 15px;
+            transition: all 0.3s ease;
+        }
+
+        .event-card {
+            background: white;
+            border: 1px solid #e5e7eb;
+            border-radius: 10px;
+            padding: 22px;
+        }
+
+        .event-card h3 {
+            color: #111827;
+            font-size: 1rem;
+            margin-bottom: 6px;
+        }
+
+        .event-card p {
+            color: #6b7280;
+            font-size: 0.82rem;
+        }
+
+        /*
+           This class is controlled by JavaScript.
+           It hides the event cards after the first two.
+        */
+
+        .events-list.collapsed .event-card:nth-child(n+3) {
+            display: none;
+        }
+
+        /* =========================
+           CONTACT
+        ========================== */
+
+        .contact {
+            padding-bottom: 110px;
+        }
+
+        .contact-box {
+            border: 1px solid #dbeafe;
+            background: #eff6ff;
+            border-radius: 18px;
+            padding: 50px;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+            align-items: center;
+        }
+
+        .contact-box h2 {
+            font-size: 2.3rem;
+            line-height: 1.1;
+            letter-spacing: -1px;
+            color: #111827;
+            margin-bottom: 13px;
+        }
+
+        .contact-box p {
+            color: #5d6878;
+            max-width: 500px;
+        }
+
+        .contact-links {
+            display: grid;
+            gap: 11px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background: white;
+            border: 1px solid #dbe3ef;
+            border-radius: 9px;
+            padding: 14px 17px;
+            transition: 0.25s ease;
+        }
+
+        .contact-link:hover {
+            border-color: #2563eb;
+            transform: translateX(3px);
+        }
+
+        .contact-link div:first-child {
+            display: flex;
+            flex-direction: column;
+        }
+
+        .contact-link strong {
+            font-size: 0.86rem;
+            color: #111827;
+        }
+
+        .contact-link span {
+            font-size: 0.76rem;
+            color: #6b7280;
+        }
+
+        .contact-arrow {
+            color: #2563eb;
+            font-weight: 800;
+        }
+
+        /* =========================
+           FOOTER
+        ========================== */
+
+        footer {
+            border-top: 1px solid #e5e7eb;
+            padding: 25px 0;
+            background: white;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .footer-inner p {
+            color: #7b8492;
+            font-size: 0.78rem;
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 18px;
+        }
+
+        .footer-links a {
+            color: #6b7280;
+            font-size: 0.78rem;
+            font-weight: 600;
+        }
+
+        .footer-links a:hover {
+            color: #2563eb;
+        }
+
+        /* =========================
+           SCROLL REVEAL
+        ========================== */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.7s ease, transform 0.7s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           RESPONSIVE
+        ========================== */
+
+        @media (max-width: 950px) {
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 50px;
+            }
+
+            .tech-visual {
+                width: 300px;
+                height: 300px;
+            }
+
+            .projects-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .leadership-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-box {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 700px) {
+
+            .container {
+                width: 92%;
+            }
+
+            nav {
+                position: relative;
+            }
+
+            .menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                position: absolute;
+                top: 72px;
+                left: 0;
+                width: 100%;
+                display: none;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 0;
+                background: white;
+                border-bottom: 1px solid #e5e7eb;
+                box-shadow: 0 10px 25px rgba(15, 23, 42, 0.06);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .nav-links li {
+                width: 100%;
+            }
+
+            .nav-links a {
+                display: block;
+                padding: 14px 5%;
+                width: 100%;
+            }
+
+            .hero {
+                padding: 65px 0;
+            }
+
+            .hero h1 {
+                font-size: 3.1rem;
+                letter-spacing: -2px;
+            }
+
+            .hero-description {
+                font-size: 0.98rem;
+            }
+
+            .tech-visual {
+                transform: scale(0.85);
+                margin-top: -20px;
+            }
+
+            .stats-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .stat:nth-child(2) {
+                border-right: none;
+            }
+
+            .stat:nth-child(-n+2) {
+                border-bottom: 1px solid #e5e7eb;
+            }
+
+            .projects-grid,
+            .additional-grid,
+            .events-list {
+                grid-template-columns: 1fr;
+            }
+
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 35px;
+            }
+
+            .skills {
+                grid-template-columns: 1fr;
+            }
+
+            section {
+                padding: 70px 0;
+            }
+
+            .contact-box {
+                padding: 30px 22px;
+            }
+
+            .contact-box h2 {
+                font-size: 1.9rem;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+    </style>
 </head>
+
 <body>
-<nav><div class="container navin">
-  <a class="brand" href="#home">SAURABH<span>.</span></a>
-  <div class="navlinks">
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Projects</a>
-    <a href="#experience">Journey</a>
-    <a href="#contact">Contact</a>
-  </div>
-</div></nav>
 
-<main>
-<section class="hero" id="home"><div class="container hero-grid">
-  <div class="animate-in">
-    <div class="eyebrow">Electronics • Embedded Systems • Robotics</div>
-    <h1>Building Ideas Into <span class="gradient">Working Prototypes.</span></h1>
-    <p>Hi, I'm <strong>Saurabh Patel</strong> — An Engineering Student At NIT Nagaland Interested In Embedded Systems, Robotics, IoT, and AI-powered Hardware.</p>
-    <div class="buttons">
-      <a class="btn primary" href="#projects">Explore My Projects</a>
-      <a class="btn secondary" href="CV.pdf" download>Download CV</a>
-    </div>
-  </div>
-  <div class="profile animate-in delay-1"><div class="initials">SP</div></div>
-</div></section>
+    <!-- =========================
+         NAVIGATION
+    ========================== -->
 
-<section id="about"><div class="container animate-in delay-2">
-  <h2 class="section-title">About Me</h2>
-  <p class="section-sub">A quick introduction.</p>
-  <div class="about">
-    <div class="panel">
-      <p>I enjoy turning electronics, sensors, communication modules, and software into practical systems. My projects span drones, mine-safety systems, fault detection, and AI-enabled prototypes.</p>
-      <p>As an engineering student at NIT Nagaland, I've served on the Student Council and as the Robotics Club Secretary, giving me hands-on experience in both building tech and leading technical initiatives.</p>
-    </div>
-    <div class="panel" id="skills">
-      <h3>Core Skills</h3>
-      <div class="skills">
-        <span class="tag">ESP32</span><span class="tag">STM32</span><span class="tag">Arduino</span>
-        <span class="tag">Raspberry Pi</span><span class="tag">C / C++</span><span class="tag">Python</span>
-        <span class="tag">MATLAB</span><span class="tag">IoT</span><span class="tag">ESP-NOW</span>
-        <span class="tag">Multisim</span><span class="tag">Sensors</span><span class="tag">Embedded Systems</span>
-        <span class="tag">Edge Impulse</span><span class="tag">Robotics</span>
-      </div>
-    </div>
-  </div>
-</div></section>
+    <header>
+        <div class="container">
+            <nav>
 
-<section id="projects"><div class="container animate-in delay-3">
-  <h2 class="section-title">Major Projects</h2>
-  <p class="section-sub">Selected engineering projects and prototypes.</p>
-  <div class="projects">
-    <article class="project">
-      <div class="icon">🚁</div>
-      <h3>Aerial Fire Detection</h3>
-      <p>RC drone prototype combining camera-based ML fire detection with GPS/IMU sensing and an immediate fire-suppression payload concept.</p>
-      <div class="stack">STM32 • ESP32 • Raspberry Pi • ML</div>
-    </article>
-    <article class="project">
-      <div class="icon">⛏️</div>
-      <h3>MineSafe-X</h3>
-      <p>Cooperative mine-vehicle safety system for fog and low visibility using V2X communication, TTC alerts, and layered sensing.</p>
-      <div class="stack">ESP32 • Radar • LiDAR • ESP-NOW</div>
-    </article>
-    <article class="project">
-      <div class="icon">⚡</div>
-      <h3>AC Line Fault Detection</h3>
-      <p>Prototype device designed to identify abnormal or faulty conditions in electrical AC lines and provide a practical safety-oriented indication.</p>
-      <div class="stack">Embedded Systems • Sensors</div>
-    </article>
-  </div>
-  
-  <h2 class="section-title" style="margin-top:80px">Additional Projects</h2>
-  <div class="projects">
-    <article class="project">
-      <div class="icon">🚗</div>
-      <h3>Bluetooth RC Car</h3>
-      <p>Microcontroller-based RC vehicle with wireless control and motor-driver integration.</p>
-      <div class="stack">Arduino • HC-05 • Motor Driver</div>
-    </article>
-    <article class="project">
-      <div class="icon">🎨</div>
-      <h3>Digital Design & Branding</h3>
-      <p>Designed official circular logos and event branding for the Technical Board and E-Cell at NIT Nagaland.</p>
-      <div class="stack">Digital Art • Vector Design</div>
-    </article>
-    <article class="project">
-      <div class="icon">🔧</div>
-      <h3>Embedded Prototypes</h3>
-      <p>Hands-on experiments with digital logic circuits, transistor biasing, and traffic-light control interfaces.</p>
-      <div class="stack">Logic Gates • Multisim • Breadboards</div>
-    </article>
-  </div>
-</div></section>
+                <a href="#home" class="logo">
+                    Saurabh<span>.</span>
+                </a>
 
-<section id="experience"><div class="container">
-  <h2 class="section-title">Journey & Activities</h2>
-  <p class="section-sub">Academic background and hackathon experience.</p>
-  <div class="timeline">
-    <div class="item">
-      <span class="dot"></span>
-      <div>
-        <h3>NIT Nagaland — Engineering Student</h3>
-        <p>Currently studying engineering, actively involved in the Student Council, and previously served as the Robotics Club Secretary.</p>
-      </div>
-    </div>
-    <div class="item">
-      <span class="dot"></span>
-      <div>
-        <h3>Hackathons & Competitions</h3>
-        <p>Participated in Hack Days Nagaland, HMEL Energy Quest 3.0, and the TXG Expo AI Creative Video Challenge.</p>
-      </div>
-    </div>
-    <div class="item">
-      <span class="dot"></span>
-      <div>
-        <h3>Campus Initiatives & Platforms</h3>
-        <p>Engaged in data science on Kaggle, selected as a Priority Member for CampusCrew (Unstop), and active in technical event organization.</p>
-      </div>
-    </div>
-  </div>
-</div></section>
+                <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu">
+                    ☰
+                </button>
 
-<section id="contact"><div class="container">
-  <h2 class="section-title">Let's Connect</h2>
-  <p class="section-sub">Interested in Collaborating, Discussing Projects or Opportunities?</p>
-  <div class="contact">
-    <div class="contact-card">
-      <h3>Have a project in mind?</h3>
-      <p style="color:var(--muted); margin-top:15px; margin-bottom: 25px;">I'm always interested in learning, Building, and working on meaningful Hardware and Software Technology.</p>
-      <div class="buttons">
-        <a class="btn primary" href="saurabh4366@nitnagaland.ac.in">Email Me</a>
-        <a class="btn secondary" href="CV.pdf" download>Get My CV</a>
-      </div>
-    </div>
-    <div class="contact-card">
-      <h3>Find me online</h3>
-      <div class="contact-links">
-        <a href="https://www.linkedin.com/in/saurabhp04/" target="_blank">LinkedIn <span>↗</span></a>
-        <a href="https://github.com/" target="_blank">GitHub <span>↗</span></a>
-      </div>
-    </div>
-  </div>
-</div></section>
-</main>
-<footer>
-  <div class="container">© 2026 Saurabh Patel. Built with Curiosity, Electronics and Code.</div>
-</footer>
+                <ul class="nav-links" id="navLinks">
+                    <li><a href="#home">Home</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#leadership">Leadership</a></li>
+                    <li><a href="#events">Hackathons & Expo</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                </ul>
+
+            </nav>
+        </div>
+    </header>
+
+
+    <!-- =========================
+         HERO
+    ========================== -->
+
+    <main>
+
+        <section class="hero" id="home">
+
+            <div class="container">
+
+                <div class="hero-grid">
+
+                    <div class="reveal">
+
+                        <div class="eyebrow">
+                            ELECTRONICS • EMBEDDED SYSTEMS • ROBOTICS
+                        </div>
+
+                        <h1>
+                            Building ideas into
+                            <span>working systems.</span>
+                        </h1>
+
+                        <p class="hero-description">
+                            I am Saurabh Patel, an engineering student focused on
+                            electronics, embedded systems, robotics, IoT and
+                            practical technology solutions. I enjoy turning
+                            concepts into functional prototypes that solve
+                            real-world problems.
+                        </p>
+
+                        <div class="hero-buttons">
+
+                            <a href="#projects" class="btn btn-primary">
+                                View Projects
+                            </a>
+
+                            <a href="CV.pdf" class="btn btn-secondary" download>
+                                Download CV
+                            </a>
+
+                            <a href="#contact" class="btn btn-secondary">
+                                Contact Me
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="tech-visual reveal">
+
+                        <div class="orbit one"></div>
+                        <div class="orbit two"></div>
+                        <div class="orbit three"></div>
+
+                        <div class="core">
+                            ENGINEER
+                        </div>
+
+                        <div class="node n1">IoT</div>
+                        <div class="node n2">AI</div>
+                        <div class="node n3">PCB</div>
+                        <div class="node n4">EMB</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             STATS
+        ========================== -->
+
+        <section class="stats">
+
+            <div class="container">
+
+                <div class="stats-grid reveal">
+
+                    <div class="stat">
+                        <h3>03+</h3>
+                        <p>Major Projects</p>
+                    </div>
+
+                    <div class="stat">
+                        <h3>10+</h3>
+                        <p>Technical Projects</p>
+                    </div>
+
+                    <div class="stat">
+                        <h3>05+</h3>
+                        <p>Technical Skills</p>
+                    </div>
+
+                    <div class="stat">
+                        <h3>03+</h3>
+                        <p>Hackathons & Expos</p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ABOUT
+        ========================== -->
+
+        <section class="about" id="about">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div class="section-label">About Me</div>
+                    <h2>Engineering with a hands-on approach.</h2>
+                    <p>
+                        My interests lie at the intersection of hardware,
+                        software and intelligent systems.
+                    </p>
+                </div>
+
+
+                <div class="about-grid">
+
+                    <div class="about-text reveal">
+
+                        <p>
+                            I am an engineering student at NIT Nagaland with
+                            a strong interest in electronics, embedded systems,
+                            robotics and emerging technologies.
+                        </p>
+
+                        <p>
+                            My project work focuses on building practical
+                            prototypes using microcontrollers, sensors,
+                            communication systems, artificial intelligence
+                            and IoT technologies.
+                        </p>
+
+                        <p>
+                            I believe in learning by building — designing,
+                            testing and improving systems until an idea
+                            becomes a functional solution.
+                        </p>
+
+                    </div>
+
+
+                    <div class="skills reveal">
+
+                        <div class="skill">
+                            <strong>Embedded Systems</strong>
+                            <span>ESP32, STM32, Arduino</span>
+                        </div>
+
+                        <div class="skill">
+                            <strong>Programming</strong>
+                            <span>C, C++, Python, MATLAB</span>
+                        </div>
+
+                        <div class="skill">
+                            <strong>IoT & Communication</strong>
+                            <span>ESP-NOW, Bluetooth, Wireless Systems</span>
+                        </div>
+
+                        <div class="skill">
+                            <strong>Sensors & Hardware</strong>
+                            <span>GPS, IMU, Radar, ToF & Ultrasonic</span>
+                        </div>
+
+                        <div class="skill">
+                            <strong>Artificial Intelligence</strong>
+                            <span>Edge Impulse & ML-based Prototypes</span>
+                        </div>
+
+                        <div class="skill">
+                            <strong>Design & Prototyping</strong>
+                            <span>PCB, Circuit Design & Hardware Integration</span>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             MAJOR PROJECTS
+        ========================== -->
+
+        <section id="projects">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div class="section-label">Major Projects</div>
+                    <h2>Selected work.</h2>
+                    <p>
+                        A selection of engineering projects combining
+                        electronics, embedded systems, robotics and AI.
+                    </p>
+                </div>
+
+
+                <div class="projects-grid">
+
+                    <article class="project-card reveal">
+
+                        <div class="project-number">01 / MAJOR PROJECT</div>
+
+                        <h3>
+                            Aerial Fire Detection & Suppression Drone
+                        </h3>
+
+                        <p>
+                            Developed an RC drone prototype combining
+                            machine-learning-based fire detection with
+                            GPS and IMU sensing, along with an immediate
+                            fire-suppression payload concept.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">STM32</span>
+                            <span class="tag">ESP32</span>
+                            <span class="tag">Raspberry Pi</span>
+                            <span class="tag">Edge Impulse</span>
+                            <span class="tag">GPS</span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="project-card reveal">
+
+                        <div class="project-number">02 / MAJOR PROJECT</div>
+
+                        <h3>
+                            MineSafe-X
+                        </h3>
+
+                        <p>
+                            Designed a cooperative safety system for mine
+                            vehicles operating in fog and low-visibility
+                            conditions using vehicle-to-vehicle communication,
+                            GPS, radar and proximity sensing.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">ESP32</span>
+                            <span class="tag">ESP-NOW</span>
+                            <span class="tag">GPS</span>
+                            <span class="tag">mmWave</span>
+                            <span class="tag">IoT</span>
+                        </div>
+
+                    </article>
+
+
+                    <article class="project-card reveal">
+
+                        <div class="project-number">03 / MAJOR PROJECT</div>
+
+                        <h3>
+                            AC Line Fault Detection Device
+                        </h3>
+
+                        <p>
+                            Developed a prototype designed to identify
+                            abnormal conditions and faults in electrical
+                            AC lines, providing a simple indication of
+                            potential electrical problems.
+                        </p>
+
+                        <div class="tags">
+                            <span class="tag">Electronics</span>
+                            <span class="tag">Sensors</span>
+                            <span class="tag">Embedded</span>
+                            <span class="tag">Safety</span>
+                        </div>
+
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             ADDITIONAL PROJECTS
+        ========================== -->
+
+        <section class="additional">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div class="section-label">Additional Projects</div>
+                    <h2>Smaller builds & experiments.</h2>
+                </div>
+
+
+                <div class="additional-grid">
+
+                    <div class="additional-card reveal">
+                        <h3>Bluetooth RC Car</h3>
+                        <p>
+                            Built a Bluetooth-controlled robotic car using
+                            a microcontroller, motor driver and HC-05 module.
+                        </p>
+                    </div>
+
+                    <div class="additional-card reveal">
+                        <h3>AI Chatbot</h3>
+                        <p>
+                            Worked on an AI chatbot concept for interactive
+                            and automated user assistance.
+                        </p>
+                    </div>
+
+                    <div class="additional-card reveal">
+                        <h3>Embedded System Prototypes</h3>
+                        <p>
+                            Designed and tested small electronics and
+                            microcontroller-based prototypes.
+                        </p>
+                    </div>
+
+                    <div class="additional-card reveal">
+                        <h3>Technical Design & Branding</h3>
+                        <p>
+                            Created digital designs and technical branding
+                            materials for student organizations and events.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             LEADERSHIP
+        ========================== -->
+
+        <section id="leadership">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div class="section-label">Leadership & Activities</div>
+                    <h2>Beyond project development.</h2>
+                </div>
+
+
+                <div class="leadership-grid">
+
+                    <div class="leadership-card reveal">
+                        <h3>Robotics Club Secretary</h3>
+                        <p>
+                            Contributed to technical activities, project
+                            development and coordination of robotics-related
+                            initiatives.
+                        </p>
+                    </div>
+
+                    <div class="leadership-card reveal">
+                        <h3>Assistant Secretary</h3>
+                        <p>
+                            Supported technical events, student activities
+                            and coordination within the institute.
+                        </p>
+                    </div>
+
+                    <div class="leadership-card reveal">
+                        <h3>Technical Event Organization</h3>
+                        <p>
+                            Participated in organizing technical activities,
+                            competitions, demonstrations and student events.
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             HACKATHONS & EXPO
+        ========================== -->
+
+        <section class="events" id="events">
+
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div class="section-label">Hackathons & Expo</div>
+                    <h2>Building, competing & showcasing.</h2>
+                    <p>
+                        Technical competitions, exhibitions and innovation
+                        activities that provided opportunities to develop
+                        and present real-world solutions.
+                    </p>
+                </div>
+
+
+                <div class="events-controls reveal">
+
+                    <button
+                        type="button"
+                        class="toggle-btn"
+                        id="toggleEvents"
+                        aria-expanded="false"
+                        aria-controls="eventsList"
+                    >
+                        <span class="toggle-icon" id="toggleIcon">＋</span>
+                        <span id="toggleText">View All</span>
+                    </button>
+
+                </div>
+
+
+                <div class="events-list collapsed reveal" id="eventsList">
+
+                    <article class="event-card">
+                        <h3>Smart India Hackathon</h3>
+                        <p>
+                            Developed and presented MineSafe-X, a proposed
+                            technology solution for safer mine vehicle
+                            operation in fog and low-visibility conditions.
+                        </p>
+                    </article>
+
+
+                    <article class="event-card">
+                        <h3>TXG Expo Nagaland</h3>
+                        <p>
+                            Participated in a technology and innovation
+                            exhibition, presenting project concepts and
+                            technical prototypes.
+                        </p>
+                    </article>
+
+
+                    <article class="event-card">
+                        <h3>Fading Threads — AI Creative Video Challenge</h3>
+                        <p>
+                            Participated in an AI-based creative challenge
+                            focused on traditional weaving and cultural
+                            preservation.
+                        </p>
+                    </article>
+
+
+                    <article class="event-card">
+                        <h3>Technical Demonstrations</h3>
+                        <p>
+                            Participated in technical demonstrations and
+                            project showcases involving electronics,
+                            robotics and embedded systems.
+                        </p>
+                    </article>
+
+                </div>
+
+            </div>
+
+        </section>
+
+
+        <!-- =========================
+             CONTACT
+        ========================== -->
+
+        <section class="contact" id="contact">
+
+            <div class="container">
+
+                <div class="contact-box reveal">
+
+                    <div>
+
+                        <div class="section-label">
+                            Get In Touch
+                        </div>
+
+                        <h2>
+                            Let's build something useful.
+                        </h2>
+
+                        <p>
+                            Interested in electronics, embedded systems,
+                            robotics or technology projects? Feel free to
+                            connect with me.
+                        </p>
+
+                    </div>
+
+
+                    <div class="contact-links">
+
+                        <!-- EMAIL ONLY -->
+                        <a
+                            class="contact-link"
+                            href="mailto:saurabh4366@nitnagaland.ac.in"
+                        >
+                            <div>
+                                <strong>Email</strong>
+                                <span>saurabh4366@nitnagaland.ac.in</span>
+                            </div>
+
+                            <span class="contact-arrow">↗</span>
+                        </a>
+
+
+                        <!-- LINKEDIN ONLY -->
+                        <a
+                            class="contact-link"
+                            href="https://www.linkedin.com/in/saurabhp04/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <div>
+                                <strong>LinkedIn</strong>
+                                <span>Connect with me on LinkedIn</span>
+                            </div>
+
+                            <span class="contact-arrow">↗</span>
+                        </a>
+
+
+                        <!-- GITHUB ONLY -->
+                        <a
+                            class="contact-link"
+                            href="https://github.com/"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            <div>
+                                <strong>GitHub</strong>
+                                <span>View my projects and repositories</span>
+                            </div>
+
+                            <span class="contact-arrow">↗</span>
+                        </a>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        </section>
+
+    </main>
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+        <div class="container">
+
+            <div class="footer-inner">
+
+                <p>
+                    © 2026 Saurabh Patel. All rights reserved.
+                </p>
+
+                <div class="footer-links">
+
+                    <a href="#home">Home</a>
+                    <a href="#projects">Projects</a>
+                    <a href="#contact">Contact</a>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </footer>
+
+
+    <!-- =========================
+         JAVASCRIPT
+    ========================== -->
+
+    <script>
+
+        /* =========================
+           MOBILE MENU
+        ========================== */
+
+        const menuBtn = document.getElementById("menuBtn");
+        const navLinks = document.getElementById("navLinks");
+
+        menuBtn.addEventListener("click", function () {
+
+            navLinks.classList.toggle("active");
+
+            if (navLinks.classList.contains("active")) {
+                menuBtn.textContent = "✕";
+            } else {
+                menuBtn.textContent = "☰";
+            }
+
+        });
+
+
+        /* Close mobile menu after clicking a link */
+
+        document.querySelectorAll(".nav-links a").forEach(function(link) {
+
+            link.addEventListener("click", function() {
+
+                navLinks.classList.remove("active");
+                menuBtn.textContent = "☰";
+
+            });
+
+        });
+
+
+        /* =========================
+           HACKATHONS & EXPO TOGGLE
+        ========================== */
+
+        const toggleEvents = document.getElementById("toggleEvents");
+        const eventsList = document.getElementById("eventsList");
+        const toggleText = document.getElementById("toggleText");
+        const toggleIcon = document.getElementById("toggleIcon");
+
+        toggleEvents.addEventListener("click", function () {
+
+            const isCollapsed = eventsList.classList.contains("collapsed");
+
+            if (isCollapsed) {
+
+                /* SHOW ALL */
+
+                eventsList.classList.remove("collapsed");
+
+                toggleText.textContent = "Hide";
+                toggleIcon.textContent = "−";
+
+                toggleEvents.setAttribute("aria-expanded", "true");
+
+            } else {
+
+                /* HIDE EXTRA EVENTS */
+
+                eventsList.classList.add("collapsed");
+
+                toggleText.textContent = "View All";
+                toggleIcon.textContent = "＋";
+
+                toggleEvents.setAttribute("aria-expanded", "false");
+
+                /* Keep the section visible after collapsing */
+
+                document.getElementById("events").scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+
+            }
+
+        });
+
+
+        /* =========================
+           SCROLL REVEAL
+        ========================== */
+
+        const revealElements = document.querySelectorAll(".reveal");
+
+        const revealObserver = new IntersectionObserver(
+
+            function(entries, observer) {
+
+                entries.forEach(function(entry) {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("visible");
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+
+            {
+                threshold: 0.12
+            }
+
+        );
+
+
+        revealElements.forEach(function(element) {
+
+            revealObserver.observe(element);
+
+        });
+
+    </script>
+
 </body>
 </html>
