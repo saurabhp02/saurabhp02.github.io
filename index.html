@@ -1,1353 +1,1761 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Saurabh Patel | Electronics & Embedded Systems</title>
-    <meta name="description" content="Portfolio of Saurabh Patel — Electronics, Embedded Systems, Robotics, IoT and AI projects.">
-
-    <!-- Google Fonts: Outfit -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <style>
-        /* =========================
-           VARIABLES & GLOBAL
-        ========================== */
-        :root {
-            --bg-main: #f8fafc;
-            --bg-card: #ffffff;
-            --text-dark: #0f172a;
-            --text-muted: #64748b;
-            --accent: #3b82f6;
-            --accent-gradient: linear-gradient(135deg, #3b82f6, #6366f1);
-            --border-light: rgba(226, 232, 240, 0.8);
-            --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.03);
-            --shadow-md: 0 10px 30px -10px rgba(37, 99, 235, 0.15);
-            --shadow-lg: 0 20px 40px -10px rgba(99, 102, 241, 0.2);
-            --radius-md: 14px;
-            --radius-lg: 24px;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Outfit', sans-serif;
-            background-color: var(--bg-main);
-            background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
-            background-size: 32px 32px;
-            color: var(--text-dark);
-            line-height: 1.7;
-            overflow-x: hidden;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        img {
-            max-width: 100%;
-            display: block;
-        }
-
-        .container {
-            width: 90%;
-            max-width: 1180px;
-            margin: auto;
-        }
-
-        /* Ambient Glows */
-        .ambient-glow-1, .ambient-glow-2 {
-            position: absolute;
-            border-radius: 50%;
-            z-index: -1;
-            pointer-events: none;
-            filter: blur(80px);
-            opacity: 0.4;
-        }
-        
-        .ambient-glow-1 {
-            top: -150px;
-            right: 10%;
-            width: 500px;
-            height: 500px;
-            background: rgba(99, 102, 241, 0.3);
-        }
-        
-        .ambient-glow-2 {
-            top: 200px;
-            left: -100px;
-            width: 400px;
-            height: 400px;
-            background: rgba(59, 130, 246, 0.25);
-        }
-
-        /* Animations */
-        @keyframes slideDown {
-            from { opacity: 0; transform: translateY(-100%); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes scaleIn {
-            from { opacity: 0; transform: scale(0.9) translateY(20px); }
-            to { opacity: 1; transform: scale(1) translateY(0); }
-        }
-
-        .load-anim-1 { animation: fadeUp 0.8s ease backwards; animation-delay: 0.2s; }
-        .load-anim-2 { animation: fadeUp 0.8s ease backwards; animation-delay: 0.4s; }
-        .load-anim-3 { animation: fadeUp 0.8s ease backwards; animation-delay: 0.6s; }
-        .load-anim-4 { animation: fadeUp 0.8s ease backwards; animation-delay: 0.8s; }
-        .load-anim-image { animation: scaleIn 1s cubic-bezier(0.16, 1, 0.3, 1) backwards; animation-delay: 0.9s; }
-
-        /* Navbar */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: rgba(255, 255, 255, 0.7);
-            border-bottom: 1px solid var(--border-light);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            animation: slideDown 0.8s ease backwards;
-        }
-
-        nav {
-            min-height: 76px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-        .logo {
-            font-size: 1.5rem;
-            font-weight: 800;
-            letter-spacing: -0.5px;
-        }
-
-        .logo span {
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .nav-links {
-            display: flex;
-            align-items: center;
-            gap: 32px;
-            list-style: none;
-        }
-
-        .nav-links a {
-            font-size: 0.95rem;
-            font-weight: 500;
-            color: var(--text-muted);
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover {
-            color: var(--text-dark);
-        }
-
-        .menu-btn {
-            display: none;
-            border: none;
-            background: none;
-            font-size: 1.8rem;
-            cursor: pointer;
-            color: var(--text-dark);
-        }
-
-        /* Hero */
-        .hero {
-            position: relative;
-            min-height: calc(100vh - 76px);
-            display: flex;
-            align-items: center;
-            padding: 80px 0;
-        }
-
-        .hero-grid {
-            display: grid;
-            grid-template-columns: 1.15fr 0.85fr;
-            gap: 70px;
-            align-items: center;
-        }
-
-        .eyebrow {
-            display: inline-block;
-            padding: 8px 16px;
-            border: 1px solid rgba(99, 102, 241, 0.2);
-            border-radius: 50px;
-            background: rgba(255, 255, 255, 0.8);
-            color: #4f46e5;
-            font-size: 0.85rem;
-            font-weight: 700;
-            letter-spacing: 0.5px;
-            margin-bottom: 24px;
-            backdrop-filter: blur(5px);
-        }
-
-        .hero h1 {
-            font-size: clamp(3rem, 6.5vw, 5.5rem);
-            line-height: 1.05;
-            letter-spacing: -2px;
-            font-weight: 800;
-            margin-bottom: 24px;
-        }
-
-        .hero h1 span {
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero-description {
-            max-width: 600px;
-            color: var(--text-muted);
-            font-size: 1.15rem;
-            margin-bottom: 36px;
-            font-weight: 400;
-        }
-
-        .hero-buttons {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .btn {
-            display: inline-flex;
-            align-items: center;
-            justify-content: center;
-            padding: 14px 28px;
-            border-radius: var(--radius-md);
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            cursor: pointer;
-        }
-
-        .btn-primary {
-            background: var(--accent-gradient);
-            color: white;
-            border: none;
-            box-shadow: 0 8px 20px -6px rgba(99, 102, 241, 0.5);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-3px) scale(1.02);
-            box-shadow: 0 12px 25px -6px rgba(99, 102, 241, 0.6);
-        }
-
-        .btn-secondary {
-            background: rgba(255, 255, 255, 0.8);
-            color: var(--text-dark);
-            border: 1px solid var(--border-light);
-            box-shadow: var(--shadow-sm);
-            backdrop-filter: blur(5px);
-        }
-
-        .btn-secondary:hover {
-            border-color: #6366f1;
-            color: #4f46e5;
-            transform: translateY(-3px);
-            background: white;
-        }
-
-        .hero-image {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            position: relative;
-        }
-
-        .hero-image::before {
-            content: '';
-            position: absolute;
-            inset: -20px;
-            background: var(--accent-gradient);
-            border-radius: 50%;
-            opacity: 0.15;
-            filter: blur(30px);
-            z-index: -1;
-        }
-
-        .hero-image img {
-            width: 100%;
-            max-width: 400px;
-            height: auto;
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-lg);
-            object-fit: cover;
-            border: 6px solid white;
-        }
-
-        /* Stats */
-        .stats {
-            padding: 0 0 80px;
-        }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            background: rgba(255, 255, 255, 0.8);
-            backdrop-filter: blur(10px);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            box-shadow: var(--shadow-md);
-            overflow: hidden;
-        }
-
-        .stat {
-            padding: 30px 20px;
-            text-align: center;
-            border-right: 1px solid var(--border-light);
-            transition: background 0.3s ease;
-        }
-
-        .stat:hover {
-            background: rgba(248, 250, 252, 0.9);
-        }
-
-        .stat:last-child {
-            border-right: none;
-        }
-
-        .stat h3 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            background: var(--accent-gradient);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 4px;
-            letter-spacing: -1px;
-        }
-
-        .stat p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        /* Section Common */
-        section {
-            padding: 100px 0;
-            position: relative;
-        }
-
-        .section-heading {
-            margin-bottom: 50px;
-        }
-
-        .section-label {
-            color: #4f46e5;
-            font-size: 0.85rem;
-            font-weight: 800;
-            letter-spacing: 2.5px;
-            text-transform: uppercase;
-            margin-bottom: 12px;
-            display: inline-block;
-            background: rgba(99, 102, 241, 0.1);
-            padding: 6px 14px;
-            border-radius: 50px;
-        }
-
-        .section-heading h2 {
-            font-size: clamp(2.2rem, 4vw, 3.2rem);
-            line-height: 1.15;
-            letter-spacing: -1.5px;
-            font-weight: 800;
-        }
-
-        .section-heading p {
-            max-width: 650px;
-            margin-top: 16px;
-            color: var(--text-muted);
-            font-size: 1.05rem;
-        }
-
-        /* About */
-        .about {
-            background: rgba(255, 255, 255, 0.5);
-            border-top: 1px solid var(--border-light);
-            border-bottom: 1px solid var(--border-light);
-            backdrop-filter: blur(10px);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 70px;
-            align-items: center;
-        }
-
-        .about-text p {
-            color: var(--text-muted);
-            margin-bottom: 20px;
-            font-size: 1.1rem;
-        }
-
-        .skills {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 16px;
-        }
-
-        .skill {
-            padding: 20px;
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.3s ease, border-color 0.3s ease;
-        }
-
-        .skill:hover {
-            transform: translateY(-4px);
-            border-color: rgba(99, 102, 241, 0.4);
-            box-shadow: var(--shadow-md);
-        }
-
-        .skill strong {
-            display: block;
-            font-size: 1.05rem;
-            font-weight: 700;
-            margin-bottom: 6px;
-        }
-
-        .skill span {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-        }
-
-        /* Gallery & Shimmer Placeholders */
-        .card-gallery {
-            display: flex;
-            gap: 16px;
-            overflow-x: auto;
-            padding-bottom: 16px;
-            margin-bottom: 24px;
-            scroll-snap-type: x mandatory;
-            scrollbar-width: thin;
-            scrollbar-color: #cbd5e1 transparent;
-        }
-
-        .card-gallery::-webkit-scrollbar {
-            height: 8px;
-        }
-        .card-gallery::-webkit-scrollbar-thumb {
-            background-color: #cbd5e1;
-            border-radius: 10px;
-        }
-
-        .card-gallery img {
-            height: 180px;
-            min-width: 260px;
-            border-radius: var(--radius-md);
-            object-fit: cover;
-            scroll-snap-align: start;
-            border: 1px solid var(--border-light);
-            flex-shrink: 0;
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
-        }
-
-        .card-gallery img:hover {
-            transform: scale(1.02);
-            box-shadow: var(--shadow-md);
-        }
-
-        @keyframes shimmer {
-            0% { background-position: -200% 0; }
-            100% { background-position: 200% 0; }
-        }
-
-        .img-placeholder {
-            height: 180px;
-            min-width: 260px;
-            border-radius: var(--radius-md);
-            background: linear-gradient(110deg, #f1f5f9 20%, #e2e8f0 40%, #f1f5f9 60%);
-            background-size: 200% 100%;
-            animation: shimmer 2.5s infinite linear;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border: 2px dashed #cbd5e1;
-            flex-shrink: 0;
-            scroll-snap-align: start;
-            color: #94a3b8;
-            font-size: 1rem;
-            font-weight: 600;
-            letter-spacing: 0.5px;
-        }
-
-        .img-placeholder span {
-            background: white;
-            padding: 8px 16px;
-            border-radius: 50px;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-
-        /* Projects */
-        .projects-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-        }
-
-        .project-card {
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 32px;
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .project-card::before {
-            content: "";
-            position: absolute;
-            top: 0;
-            left: 0;
-            height: 4px;
-            width: 100%;
-            background: var(--accent-gradient);
-            transform: scaleX(0);
-            transform-origin: left;
-            transition: transform 0.4s ease;
-        }
-
-        .project-card:hover {
-            transform: translateY(-8px);
-            box-shadow: var(--shadow-lg);
-            border-color: transparent;
-        }
-
-        .project-card:hover::before {
-            transform: scaleX(1);
-        }
-
-        .project-number {
-            color: #4f46e5;
-            font-size: 0.75rem;
-            font-weight: 800;
-            letter-spacing: 1.5px;
-            margin-bottom: 20px;
-        }
-
-        .project-card h3 {
-            font-size: 1.4rem;
-            line-height: 1.3;
-            font-weight: 800;
-            margin-bottom: 12px;
-        }
-
-        .project-card p {
-            color: var(--text-muted);
-            font-size: 1rem;
-            margin-bottom: 24px;
-        }
-
-        .tags {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 8px;
-        }
-
-        .tag {
-            padding: 6px 12px;
-            border-radius: 8px;
-            background: rgba(99, 102, 241, 0.08);
-            color: #4f46e5;
-            font-size: 0.75rem;
-            font-weight: 700;
-            border: 1px solid rgba(99, 102, 241, 0.15);
-        }
-
-        /* Additional Projects */
-        .additional {
-            background: rgba(255, 255, 255, 0.5);
-            border-top: 1px solid var(--border-light);
-            border-bottom: 1px solid var(--border-light);
-            backdrop-filter: blur(10px);
-        }
-
-        .additional-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-        }
-
-        .additional-card {
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            padding: 28px;
-            border-radius: var(--radius-lg);
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .additional-card:hover {
-            border-color: rgba(99, 102, 241, 0.3);
-            box-shadow: var(--shadow-md);
-            transform: translateX(6px);
-        }
-
-        .additional-card h3 {
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin-bottom: 8px;
-        }
-
-        .additional-card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        /* Leadership */
-        .leadership-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 28px;
-        }
-
-        .leadership-card {
-            border-left: 4px solid #4f46e5;
-            background: rgba(255, 255, 255, 0.9);
-            padding: 32px;
-            border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-        
-        .leadership-card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .leadership-card h3 {
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin-bottom: 10px;
-        }
-
-        .leadership-card p {
-            font-size: 0.95rem;
-            color: var(--text-muted);
-        }
-
-        /* Hackathons & Expo */
-        .events {
-            background: rgba(255, 255, 255, 0.5);
-            border-top: 1px solid var(--border-light);
-            border-bottom: 1px solid var(--border-light);
-            backdrop-filter: blur(10px);
-        }
-
-        .events-controls {
-            margin-bottom: 30px;
-        }
-
-        .toggle-btn {
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            border: 1px solid var(--border-light);
-            background: var(--bg-card);
-            color: var(--text-dark);
-            border-radius: var(--radius-md);
-            padding: 14px 24px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-            user-select: none;
-        }
-
-        .toggle-btn:hover {
-            border-color: #6366f1;
-            color: #4f46e5;
-            transform: translateY(-2px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .toggle-icon {
-            font-size: 0.9rem;
-            transition: transform 0.3s ease;
-        }
-
-        .events-list {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 28px;
-            transition: all 0.4s ease;
-        }
-
-        .event-card {
-            background: rgba(255, 255, 255, 0.9);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-lg);
-            padding: 32px;
-            box-shadow: var(--shadow-sm);
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .event-card:hover {
-            transform: translateY(-6px);
-            box-shadow: var(--shadow-md);
-        }
-
-        .event-card h3 {
-            font-size: 1.3rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
-        .event-card p {
-            color: var(--text-muted);
-            font-size: 1rem;
-        }
-
-        /* HIDING RULE FOR TOGGLE */
-        .events-list.collapsed .extra-event,
-        .events-list.collapsed .event-card:nth-child(n+3) {
-            display: none !important;
-        }
-
-        /* Contact */
-        .contact {
-            padding-bottom: 120px;
-        }
-
-        .contact-box {
-            border: 1px solid rgba(99, 102, 241, 0.15);
-            background: rgba(99, 102, 241, 0.02);
-            backdrop-filter: blur(10px);
-            border-radius: var(--radius-lg);
-            padding: 60px;
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 60px;
-            align-items: center;
-            position: relative;
-            overflow: hidden;
-            box-shadow: var(--shadow-md);
-        }
-        
-        .contact-box::after {
-            content: '';
-            position: absolute;
-            top: -50%;
-            right: -10%;
-            width: 400px;
-            height: 400px;
-            background: radial-gradient(circle, rgba(99,102,241,0.08) 0%, rgba(255,255,255,0) 70%);
-            border-radius: 50%;
-            pointer-events: none;
-        }
-
-        .contact-box h2 {
-            font-size: clamp(2rem, 3.5vw, 2.8rem);
-            line-height: 1.1;
-            letter-spacing: -1px;
-            font-weight: 800;
-            margin-bottom: 16px;
-        }
-
-        .contact-box p {
-            color: var(--text-muted);
-            font-size: 1.05rem;
-            max-width: 500px;
-        }
-
-        .contact-links {
-            display: grid;
-            gap: 16px;
-            z-index: 1;
-        }
-
-        .contact-link {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            background: var(--bg-card);
-            border: 1px solid var(--border-light);
-            border-radius: var(--radius-md);
-            padding: 20px 24px;
-            transition: all 0.3s ease;
-            box-shadow: var(--shadow-sm);
-        }
-
-        .contact-link:hover {
-            border-color: #6366f1;
-            transform: translateX(8px);
-            box-shadow: 0 10px 20px rgba(99, 102, 241, 0.12);
-        }
-
-        .contact-link div:first-child {
-            display: flex;
-            flex-direction: column;
-        }
-
-        .contact-link strong {
-            font-size: 1rem;
-            font-weight: 700;
-            margin-bottom: 2px;
-        }
-
-        .contact-link span {
-            font-size: 0.9rem;
-            color: var(--text-muted);
-        }
-
-        .contact-arrow {
-            color: #4f46e5;
-            font-weight: 800;
-            font-size: 1.2rem;
-        }
-
-        /* Footer */
-        footer {
-            border-top: 1px solid var(--border-light);
-            padding: 40px 0;
-            background: var(--bg-card);
-        }
-
-        .footer-inner {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .footer-inner p {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            font-weight: 500;
-        }
-
-        .footer-links {
-            display: flex;
-            gap: 24px;
-        }
-
-        .footer-links a {
-            color: var(--text-muted);
-            font-size: 0.95rem;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: #4f46e5;
-        }
-
-        /* Scroll Reveal */
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
-        .reveal.visible {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        /* Responsive */
-        @media (max-width: 1024px) {
-            .projects-grid { grid-template-columns: repeat(2, 1fr); }
-            .stats-grid { grid-template-columns: repeat(2, 1fr); }
-            .stat:nth-child(2) { border-right: none; }
-            .stat:nth-child(-n+2) { border-bottom: 1px solid var(--border-light); }
-        }
-
-        @media (max-width: 950px) {
-            .hero-grid { grid-template-columns: 1fr; gap: 60px; text-align: center; }
-            .hero-description { margin: 0 auto 36px; }
-            .hero-buttons { justify-content: center; }
-            .eyebrow { margin: 0 auto 24px; }
-            .ambient-glow-1 { left: 50%; transform: translateX(-50%); top: -100px; }
-            .ambient-glow-2 { display: none; }
-            .leadership-grid { grid-template-columns: 1fr; }
-            .contact-box { grid-template-columns: 1fr; padding: 40px; }
-            .about-grid { grid-template-columns: 1fr; gap: 40px; }
-        }
-
-        @media (max-width: 700px) {
-            .container { width: 92%; }
-            nav { position: relative; }
-            .menu-btn { display: block; }
-            
-            .nav-links {
-                position: absolute;
-                top: 76px;
-                left: 0;
-                width: 100%;
-                display: none;
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0;
-                background: var(--bg-card);
-                border-bottom: 1px solid var(--border-light);
-                box-shadow: var(--shadow-lg);
-            }
-
-            .nav-links.active { display: flex; }
-            .nav-links li { width: 100%; border-bottom: 1px solid rgba(0,0,0,0.03); }
-            .nav-links li:last-child { border-bottom: none; }
-            .nav-links a { display: block; padding: 18px 5%; width: 100%; font-size: 1.05rem; }
-
-            .hero { padding: 60px 0; }
-            .stats-grid { grid-template-columns: 1fr; }
-            .stat { border-right: none !important; border-bottom: 1px solid var(--border-light); padding: 24px; }
-            .stat:last-child { border-bottom: none; }
-            
-            .projects-grid, .additional-grid, .events-list { grid-template-columns: 1fr; }
-            .skills { grid-template-columns: 1fr; }
-            section { padding: 80px 0; }
-            
-            .contact-box { padding: 32px 24px; }
-            .footer-inner { flex-direction: column; text-align: center; gap: 16px; }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Saurabh Patel | Electronics & Embedded Systems</title>
+<meta name="description" content="Saurabh Patel, engineering student at NIT Nagaland. Embedded systems, robotics, IoT and AI projects.">
+<meta name="theme-color" content="#4f46e5">
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="Saurabh Patel | Electronics & Embedded Systems">
+<meta property="og:description" content="Embedded systems, robotics, IoT and AI projects by Saurabh Patel, NIT Nagaland.">
+<meta property="og:image" content="og-image.jpg">
+<meta name="twitter:card" content="summary_large_image">
+
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Ctext x='32' y='44' font-size='36' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3ES%3C/text%3E%3C/svg%3E">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+<script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+
+<style>
+:root {
+    --bg-main: #f8fafc;
+    --bg-card: #ffffff;
+    --text-dark: #0f172a;
+    --text-muted: #5b6b82;
+    --accent: #3b82f6;
+    --accent-dark: #4f46e5;
+    --accent-gradient: linear-gradient(135deg, #3b82f6, #6366f1);
+    --border-light: rgba(226, 232, 240, 0.9);
+    --shadow-sm: 0 4px 10px rgba(0, 0, 0, 0.03);
+    --shadow-md: 0 10px 30px -10px rgba(37, 99, 235, 0.15);
+    --shadow-lg: 0 20px 40px -10px rgba(99, 102, 241, 0.2);
+    --radius-md: 14px;
+    --radius-lg: 24px;
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-main);
+    background-image: radial-gradient(#cbd5e1 1px, transparent 1px);
+    background-size: 32px 32px;
+    color: var(--text-dark);
+    line-height: 1.7;
+    overflow-x: hidden;
+}
+
+a { color: inherit; text-decoration: none; }
+img, video { max-width: 100%; display: block; }
+
+:focus-visible {
+    outline: 3px solid var(--accent-dark);
+    outline-offset: 3px;
+    border-radius: 6px;
+}
+
+.container { width: 90%; max-width: 1180px; margin: auto; }
+
+.ambient-glow-1, .ambient-glow-2 {
+    position: absolute;
+    border-radius: 50%;
+    z-index: -1;
+    pointer-events: none;
+    filter: blur(80px);
+    opacity: 0.4;
+}
+
+.ambient-glow-1 {
+    top: -150px;
+    right: 10%;
+    width: 500px;
+    height: 500px;
+    background: rgba(99, 102, 241, 0.3);
+}
+
+.ambient-glow-2 {
+    top: 200px;
+    left: -100px;
+    width: 400px;
+    height: 400px;
+    background: rgba(59, 130, 246, 0.25);
+}
+
+/* Animations */
+@keyframes slideDown {
+    from { opacity: 0; transform: translateY(-100%); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUp {
+    from { opacity: 0; transform: translateY(30px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scaleIn {
+    from { opacity: 0; transform: scale(0.94) translateY(20px); }
+    to { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.load-anim-1 { animation: fadeUp 0.8s ease backwards; animation-delay: 0.1s; }
+.load-anim-2 { animation: fadeUp 0.8s ease backwards; animation-delay: 0.25s; }
+.load-anim-3 { animation: fadeUp 0.8s ease backwards; animation-delay: 0.4s; }
+.load-anim-4 { animation: fadeUp 0.8s ease backwards; animation-delay: 0.55s; }
+.load-anim-image { animation: scaleIn 1s cubic-bezier(0.16, 1, 0.3, 1) backwards; animation-delay: 0.5s; }
+
+/* Navbar */
+header {
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid var(--border-light);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    animation: slideDown 0.8s ease backwards;
+}
+
+nav {
+    min-height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.5px;
+}
+
+.logo span {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    list-style: none;
+}
+
+.nav-links a {
+    font-size: 0.95rem;
+    font-weight: 500;
+    color: var(--text-muted);
+    transition: color 0.3s ease;
+    position: relative;
+    padding: 6px 0;
+}
+
+.nav-links a::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 2px;
+    width: 100%;
+    background: var(--accent-gradient);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+    color: var(--text-dark);
+}
+
+.nav-links a.active::after { transform: scaleX(1); }
+
+.menu-btn {
+    display: none;
+    border: none;
+    background: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--text-dark);
+}
+
+/* Hero */
+.hero {
+    position: relative;
+    min-height: calc(100vh - 76px);
+    display: flex;
+    align-items: center;
+    padding: 80px 0;
+}
+
+.hero-grid {
+    display: grid;
+    grid-template-columns: 1.15fr 0.85fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.eyebrow {
+    display: inline-block;
+    padding: 8px 16px;
+    border: 1px solid rgba(99, 102, 241, 0.2);
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.8);
+    color: var(--accent-dark);
+    font-size: 0.85rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    margin-bottom: 24px;
+}
+
+.hero h1 {
+    font-size: clamp(2.6rem, 5.2vw, 4.4rem);
+    line-height: 1.08;
+    letter-spacing: -1.8px;
+    font-weight: 800;
+    margin-bottom: 20px;
+}
+
+.hero h1 span {
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.hero-credential {
+    font-size: 1.05rem;
+    font-weight: 600;
+    color: var(--text-dark);
+    margin-bottom: 12px;
+}
+
+.hero-credential span {
+    color: var(--text-muted);
+    font-weight: 500;
+}
+
+.hero-description {
+    max-width: 580px;
+    color: var(--text-muted);
+    font-size: 1.12rem;
+    margin-bottom: 36px;
+}
+
+.hero-buttons {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 28px;
+    border-radius: var(--radius-md);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: var(--transition-smooth);
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: var(--accent-gradient);
+    color: white;
+    border: none;
+    box-shadow: 0 8px 20px -6px rgba(99, 102, 241, 0.5);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px -6px rgba(99, 102, 241, 0.6);
+}
+
+.btn-secondary {
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--text-dark);
+    border: 1px solid var(--border-light);
+    box-shadow: var(--shadow-sm);
+}
+
+.btn-secondary:hover {
+    border-color: #6366f1;
+    color: var(--accent-dark);
+    transform: translateY(-3px);
+    background: white;
+}
+
+.hero-image {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+}
+
+.hero-image::before {
+    content: '';
+    position: absolute;
+    inset: -20px;
+    background: var(--accent-gradient);
+    border-radius: 50%;
+    opacity: 0.15;
+    filter: blur(30px);
+    z-index: -1;
+}
+
+.hero-image img {
+    width: 100%;
+    max-width: 380px;
+    height: auto;
+    aspect-ratio: 4 / 5;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-lg);
+    object-fit: cover;
+    object-position: center top;
+    border: 6px solid white;
+}
+
+/* Stats */
+.stats { padding: 0 0 80px; }
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    background: rgba(255, 255, 255, 0.85);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-md);
+    overflow: hidden;
+}
+
+.stat {
+    padding: 30px 20px;
+    text-align: center;
+    border-right: 1px solid var(--border-light);
+}
+
+.stat:last-child { border-right: none; }
+
+.stat h3 {
+    font-size: 2.2rem;
+    font-weight: 800;
+    background: var(--accent-gradient);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 4px;
+    letter-spacing: -1px;
+}
+
+.stat p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+/* Sections */
+section { padding: 100px 0; position: relative; }
+
+.section-heading { margin-bottom: 50px; }
+
+.section-label {
+    color: var(--accent-dark);
+    font-size: 0.85rem;
+    font-weight: 800;
+    letter-spacing: 2.5px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    display: inline-block;
+    background: rgba(99, 102, 241, 0.1);
+    padding: 6px 14px;
+    border-radius: 50px;
+}
+
+.section-heading h2 {
+    font-size: clamp(2.2rem, 4vw, 3.2rem);
+    line-height: 1.15;
+    letter-spacing: -1.5px;
+    font-weight: 800;
+}
+
+.section-heading p {
+    max-width: 650px;
+    margin-top: 16px;
+    color: var(--text-muted);
+    font-size: 1.05rem;
+}
+
+/* About */
+.about, .additional, .events {
+    background: rgba(255, 255, 255, 0.55);
+    border-top: 1px solid var(--border-light);
+    border-bottom: 1px solid var(--border-light);
+}
+
+.about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 70px;
+    align-items: center;
+}
+
+.about-text p {
+    color: var(--text-muted);
+    margin-bottom: 20px;
+    font-size: 1.1rem;
+}
+
+.skills {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+}
+
+.skill {
+    padding: 20px;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow-sm);
+    transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+.skill:hover {
+    transform: translateY(-4px);
+    border-color: rgba(99, 102, 241, 0.4);
+    box-shadow: var(--shadow-md);
+}
+
+.skill strong {
+    display: block;
+    font-size: 1.05rem;
+    font-weight: 700;
+    margin-bottom: 6px;
+}
+
+.skill span {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+}
+
+/* Media galleries */
+.card-gallery {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.card-gallery > a { display: block; }
+
+.media-wrapper {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+    overflow: hidden;
+    cursor: pointer;
+    border: 1px solid var(--border-light);
+    background: #e2e8f0;
+}
+
+.media-wrapper img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: var(--transition-smooth);
+}
+
+.media-wrapper:hover img { transform: scale(1.05); }
+
+.video-indicator {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0, 0, 0, 0.2);
+    color: white;
+    font-size: 2rem;
+    z-index: 2;
+    pointer-events: none;
+}
+
+.more-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(15, 23, 42, 0.75);
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5rem;
+    font-weight: 700;
+    z-index: 3;
+    transition: background 0.3s ease;
+}
+
+.media-wrapper:hover .more-overlay {
+    background: rgba(15, 23, 42, 0.85);
+}
+
+.card-gallery > img,
+.card-gallery > .img-placeholder {
+    width: 100%;
+    aspect-ratio: 4 / 3;
+    border-radius: var(--radius-md);
+    object-fit: cover;
+    border: 1px solid var(--border-light);
+}
+
+.card-gallery > .img-placeholder {
+    grid-column: 1 / -1;
+    aspect-ratio: auto;
+    min-height: 120px;
+}
+
+@keyframes shimmer {
+    0% { background-position: -200% 0; }
+    100% { background-position: 200% 0; }
+}
+
+.img-placeholder {
+    background: linear-gradient(110deg, #f1f5f9 20%, #e2e8f0 40%, #f1f5f9 60%);
+    background-size: 200% 100%;
+    animation: shimmer 2.5s infinite linear;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #64748b;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.sih-year-group { margin: 0 0 24px; }
+
+.sih-year-group h4 {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin: 0 0 14px;
+    font-size: 1.1rem;
+    font-weight: 800;
+}
+
+.sih-year-group.is-latest h4::after {
+    content: 'Latest';
+    font-size: .7rem;
+    letter-spacing: .04em;
+    padding: 3px 9px;
+    border-radius: 999px;
+    color: #4338ca;
+    background: #eef2ff;
+    font-weight: 700;
+}
+
+/* Major projects */
+.projects-list { display: grid; gap: 32px; }
+
+.project-card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 36px;
+    background: rgba(255, 255, 255, 0.95);
+    box-shadow: var(--shadow-sm);
+    transition: box-shadow 0.4s ease, border-color 0.4s ease;
+}
+
+.project-card:hover {
+    box-shadow: var(--shadow-lg);
+    border-color: rgba(99, 102, 241, 0.25);
+}
+
+.project-card:nth-child(even) .project-media { order: 2; }
+
+.project-card.no-media { grid-template-columns: 1fr; }
+
+.project-card.no-media .project-details { max-width: 780px; }
+
+.project-media .card-gallery { margin-bottom: 0; }
+
+.project-kicker {
+    color: var(--accent-dark);
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.4px;
+    margin-bottom: 10px;
+}
+
+.project-card h3 {
+    font-size: 1.6rem;
+    line-height: 1.25;
+    font-weight: 800;
+    margin-bottom: 16px;
+    letter-spacing: -0.5px;
+}
+
+.project-summary {
+    color: var(--text-muted);
+    font-size: 1.02rem;
+    margin-bottom: 20px;
+}
+
+.project-facts {
+    display: grid;
+    gap: 12px;
+    margin-bottom: 24px;
+}
+
+.project-facts div {
+    padding-left: 14px;
+    border-left: 3px solid rgba(99, 102, 241, 0.35);
+}
+
+.project-facts dt {
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: var(--accent-dark);
+}
+
+.project-facts dd {
+    font-size: 0.98rem;
+    color: var(--text-dark);
+}
+
+.tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+}
+
+.tag {
+    padding: 6px 12px;
+    border-radius: 8px;
+    background: rgba(99, 102, 241, 0.08);
+    color: var(--accent-dark);
+    font-size: 0.78rem;
+    font-weight: 700;
+    border: 1px solid rgba(99, 102, 241, 0.15);
+}
+
+.project-links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+}
+
+.project-links a {
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: var(--accent-dark);
+    border-bottom: 2px solid rgba(99, 102, 241, 0.3);
+    padding-bottom: 2px;
+}
+
+.project-links a:hover { border-color: var(--accent-dark); }
+
+/* Additional projects */
+.additional-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+}
+
+.additional-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    padding: 28px;
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-sm);
+    transition: var(--transition-smooth);
+}
+
+.additional-card:hover {
+    border-color: rgba(99, 102, 241, 0.3);
+    box-shadow: var(--shadow-md);
+}
+
+.additional-card h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 8px;
+}
+
+.additional-card p {
+    font-size: 0.98rem;
+    color: var(--text-muted);
+}
+
+/* Leadership */
+.leadership-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 28px;
+}
+
+.leadership-card {
+    border-left: 4px solid var(--accent-dark);
+    background: rgba(255, 255, 255, 0.95);
+    padding: 32px;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    box-shadow: var(--shadow-sm);
+}
+
+.leadership-card h3 {
+    font-size: 1.2rem;
+    font-weight: 800;
+    margin-bottom: 10px;
+}
+
+.leadership-card p {
+    font-size: 0.98rem;
+    color: var(--text-muted);
+}
+
+/* Events */
+.events-controls { margin-bottom: 30px; }
+
+.toggle-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    border: 1px solid var(--border-light);
+    background: var(--bg-card);
+    color: var(--text-dark);
+    border-radius: var(--radius-md);
+    padding: 14px 24px;
+    font-size: 0.95rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-sm);
+    font-family: inherit;
+}
+
+.toggle-btn:hover {
+    border-color: #6366f1;
+    color: var(--accent-dark);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-md);
+}
+
+.events-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 32px;
+    align-items: start;
+}
+
+.event-card {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-lg);
+    padding: 32px;
+    box-shadow: var(--shadow-sm);
+}
+
+.event-card h3 {
+    font-size: 1.4rem;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.event-card p {
+    color: var(--text-muted);
+    font-size: 1rem;
+    margin-bottom: 20px;
+}
+
+.event-card > .card-gallery + p { margin-top: 4px; }
+
+.events-list.collapsed .extra-event { display: none !important; }
+
+/* Contact */
+.contact { padding-bottom: 120px; }
+
+.contact-box {
+    border: 1px solid rgba(99, 102, 241, 0.15);
+    background: rgba(99, 102, 241, 0.03);
+    border-radius: var(--radius-lg);
+    padding: 60px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    box-shadow: var(--shadow-md);
+}
+
+.contact-box h2 {
+    font-size: clamp(2rem, 3.5vw, 2.8rem);
+    line-height: 1.1;
+    letter-spacing: -1px;
+    font-weight: 800;
+    margin-bottom: 16px;
+}
+
+.contact-box p {
+    color: var(--text-muted);
+    font-size: 1.05rem;
+    max-width: 500px;
+}
+
+.contact-links { display: grid; gap: 16px; }
+
+.contact-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: var(--bg-card);
+    border: 1px solid var(--border-light);
+    border-radius: var(--radius-md);
+    padding: 20px 24px;
+    transition: var(--transition-smooth);
+    box-shadow: var(--shadow-sm);
+}
+
+.contact-link:hover {
+    border-color: #6366f1;
+    transform: translateX(6px);
+    box-shadow: 0 10px 20px rgba(99, 102, 241, 0.12);
+}
+
+.contact-link > div {
+    display: flex;
+    flex-direction: column;
+}
+
+.contact-link strong {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 2px;
+}
+
+.contact-link span {
+    font-size: 0.9rem;
+    color: var(--text-muted);
+    word-break: break-word;
+}
+
+.contact-arrow {
+    color: var(--accent-dark) !important;
+    font-weight: 800;
+    font-size: 1.2rem !important;
+}
+
+/* Footer */
+footer {
+    border-top: 1px solid var(--border-light);
+    padding: 40px 0;
+    background: var(--bg-card);
+}
+
+.footer-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.footer-inner p {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 500;
+}
+
+.footer-right {
+    display: flex;
+    align-items: center;
+    gap: 28px;
+}
+
+.footer-links {
+    display: flex;
+    gap: 24px;
+}
+
+.footer-links a {
+    color: var(--text-muted);
+    font-size: 0.95rem;
+    font-weight: 600;
+    transition: color 0.3s ease;
+}
+
+.footer-links a:hover,
+.social-icons a:hover {
+    color: var(--accent-dark);
+}
+
+.social-icons {
+    display: flex;
+    gap: 14px;
+}
+
+.social-icons a {
+    color: var(--text-muted);
+    display: inline-flex;
+    transition: color 0.3s ease;
+}
+
+.social-icons svg {
+    width: 22px;
+    height: 22px;
+    fill: currentColor;
+}
+
+/* Scroll reveal */
+.reveal {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1),
+                transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+
+    .reveal {
+        opacity: 1;
+        transform: none;
+    }
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+    .stat:nth-child(2) { border-right: none; }
+    .stat:nth-child(-n+2) { border-bottom: 1px solid var(--border-light); }
+}
+
+@media (max-width: 950px) {
+    .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 50px;
+        text-align: center;
+    }
+
+    .hero-description { margin: 0 auto 36px; }
+    .hero-buttons { justify-content: center; }
+    .eyebrow { margin: 0 auto 24px; }
+
+    .ambient-glow-1 {
+        left: 50%;
+        transform: translateX(-50%);
+        top: -100px;
+    }
+
+    .ambient-glow-2 { display: none; }
+
+    .contact-box {
+        grid-template-columns: 1fr;
+        padding: 40px;
+    }
+
+    .about-grid {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+
+    .project-card {
+        grid-template-columns: 1fr;
+        gap: 28px;
+    }
+
+    .project-card:nth-child(even) .project-media { order: 0; }
+}
+
+@media (max-width: 700px) {
+    .container { width: 92%; }
+
+    nav { position: relative; }
+    .menu-btn { display: block; }
+
+    .nav-links {
+        position: absolute;
+        top: 76px;
+        left: 0;
+        width: 100%;
+        display: none;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        background: var(--bg-card);
+        border-bottom: 1px solid var(--border-light);
+        box-shadow: var(--shadow-lg);
+    }
+
+    .nav-links.active { display: flex; }
+
+    .nav-links li {
+        width: 100%;
+        border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    }
+
+    .nav-links li:last-child { border-bottom: none; }
+
+    .nav-links a {
+        display: block;
+        padding: 18px 5%;
+        width: 100%;
+        font-size: 1.05rem;
+    }
+
+    .nav-links a::after { display: none; }
+
+    .hero {
+        padding: 50px 0;
+        min-height: auto;
+    }
+
+    .stats-grid { grid-template-columns: 1fr 1fr; }
+    section { padding: 70px 0; }
+
+    .skills,
+    .additional-grid,
+    .events-list {
+        grid-template-columns: 1fr;
+    }
+
+    .project-card { padding: 24px; }
+    .event-card { padding: 24px; }
+    .contact-box { padding: 32px 24px; }
+
+    .footer-inner,
+    .footer-right {
+        flex-direction: column;
+        text-align: center;
+        gap: 16px;
+    }
+}
+</style>
 </head>
 
 <body>
-    <div class="ambient-glow-1"></div>
-    <div class="ambient-glow-2"></div>
+<div class="ambient-glow-1"></div>
+<div class="ambient-glow-2"></div>
 
-    <!-- Navigation -->
-    <header>
-        <div class="container">
-            <nav>
-                <a href="#home" class="logo">
-                    Saurabh<span>.</span>
-                </a>
-                <button class="menu-btn" id="menuBtn" aria-label="Open navigation menu">☰</button>
-                <ul class="nav-links" id="navLinks">
-                    <li><a href="#home">Home</a></li>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#leadership">Leadership</a></li>
-                    <li><a href="#events">Hackathons</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
-        </div>
-    </header>
+<header>
+    <div class="container">
+        <nav>
+            <a href="#home" class="logo">Saurabh<span>.</span></a>
 
+            <button class="menu-btn" id="menuBtn"
+                    aria-label="Open navigation menu"
+                    aria-expanded="false">☰</button>
+
+            <ul class="nav-links" id="navLinks">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#leadership">Leadership</a></li>
+                <li><a href="#events">Hackathons</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </div>
+</header>
+
+<main>
     <!-- Hero -->
-    <main>
-        <section class="hero" id="home">
-            <div class="container">
-                <div class="hero-grid">
-                    <div>
-                        <div class="eyebrow load-anim-1">
-                            ELECTRONICS • EMBEDDED SYSTEMS • ROBOTICS
-                        </div>
-                        <h1 class="load-anim-2">
-                            Building ideas into<br>
-                            <span>working systems.</span>
-                        </h1>
-                        <p class="hero-description load-anim-3">
-                            I am Saurabh Patel, an engineering student focused on
-                            electronics, embedded systems, robotics, IoT and
-                            practical technology solutions. I enjoy turning
-                            concepts into functional prototypes that solve
-                            real-world problems.
-                        </p>
-                        <div class="hero-buttons load-anim-4">
-                            <a href="#projects" class="btn btn-primary">View Projects</a>
-                            <a href="CV.pdf" class="btn btn-secondary" download>Download CV</a>
-                            <a href="#contact" class="btn btn-secondary">Contact Me</a>
-                        </div>
-                    </div>
-                    <div class="hero-image load-anim-image">
-                        <img src="profile.jpg" alt="Saurabh Patel">
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Stats -->
-        <section class="stats">
-            <div class="container">
-                <div class="stats-grid reveal">
-                    <div class="stat">
-                        <h3>03+</h3>
-                        <p>Major Projects</p>
-                    </div>
-                    <div class="stat">
-                        <h3>10+</h3>
-                        <p>Technical Projects</p>
-                    </div>
-                    <div class="stat">
-                        <h3>05+</h3>
-                        <p>Technical Skills</p>
-                    </div>
-                    <div class="stat">
-                        <h3>03+</h3>
-                        <p>Hackathons & Expos</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- About -->
-        <section class="about" id="about">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <div class="section-label">About Me</div>
-                    <h2>Engineering with a hands-on approach.</h2>
-                    <p>My interests lie at the intersection of hardware, software and intelligent systems.</p>
-                </div>
-                <div class="about-grid">
-                    <div class="about-text reveal">
-                        <p>I am an engineering student at NIT Nagaland with a strong interest in electronics, embedded systems, robotics and emerging technologies.</p>
-                        <p>My project work focuses on building practical prototypes using microcontrollers, sensors, communication systems, artificial intelligence and IoT technologies.</p>
-                        <p>I believe in learning by building — designing, testing and improving systems until an idea becomes a functional solution.</p>
-                    </div>
-                    <div class="skills reveal">
-                        <div class="skill">
-                            <strong>Embedded Systems</strong>
-                            <span>ESP32, STM32, Arduino</span>
-                        </div>
-                        <div class="skill">
-                            <strong>Programming</strong>
-                            <span>C, C++, Python, MATLAB</span>
-                        </div>
-                        <div class="skill">
-                            <strong>IoT & Comm.</strong>
-                            <span>ESP-NOW, Bluetooth, Wireless</span>
-                        </div>
-                        <div class="skill">
-                            <strong>Sensors & Hardware</strong>
-                            <span>GPS, IMU, Radar, ToF & Ultrasonic</span>
-                        </div>
-                        <div class="skill">
-                            <strong>Artificial Intelligence</strong>
-                            <span>Edge Impulse & ML Prototypes</span>
-                        </div>
-                        <div class="skill">
-                            <strong>Design & Prototyping</strong>
-                            <span>PCB, Circuit Design & Hardware</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Major Projects -->
-        <section id="projects">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <div class="section-label">Major Projects</div>
-                    <h2>Selected work.</h2>
-                    <p>A selection of engineering projects combining electronics, embedded systems, robotics and AI.</p>
-                </div>
-
-                <div class="projects-grid">
-                    <article class="project-card reveal">
-                        <div class="project-number">01 / MAJOR PROJECT</div>
-                        <h3>Aerial Fire Detection & Suppression Drone</h3>
-                        <div class="card-gallery">
-                            <img src="drone1.jpg" alt="Drone photo 1" onerror="this.outerHTML='<div class=\'img-placeholder\'><span>📸 Coming Soon</span></div>'">
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                        </div>
-                        <p>Developed an RC drone prototype combining machine-learning-based fire detection with GPS and IMU sensing, along with an immediate fire-suppression payload concept.</p>
-                        <div class="tags">
-                            <span class="tag">STM32</span><span class="tag">ESP32</span><span class="tag">Raspberry Pi</span><span class="tag">Edge Impulse</span><span class="tag">GPS</span>
-                        </div>
-                    </article>
-
-                    <article class="project-card reveal">
-                        <div class="project-number">02 / MAJOR PROJECT</div>
-                        <h3>MineSafe-X</h3>
-                        <div class="card-gallery">
-                            <img src="mine1.jpg" alt="Mine photo 1" onerror="this.outerHTML='<div class=\'img-placeholder\'><span>📸 Coming Soon</span></div>'">
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                        </div>
-                        <p>Designed a cooperative safety system for mine vehicles operating in fog and low-visibility conditions using vehicle-to-vehicle communication, GPS, radar and proximity sensing.</p>
-                        <div class="tags">
-                            <span class="tag">ESP32</span><span class="tag">ESP-NOW</span><span class="tag">GPS</span><span class="tag">mmWave</span><span class="tag">IoT</span>
-                        </div>
-                    </article>
-
-                    <article class="project-card reveal">
-                        <div class="project-number">03 / MAJOR PROJECT</div>
-                        <h3>AC Line Fault Detection Device</h3>
-                        <div class="card-gallery">
-                            <img src="fault1.jpg" alt="Fault photo 1" onerror="this.outerHTML='<div class=\'img-placeholder\'><span>📸 Coming Soon</span></div>'">
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                        </div>
-                        <p>Developed a prototype designed to identify abnormal conditions and faults in electrical AC lines, providing a simple indication of potential electrical problems.</p>
-                        <div class="tags">
-                            <span class="tag">Electronics</span><span class="tag">Sensors</span><span class="tag">Embedded</span><span class="tag">Safety</span>
-                        </div>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Additional Projects -->
-        <section class="additional">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <div class="section-label">Additional Projects</div>
-                    <h2>Smaller builds & experiments.</h2>
-                </div>
-                <div class="additional-grid">
-                    <div class="additional-card reveal">
-                        <h3>Bluetooth RC Car</h3>
-                        <p>Built a Bluetooth-controlled robotic car using a microcontroller, motor driver and HC-05 module.</p>
-                    </div>
-                    <div class="additional-card reveal">
-                        <h3>AI Chatbot</h3>
-                        <p>Worked on an AI chatbot concept for interactive and automated user assistance.</p>
-                    </div>
-                    <div class="additional-card reveal">
-                        <h3>Embedded System Prototypes</h3>
-                        <p>Designed and tested small electronics and microcontroller-based prototypes.</p>
-                    </div>
-                    <div class="additional-card reveal">
-                        <h3>Technical Design & Branding</h3>
-                        <p>Created digital designs and technical branding materials for student organizations and events.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Leadership -->
-        <section id="leadership">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <div class="section-label">Leadership & Activities</div>
-                    <h2>Beyond project development.</h2>
-                </div>
-                <div class="leadership-grid">
-                    <div class="leadership-card reveal">
-                        <h3>Robotics Club Secretary</h3>
-                        <p>Contributed to technical activities, project development and coordination of robotics-related initiatives.</p>
-                    </div>
-                    <div class="leadership-card reveal">
-                        <h3>Assistant Secretary</h3>
-                        <p>Supported technical events, student activities and coordination within the institute.</p>
-                    </div>
-                    <div class="leadership-card reveal">
-                        <h3>Technical Event Organization</h3>
-                        <p>Participated in organizing technical activities, competitions, demonstrations and student events.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Hackathons & Expo -->
-        <section class="events" id="events">
-            <div class="container">
-                <div class="section-heading reveal">
-                    <div class="section-label">Hackathons & Expo</div>
-                    <h2>Building, competing & showcasing.</h2>
-                    <p>Technical competitions, exhibitions and innovation activities that provided opportunities to develop and present real-world solutions.</p>
-                </div>
-
-                <div class="events-controls reveal">
-                    <!-- Added onclick for guaranteed execution -->
-                    <button type="button" class="toggle-btn" id="toggleEvents" onclick="toggleEventsList()" aria-expanded="false" aria-controls="eventsList">
-                        <span class="toggle-icon" id="toggleIcon">＋</span>
-                        <span id="toggleText">View All</span>
-                    </button>
-                </div>
-
-                <div class="events-list collapsed reveal" id="eventsList">
-                    <!-- EVENT 1 (Always Visible) -->
-                    <article class="event-card">
-                        <h3>Smart India Hackathon</h3>
-                        <div class="card-gallery">
-                            <img src="sih1.jpg" alt="SIH photo 1" onerror="this.outerHTML='<div class=\'img-placeholder\'><span>📸 Coming Soon</span></div>'">
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                        </div>
-                        <p>Developed and presented MineSafe-X, a proposed technology solution for safer mine vehicle operation in fog and low-visibility conditions.</p>
-                    </article>
-
-                    <!-- EVENT 2 (Always Visible) -->
-                    <article class="event-card">
-                        <h3>TXG Expo Nagaland</h3>
-                        <div class="card-gallery">
-                            <img src="txg1.jpg" alt="TXG photo 1" onerror="this.outerHTML='<div class=\'img-placeholder\'><span>📸 Coming Soon</span></div>'">
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                        </div>
-                        <p>Participated in a technology and innovation exhibition, presenting project concepts and technical prototypes.</p>
-                    </article>
-
-                    <!-- EVENT 3 (Extra Event - Hidden until toggled) -->
-                    <article class="event-card extra-event">
-                        <h3>Fading Threads — AI Challenge</h3>
-                        <div class="card-gallery">
-                            <img src="ai1.jpg" alt="AI photo 1" onerror="this.outerHTML='<div class=\'img-placeholder\'><span>📸 Coming Soon</span></div>'">
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                        </div>
-                        <p>Participated in an AI-based creative challenge focused on traditional weaving and cultural preservation.</p>
-                    </article>
-
-                    <!-- EVENT 4 (Extra Event - Hidden until toggled) -->
-                    <article class="event-card extra-event">
-                        <h3>Technical Demonstrations</h3>
-                        <div class="card-gallery">
-                            <img src="demo1.jpg" alt="Demo photo 1" onerror="this.outerHTML='<div class=\'img-placeholder\'><span>📸 Coming Soon</span></div>'">
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                            <div class="img-placeholder"><span>📸 Coming Soon</span></div>
-                        </div>
-                        <p>Participated in technical demonstrations and project showcases involving electronics, robotics and embedded systems.</p>
-                    </article>
-                </div>
-            </div>
-        </section>
-
-        <!-- Contact -->
-        <section class="contact" id="contact">
-            <div class="container">
-                <div class="contact-box reveal">
-                    <div>
-                        <div class="section-label">Get In Touch</div>
-                        <h2>Let's build something useful.</h2>
-                        <p>Interested in electronics, embedded systems, robotics or technology projects? Feel free to connect with me.</p>
-                    </div>
-                    <div class="contact-links">
-                        <a class="contact-link" href="mailto:saurabh4366@nitnagaland.ac.in">
-                            <div>
-                                <strong>Email</strong>
-                                <span>saurabh4366@nitnagaland.ac.in</span>
-                            </div>
-                            <span class="contact-arrow">↗</span>
-                        </a>
-                        <a class="contact-link" href="https://www.linkedin.com/in/saurabhp04/" target="_blank" rel="noopener noreferrer">
-                            <div>
-                                <strong>LinkedIn</strong>
-                                <span>Connect with me on LinkedIn</span>
-                            </div>
-                            <span class="contact-arrow">↗</span>
-                        </a>
-                        <a class="contact-link" href="https://github.com/" target="_blank" rel="noopener noreferrer">
-                            <div>
-                                <strong>GitHub</strong>
-                                <span>View my projects and repositories</span>
-                            </div>
-                            <span class="contact-arrow">↗</span>
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- Footer -->
-    <footer>
+    <section class="hero" id="home">
         <div class="container">
-            <div class="footer-inner">
-                <p>© 2026 Saurabh Patel. All rights reserved.</p>
+            <div class="hero-grid">
+                <div>
+                    <div class="eyebrow load-anim-1">
+                        Electronics • Embedded Systems • Robotics
+                    </div>
+
+                    <h1 class="load-anim-2">
+                        Building ideas into <span>working systems.</span>
+                    </h1>
+
+                    <p class="hero-credential load-anim-3">
+                        Saurabh Patel
+                        <span>· Engineering student, NIT Nagaland</span>
+                    </p>
+
+                    <p class="hero-description load-anim-3">
+                        I build embedded prototypes that combine sensing,
+                        wireless communication and machine learning, from a
+                        V2V mine-safety system to a fire-detecting drone.
+                    </p>
+
+                    <div class="hero-buttons load-anim-4">
+                        <a href="#projects" class="btn btn-primary">View Projects</a>
+                        <a href="CV.pdf" class="btn btn-secondary" download>Download CV</a>
+                        <a href="#contact" class="btn btn-secondary">Contact Me</a>
+                    </div>
+                </div>
+
+                <div class="hero-image load-anim-image">
+                    <img src="profile.jpg"
+                         alt="Portrait of Saurabh Patel"
+                         width="400"
+                         height="500">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats" aria-label="Highlights">
+        <div class="container">
+            <div class="stats-grid reveal">
+                <div class="stat"><h3>3</h3><p>Major projects</p></div>
+                <div class="stat"><h3>10+</h3><p>Technical projects</p></div>
+                <div class="stat"><h3>3+</h3><p>Hackathons & expos</p></div>
+                <div class="stat"><h3>2</h3><p>Leadership roles</p></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="container">
+            <div class="section-heading reveal">
+                <div class="section-label">About Me</div>
+                <h2>Engineering with a hands-on approach.</h2>
+                <p>My interests lie at the intersection of hardware, software and intelligent systems.</p>
+            </div>
+
+            <div class="about-grid">
+                <div class="about-text reveal">
+                    <p>I am an engineering student at NIT Nagaland, focused on electronics, embedded systems and robotics.</p>
+                    <p>I build prototypes with microcontrollers, sensors, wireless links and machine learning, then test them until they work reliably.</p>
+                    <p>I learn by building: design, test, fix, repeat, until an idea becomes a functional solution.</p>
+                </div>
+
+                <div class="skills reveal">
+                    <div class="skill"><strong>Embedded Systems</strong><span>ESP32, STM32, Arduino</span></div>
+                    <div class="skill"><strong>Programming</strong><span>C, C++, Python, MATLAB</span></div>
+                    <div class="skill"><strong>IoT & Comm.</strong><span>ESP-NOW, Bluetooth, Wireless</span></div>
+                    <div class="skill"><strong>Sensors & Hardware</strong><span>GPS, IMU, Radar, ToF & Ultrasonic</span></div>
+                    <div class="skill"><strong>Artificial Intelligence</strong><span>Edge Impulse & ML Prototypes</span></div>
+                    <div class="skill"><strong>Design & Prototyping</strong><span>PCB, Circuit Design & Hardware</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Major Projects -->
+    <section id="projects">
+        <div class="container">
+            <div class="section-heading reveal">
+                <div class="section-label">Major Projects</div>
+                <h2>Selected work.</h2>
+                <p>Engineering projects combining electronics, embedded systems, robotics and AI.</p>
+            </div>
+
+            <div class="projects-list">
+                <!-- Project 1 -->
+                <article class="project-card no-media reveal">
+                    <div class="project-details">
+                        <div class="project-kicker">Robotics · Machine learning</div>
+                        <h3>Aerial Fire Detection & Suppression Drone</h3>
+
+                        <p class="project-summary">
+                            An RC drone prototype that detects fire with a
+                            machine-learning model and carries a fire-suppression
+                            payload concept.
+                        </p>
+
+                        <dl class="project-facts">
+                            <div>
+                                <dt>Problem</dt>
+                                <dd>Fires are found late and are dangerous to approach on foot.</dd>
+                            </div>
+                            <div>
+                                <dt>Solution</dt>
+                                <dd>ML-based fire detection with GPS and IMU sensing on an RC drone, plus an immediate-suppression payload concept.</dd>
+                            </div>
+                        </dl>
+
+                        <div class="tags">
+                            <span class="tag">STM32</span>
+                            <span class="tag">ESP32</span>
+                            <span class="tag">Raspberry Pi</span>
+                            <span class="tag">Edge Impulse</span>
+                            <span class="tag">GPS</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 2 -->
+                <article class="project-card reveal">
+                    <div class="project-media">
+                        <div class="card-gallery"
+                             data-cloudinary-folder="MineSafe-X"
+                             aria-label="MineSafe-X project photos and videos">
+                            <div class="img-placeholder"><span>Loading media…</span></div>
+                        </div>
+                    </div>
+
+                    <div class="project-details">
+                        <div class="project-kicker">IoT · Vehicle safety</div>
+                        <h3>MineSafe-X</h3>
+
+                        <p class="project-summary">
+                            A cooperative safety system that helps mine vehicles
+                            avoid collisions in fog and low visibility.
+                        </p>
+
+                        <dl class="project-facts">
+                            <div>
+                                <dt>Problem</dt>
+                                <dd>Drivers cannot see other vehicles in fog and low-visibility conditions.</dd>
+                            </div>
+                            <div>
+                                <dt>Solution</dt>
+                                <dd>Vehicle-to-vehicle communication over ESP-NOW, combined with GPS, radar and proximity sensing, with a live command-tower dashboard.</dd>
+                            </div>
+                        </dl>
+
+                        <div class="tags">
+                            <span class="tag">ESP32</span>
+                            <span class="tag">ESP-NOW</span>
+                            <span class="tag">GPS</span>
+                            <span class="tag">mmWave</span>
+                            <span class="tag">IoT</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 3 -->
+                <article class="project-card no-media reveal">
+                    <div class="project-details">
+                        <div class="project-kicker">Electronics · Safety</div>
+                        <h3>AC Line Fault Detection Device</h3>
+
+                        <p class="project-summary">
+                            A prototype that detects abnormal conditions in AC
+                            electrical lines and gives a simple indication of
+                            a possible fault.
+                        </p>
+
+                        <dl class="project-facts">
+                            <div>
+                                <dt>Problem</dt>
+                                <dd>Faults in AC lines are hard to notice and can lead to equipment damage or safety risks.</dd>
+                            </div>
+                            <div>
+                                <dt>Solution</dt>
+                                <dd>A sensing and indication circuit that flags abnormal line conditions.</dd>
+                            </div>
+                        </dl>
+
+                        <div class="tags">
+                            <span class="tag">Electronics</span>
+                            <span class="tag">Sensors</span>
+                            <span class="tag">Embedded</span>
+                            <span class="tag">Safety</span>
+                        </div>
+                    </div>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Additional Projects -->
+    <section class="additional">
+        <div class="container">
+            <div class="section-heading reveal">
+                <div class="section-label">Additional Projects</div>
+                <h2>Smaller builds & experiments.</h2>
+            </div>
+
+            <div class="additional-grid">
+                <div class="additional-card reveal">
+                    <h3>Bluetooth RC Car</h3>
+
+                    <div class="card-gallery"
+                         data-cloudinary-folder="Bluetooth RC Car"
+                         aria-label="Bluetooth RC Car photos and videos">
+                        <div class="img-placeholder"><span>Loading media…</span></div>
+                    </div>
+
+                    <p>A Bluetooth-controlled robotic car built with a microcontroller, motor driver and HC-05 module.</p>
+                </div>
+
+                <div class="additional-card reveal">
+                    <h3>AI Chatbot</h3>
+                    <p>An AI chatbot concept for interactive, automated user assistance.</p>
+                </div>
+
+                <div class="additional-card reveal">
+                    <h3>Embedded System Prototypes</h3>
+                    <p>Small electronics and microcontroller-based prototypes, designed and tested on the bench.</p>
+                </div>
+
+                <div class="additional-card reveal">
+                    <h3>Technical Design & Branding</h3>
+                    <p>Digital designs and technical branding for student organizations and events.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Leadership -->
+    <section id="leadership">
+        <div class="container">
+            <div class="section-heading reveal">
+                <div class="section-label">Leadership & Activities</div>
+                <h2>Beyond project development.</h2>
+            </div>
+
+            <div class="leadership-grid">
+                <div class="leadership-card reveal">
+                    <h3>Robotics Club Secretary</h3>
+                    <p>Coordinated robotics initiatives and technical projects for the club.</p>
+                </div>
+
+                <div class="leadership-card reveal">
+                    <h3>Assistant Secretary</h3>
+                    <p>Supported technical events and student activities across the institute.</p>
+                </div>
+
+                <div class="leadership-card reveal">
+                    <h3>Technical Event Organization</h3>
+                    <p>Helped organize competitions, demonstrations and student events.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Hackathons & Expo -->
+    <section class="events" id="events">
+        <div class="container">
+            <div class="section-heading reveal">
+                <div class="section-label">Hackathons & Expo</div>
+                <h2>Building, competing & showcasing.</h2>
+                <p>Competitions and exhibitions where I built and presented practical solutions.</p>
+            </div>
+
+            <div class="events-controls reveal">
+                <button type="button"
+                        class="toggle-btn"
+                        id="toggleEvents"
+                        aria-expanded="false"
+                        aria-controls="eventsList">
+                    <span class="toggle-icon" id="toggleIcon">＋</span>
+                    <span id="toggleText">View all</span>
+                </button>
+            </div>
+
+            <div class="events-list collapsed" id="eventsList">
+                <article class="event-card">
+                    <h3>Smart India Hackathon (SIH)</h3>
+                    <p>My participation and project work in the 2026 and 2025 editions.</p>
+
+                    <div class="sih-year-group is-latest">
+                        <h4>SIH 2026</h4>
+                        <div class="card-gallery"
+                             data-cloudinary-folder="SIH 26"
+                             aria-label="Smart India Hackathon 2026 photos and videos">
+                            <div class="img-placeholder"><span>Loading media…</span></div>
+                        </div>
+                    </div>
+
+                    <div class="sih-year-group">
+                        <h4>SIH 2025</h4>
+                        <div class="card-gallery"
+                             data-cloudinary-folder="SIH 25"
+                             aria-label="Smart India Hackathon 2025 photos and videos">
+                            <div class="img-placeholder"><span>Loading media…</span></div>
+                        </div>
+                    </div>
+                </article>
+
+                <article class="event-card">
+                    <h3>TXG Expo Nagaland</h3>
+                    <div class="card-gallery"
+                         data-cloudinary-folder="TxG Kohima"
+                         aria-label="TXG Expo photos and videos">
+                        <div class="img-placeholder"><span>Loading media…</span></div>
+                    </div>
+                    <p>Presented project concepts and technical prototypes at a technology and innovation exhibition.</p>
+                </article>
+
+                <article class="event-card extra-event">
+                    <h3>Fading Threads: AI Challenge</h3>
+                    <p>Took part in an AI creative challenge on traditional weaving and cultural preservation.</p>
+                </article>
+
+                <article class="event-card extra-event">
+                    <h3>Technical Demonstrations</h3>
+                    <p>Presented electronics, robotics and embedded-systems projects in technical demonstrations and showcases.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="contact-box reveal">
+                <div>
+                    <div class="section-label">Get in touch</div>
+                    <h2>Let's build something useful.</h2>
+                    <p>Interested in electronics, embedded systems, robotics or technology projects? I'd like to hear from you.</p>
+                </div>
+
+                <div class="contact-links">
+                    <a class="contact-link" href="mailto:saurabh4366@nitnagaland.ac.in">
+                        <div>
+                            <strong>Email</strong>
+                            <span>saurabh4366@nitnagaland.ac.in</span>
+                        </div>
+                        <span class="contact-arrow">↗</span>
+                    </a>
+
+                    <a class="contact-link"
+                       href="https://www.linkedin.com/in/saurabhp04/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <div>
+                            <strong>LinkedIn</strong>
+                            <span>linkedin.com/in/saurabhp04</span>
+                        </div>
+                        <span class="contact-arrow">↗</span>
+                    </a>
+
+                    <a class="contact-link"
+                       href="https://github.com/"
+                       target="_blank"
+                       rel="noopener noreferrer">
+                        <div>
+                            <strong>GitHub</strong>
+                            <span>Source code and repositories</span>
+                        </div>
+                        <span class="contact-arrow">↗</span>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</main>
+
+<footer>
+    <div class="container">
+        <div class="footer-inner">
+            <p>© 2026 Saurabh Patel</p>
+
+            <div class="footer-right">
                 <div class="footer-links">
                     <a href="#home">Home</a>
                     <a href="#projects">Projects</a>
                     <a href="#contact">Contact</a>
                 </div>
+
+                <div class="social-icons">
+                    <a href="https://www.linkedin.com/in/saurabhp04/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="LinkedIn">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>
+                        </svg>
+                    </a>
+
+                    <a href="https://github.com/"
+                       target="_blank"
+                       rel="noopener noreferrer"
+                       aria-label="GitHub">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3z"/>
+                        </svg>
+                    </a>
+
+                    <a href="mailto:saurabh4366@nitnagaland.ac.in" aria-label="Email">
+                        <svg viewBox="0 0 24 24">
+                            <path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13zm2.3.2 7.7 6.1 7.7-6.1a.5.5 0 0 0-.2-.05h-15a.5.5 0 0 0-.2.05zM20 7.9l-7.4 5.85a1 1 0 0 1-1.2 0L4 7.9v10.6c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V7.9z"/>
+                        </svg>
+                    </a>
+                </div>
             </div>
         </div>
-    </footer>
+    </div>
+</footer>
 
-    <!-- JavaScript -->
-    <script>
-        /* Mobile Menu */
-        const menuBtn = document.getElementById("menuBtn");
-        const navLinks = document.getElementById("navLinks");
+<script>
+/* Mobile navigation */
+const menuBtn = document.getElementById("menuBtn");
+const navLinks = document.getElementById("navLinks");
 
-        if (menuBtn && navLinks) {
-            menuBtn.addEventListener("click", function () {
-                navLinks.classList.toggle("active");
-                menuBtn.textContent = navLinks.classList.contains("active") ? "✕" : "☰";
-            });
+if (menuBtn && navLinks) {
+    menuBtn.addEventListener("click", function () {
+        const open = navLinks.classList.toggle("active");
+        menuBtn.textContent = open ? "✕" : "☰";
+        menuBtn.setAttribute("aria-expanded", open ? "true" : "false");
+    });
 
-            document.querySelectorAll(".nav-links a").forEach(function(link) {
-                link.addEventListener("click", function() {
-                    navLinks.classList.remove("active");
-                    menuBtn.textContent = "☰";
-                });
-            });
-        }
-
-        /* Hackathons & Expo Toggle */
-        function toggleEventsList() {
-            const eventsList = document.getElementById("eventsList");
-            const toggleText = document.getElementById("toggleText");
-            const toggleIcon = document.getElementById("toggleIcon");
-            const toggleBtn = document.getElementById("toggleEvents");
-
-            if (!eventsList) return;
-
-            const isNowCollapsed = eventsList.classList.toggle("collapsed");
-
-            if (isNowCollapsed) {
-                if (toggleText) toggleText.textContent = "View All";
-                if (toggleIcon) toggleIcon.textContent = "＋";
-                if (toggleBtn) toggleBtn.setAttribute("aria-expanded", "false");
-                const eventsSec = document.getElementById("events");
-                if (eventsSec) eventsSec.scrollIntoView({ behavior: "smooth", block: "start" });
-            } else {
-                if (toggleText) toggleText.textContent = "Hide";
-                if (toggleIcon) toggleIcon.textContent = "−";
-                if (toggleBtn) toggleBtn.setAttribute("aria-expanded", "true");
-            }
-        }
-
-        /* Scroll Reveal */
-        const revealElements = document.querySelectorAll(".reveal");
-        const revealObserver = new IntersectionObserver(
-            function(entries, observer) {
-                entries.forEach(function(entry) {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add("visible");
-                        observer.unobserve(entry.target);
-                    }
-                });
-            },
-            { threshold: 0.12 }
-        );
-
-        revealElements.forEach(function(element) {
-            revealObserver.observe(element);
+    document.querySelectorAll(".nav-links a").forEach(function (link) {
+        link.addEventListener("click", function () {
+            navLinks.classList.remove("active");
+            menuBtn.textContent = "☰";
+            menuBtn.setAttribute("aria-expanded", "false");
         });
-    </script>
+    });
+}
+
+/* Hackathons show/hide */
+function toggleEventsList() {
+    const eventsList = document.getElementById("eventsList");
+    const toggleText = document.getElementById("toggleText");
+    const toggleIcon = document.getElementById("toggleIcon");
+    const toggleBtn = document.getElementById("toggleEvents");
+
+    if (!eventsList) return;
+
+    const collapsed = eventsList.classList.toggle("collapsed");
+
+    toggleText.textContent = collapsed ? "View all" : "Show less";
+    toggleIcon.textContent = collapsed ? "＋" : "−";
+    toggleBtn.setAttribute("aria-expanded", collapsed ? "false" : "true");
+
+    if (collapsed) {
+        const section = document.getElementById("events");
+        if (section) {
+            section.scrollIntoView({ behavior: "smooth", block: "start" });
+        }
+    }
+}
+
+document.getElementById("toggleEvents")
+    ?.addEventListener("click", toggleEventsList);
+
+/* Scroll reveal */
+const revealObserver = new IntersectionObserver(function (entries, observer) {
+    entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+document.querySelectorAll(".reveal").forEach(function (element) {
+    revealObserver.observe(element);
+});
+
+/* Active navigation link while scrolling */
+(function () {
+    const links = Array.from(document.querySelectorAll(".nav-links a"));
+    const sections = links.map(function (link) {
+        return document.querySelector(link.getAttribute("href"));
+    });
+
+    function updateActiveLink() {
+        const y = window.scrollY + 140;
+        let current = 0;
+
+        sections.forEach(function (section, index) {
+            if (section && section.offsetTop <= y) {
+                current = index;
+            }
+        });
+
+        links.forEach(function (link, index) {
+            link.classList.toggle("active", index === current);
+        });
+    }
+
+    window.addEventListener("scroll", updateActiveLink, { passive: true });
+    updateActiveLink();
+})();
+
+/* Cloudinary media loader: reads media.json and opens images/videos in GLightbox */
+(async function loadExistingCardMedia() {
+    const galleries = document.querySelectorAll(
+        ".card-gallery[data-cloudinary-folder]"
+    );
+
+    if (!galleries.length) return;
+
+    function collectAssets(value, output) {
+        if (Array.isArray(value)) {
+            value.forEach(function (item) {
+                collectAssets(item, output);
+            });
+            return;
+        }
+
+        if (!value || typeof value !== "object") return;
+
+        const url = value.secure_url || value.url || value.src;
+
+        if (typeof url === "string" && /^https?:\/\//i.test(url)) {
+            output.push(value);
+        }
+
+        Object.values(value).forEach(function (item) {
+            if (item && typeof item === "object") {
+                collectAssets(item, output);
+            }
+        });
+    }
+
+    /* Remove galleries that have no matching media */
+    function removeGallery(gallery) {
+        const group = gallery.closest(".sih-year-group");
+        const card = gallery.closest(".project-card");
+        const media = gallery.closest(".project-media");
+
+        if (group) {
+            group.remove();
+            return;
+        }
+
+        if (media && card) {
+            media.remove();
+            card.classList.add("no-media");
+            return;
+        }
+
+        gallery.remove();
+    }
+
+    try {
+        const response = await fetch("./media.json", { cache: "no-cache" });
+
+        if (!response.ok) {
+            throw new Error("media.json could not be loaded");
+        }
+
+        const data = await response.json();
+        const allAssets = [];
+
+        collectAssets(data, allAssets);
+
+        galleries.forEach(function (gallery, galleryIndex) {
+            const wanted = gallery.dataset.cloudinaryFolder.toLowerCase();
+            const label = gallery.getAttribute("aria-label") || wanted;
+
+            const matching = allAssets.filter(function (asset) {
+                const searchable = [
+                    asset.asset_folder,
+                    asset.folder,
+                    asset.public_id,
+                    asset.display_name,
+                    asset.name,
+                    asset.path
+                ].filter(Boolean).join(" ").toLowerCase();
+
+                return searchable.includes(wanted);
+            });
+
+            if (!matching.length) {
+                removeGallery(gallery);
+                return;
+            }
+
+            gallery.replaceChildren();
+
+            const MAX_VISIBLE = 4;
+            const galleryId = "gallery-" + galleryIndex;
+
+            matching.forEach(function (asset, index) {
+                const url = asset.secure_url || asset.url || asset.src;
+                const type = (asset.resource_type || asset.type || "").toLowerCase();
+
+                const isVideo =
+                    type === "video" ||
+                    /\.(mp4|webm|mov)(\?|$)/i.test(url);
+
+                const link = document.createElement("a");
+                link.href = url;
+                link.className = "glightbox " + galleryId;
+                link.setAttribute("data-gallery", galleryId);
+                link.setAttribute("aria-label", "Open media: " + label);
+
+                if (isVideo) {
+                    link.setAttribute("data-type", "video");
+                }
+
+                if (index >= MAX_VISIBLE) {
+                    link.style.display = "none";
+                    gallery.appendChild(link);
+                    return;
+                }
+
+                const wrapper = document.createElement("div");
+                wrapper.className = "media-wrapper";
+
+                const img = document.createElement("img");
+                img.loading = "lazy";
+                img.decoding = "async";
+
+                if (isVideo) {
+                    img.src = url.replace(
+                        /\.(mp4|webm|mov)(\?.*)?$/i,
+                        ".jpg"
+                    );
+
+                    img.alt = "Video thumbnail: " + label;
+
+                    const playIcon = document.createElement("div");
+                    playIcon.className = "video-indicator";
+                    playIcon.textContent = "▶";
+
+                    wrapper.appendChild(img);
+                    wrapper.appendChild(playIcon);
+                } else {
+                    img.src = url;
+                    img.alt = label;
+                    wrapper.appendChild(img);
+                }
+
+                if (index === MAX_VISIBLE - 1 && matching.length > MAX_VISIBLE) {
+                    const overlay = document.createElement("div");
+                    overlay.className = "more-overlay";
+                    overlay.textContent = "+" + (matching.length - MAX_VISIBLE);
+                    wrapper.appendChild(overlay);
+                }
+
+                link.appendChild(wrapper);
+                gallery.appendChild(link);
+            });
+        });
+
+        GLightbox({
+            selector: ".glightbox",
+            touchNavigation: true,
+            loop: true,
+            autoplayVideos: false
+        });
+
+    } catch (error) {
+        galleries.forEach(removeGallery);
+        console.error("Gallery error:", error);
+    }
+})();
+</script>
 </body>
 </html>
