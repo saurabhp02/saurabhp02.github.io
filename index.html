@@ -457,6 +457,22 @@ section { padding: 100px 0; position: relative; }
     margin-bottom: 24px;
 }
 
+/* Subheadings for Media Types */
+.media-type-heading {
+    grid-column: 1 / -1;
+    font-size: 0.85rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: var(--accent-dark);
+    margin: 12px 0 2px 0;
+    border-bottom: 2px solid rgba(99, 102, 241, 0.1);
+    padding-bottom: 6px;
+}
+.media-type-heading:first-child {
+    margin-top: 0;
+}
+
 .card-gallery > a { display: block; }
 
 .media-wrapper {
@@ -1678,70 +1694,128 @@ document.querySelectorAll(".reveal").forEach(function (element) {
 
             gallery.replaceChildren();
 
-            const MAX_VISIBLE = 4;
-            const galleryId = "gallery-" + galleryIndex;
+            const photos = [];
+            const videos = [];
+            const ppts = [];
 
-            matching.forEach(function (asset, index) {
-                const url = asset.secure_url || asset.url || asset.src;
+            // Categorize the matched assets
+            matching.forEach(function (asset) {
+                const url = asset.secure_url || asset.url || asset.src || "";
                 const type = (asset.resource_type || asset.type || "").toLowerCase();
+                const format = (asset.format || "").toLowerCase();
 
-                const isVideo =
-                    type === "video" ||
-                    /\.(mp4|webm|mov)(\?|$)/i.test(url);
+                const isVideo = type === "video" || /\.(mp4|webm|mov)(\?|$)/i.test(url);
+                const isPpt = type === "raw" || /\.(ppt|pptx|pdf|doc|docx)(\?|$)/i.test(url) || format === "pdf" || format === "pptx" || format === "ppt";
 
-                const link = document.createElement("a");
-                link.href = url;
-                link.className = "glightbox " + galleryId;
-                link.setAttribute("data-gallery", galleryId);
-                link.setAttribute("aria-label", "Open media: " + label);
-
-                if (isVideo) {
-                    link.setAttribute("data-type", "video");
-                }
-
-                if (index >= MAX_VISIBLE) {
-                    link.style.display = "none";
-                    gallery.appendChild(link);
-                    return;
-                }
-
-                const wrapper = document.createElement("div");
-                wrapper.className = "media-wrapper";
-
-                const img = document.createElement("img");
-                img.loading = "lazy";
-                img.decoding = "async";
-
-                if (isVideo) {
-                    img.src = url.replace(
-                        /\.(mp4|webm|mov)(\?.*)?$/i,
-                        ".jpg"
-                    );
-
-                    img.alt = "Video thumbnail: " + label;
-
-                    const playIcon = document.createElement("div");
-                    playIcon.className = "video-indicator";
-                    playIcon.textContent = "▶";
-
-                    wrapper.appendChild(img);
-                    wrapper.appendChild(playIcon);
-                } else {
-                    img.src = url;
-                    img.alt = label;
-                    wrapper.appendChild(img);
-                }
-
-                if (index === MAX_VISIBLE - 1 && matching.length > MAX_VISIBLE) {
-                    const overlay = document.createElement("div");
-                    overlay.className = "more-overlay";
-                    overlay.textContent = "+" + (matching.length - MAX_VISIBLE);
-                    wrapper.appendChild(overlay);
-                }
-
-                link.appendChild(wrapper);
-                gallery.appendChild(link);
+                if (isVideo) videos.push(asset);
+                else if (isPpt) ppts.push(asset);
+                else photos.push(asset);
             });
+
+            // Function to render each category with a subheading
+            const renderCategory = function (categoryAssets, categoryName) {
+                if (!categoryAssets.length) return;
+
+                const heading = document.createElement("div");
+                heading.className = "media-type-heading";
+                heading.textContent = categoryName;
+                gallery.appendChild(heading);
+
+                let MAX_VISIBLE = 4;
+                if (categoryName === "Video") {
+                    MAX_VISIBLE = 2; // Slot 1 for video, Slot 2 for the +n overlay
+                }
+
+                const galleryId = "gallery-" + galleryIndex;
+
+                categoryAssets.forEach(function (asset, index) {
+                    const url = asset.secure_url || asset.url || asset.src;
+                    const isVideo = categoryName === "Video";
+                    const isPpt = categoryName === "PPT";
+                    const isPdf = url.match(/\.pdf(\?|$)/i);
+
+                    const link = document.createElement("a");
+                    link.href = url;
+                    
+                    if (isPpt && !isPdf) {
+                        // Open pure doc/ppt files in a new tab if glightbox can't handle them
+                        link.className = galleryId;
+                        link.target = "_blank";
+                        link.rel = "noopener noreferrer";
+                    } else {
+                        link.className = "glightbox " + galleryId;
+                        link.setAttribute("data-gallery", galleryId);
+                    }
+                    
+                    link.setAttribute("aria-label", "Open " + categoryName + ": " + label);
+
+                    if (isVideo) {
+                        link.setAttribute("data-type", "video");
+                    }
+
+                    if (index >= MAX_VISIBLE) {
+                        link.style.display = "none";
+                        gallery.appendChild(link);
+                        return;
+                    }
+
+                    const wrapper = document.createElement("div");
+                    wrapper.className = "media-wrapper";
+
+                    const img = document.createElement("img");
+                    img.loading = "lazy";
+                    img.decoding = "async";
+
+                    if (isVideo) {
+                        img.src = url.replace(/\.(mp4|webm|mov)(\?.*)?$/i, ".jpg");
+                        // Fallback for Cloudinary standard video URL
+                        if(img.src === url && asset.resource_type === 'video') {
+                             img.src = url.replace('/upload/', '/upload/so_0/').replace(/\.[^/.]+$/, ".jpg");
+                        }
+                        img.alt = "Video thumbnail: " + label;
+
+                        const playIcon = document.createElement("div");
+                        playIcon.className = "video-indicator";
+                        playIcon.textContent = "▶";
+
+                        wrapper.appendChild(img);
+                        wrapper.appendChild(playIcon);
+                    } else if (isPpt) {
+                        let thumbSrc = url;
+                        if (isPdf) {
+                            // Fetch first page thumbnail for Cloudinary PDFs
+                            thumbSrc = url.replace(/\.pdf/i, '.jpg');
+                        } else {
+                            // Generic Document Icon
+                            thumbSrc = "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%23e2e8f0'/%3E%3Ctext x='50' y='55' font-size='20' font-family='sans-serif' font-weight='bold' text-anchor='middle' fill='%2364748b'%3EDOC%3C/text%3E%3C/svg%3E";
+                        }
+                        img.src = thumbSrc;
+                        img.alt = "Document: " + label;
+                        wrapper.appendChild(img);
+                    } else {
+                        img.src = url;
+                        img.alt = label;
+                        wrapper.appendChild(img);
+                    }
+
+                    if (index === MAX_VISIBLE - 1 && categoryAssets.length > MAX_VISIBLE) {
+                        const overlay = document.createElement("div");
+                        overlay.className = "more-overlay";
+                        // Calculate remaining hidden items correctly for the overlay
+                        const hiddenCount = categoryAssets.length - (MAX_VISIBLE - 1);
+                        overlay.textContent = "+" + hiddenCount;
+                        wrapper.appendChild(overlay);
+                    }
+
+                    link.appendChild(wrapper);
+                    gallery.appendChild(link);
+                });
+            };
+
+            // Call to render only if media array is not empty for that category
+            renderCategory(photos, "Photo");
+            renderCategory(videos, "Video");
+            renderCategory(ppts, "PPT");
         });
 
         GLightbox({
