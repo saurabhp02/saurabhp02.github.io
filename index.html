@@ -1071,6 +1071,271 @@ footer {
         gap: 16px;
     }
 }
+
+
+/* ── Portfolio refresh: refined layout, clearer hierarchy, accessible motion ── */
+:root {
+  --bg-main: #f5f7fb;
+  --bg-card: #ffffff;
+  --text-dark: #111827;
+  --text-muted: #64748b;
+  --accent: #2563eb;
+  --accent-dark: #1d4ed8;
+  --accent-gradient: linear-gradient(120deg, #2563eb 0%, #7c3aed 100%);
+  --border-light: #e5eaf2;
+  --shadow-sm: 0 8px 24px rgba(15, 23, 42, .045);
+  --shadow-md: 0 18px 45px rgba(15, 23, 42, .09);
+  --shadow-lg: 0 26px 65px rgba(37, 99, 235, .14);
+  --radius-md: 18px;
+  --radius-lg: 28px;
+}
+body {
+  background-color: var(--bg-main);
+  background-image: radial-gradient(rgba(148,163,184,.19) 1px, transparent 1px);
+  background-size: 26px 26px;
+  line-height: 1.72;
+}
+.container { width: min(91%, 1200px); }
+header { background: rgba(255,255,255,.88); box-shadow: 0 4px 24px rgba(15,23,42,.035); }
+nav { min-height: 72px; }
+.logo { font-size: 1.4rem; letter-spacing: -.8px; }
+.nav-links { gap: clamp(16px, 2.4vw, 32px); }
+.nav-links a { position: relative; padding: 8px 0; }
+.nav-links a::after {
+  content: ""; position: absolute; left: 0; right: 100%; bottom: 1px;
+  height: 2px; border-radius: 2px; background: var(--accent-gradient);
+  transition: right .25s ease;
+}
+.nav-links a:hover::after, .nav-links a.active::after { right: 0; }
+.nav-links a.active { color: var(--text-dark); }
+.hero { padding: clamp(76px, 10vw, 132px) 0 clamp(65px, 8vw, 104px); }
+.hero-grid { align-items: center; gap: clamp(42px, 8vw, 110px); }
+.eyebrow, .section-label {
+  color: var(--accent-dark); font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; font-size: .76rem;
+}
+.hero h1 {
+  max-width: 760px; font-size: clamp(2.8rem, 6vw, 5.2rem);
+  line-height: 1.04; letter-spacing: -.065em; font-weight: 800;
+}
+.hero h1 span { background: var(--accent-gradient); -webkit-background-clip: text; background-clip: text; }
+.hero-credential { margin-top: 24px; font-weight: 700; font-size: 1.06rem; }
+.hero-credential span { color: var(--text-muted); font-weight: 500; }
+.hero-description { max-width: 590px; color: #526176; font-size: 1.08rem; margin-top: 14px; }
+.hero-buttons { gap: 12px; margin-top: 28px; flex-wrap: wrap; }
+.btn { border-radius: 999px; padding: 12px 21px; font-weight: 650; transition: transform .2s ease, box-shadow .2s ease, background .2s ease; }
+.btn:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.btn-primary { background: var(--accent-gradient); box-shadow: 0 9px 22px rgba(79,70,229,.2); }
+.btn-secondary { border: 1px solid #dbe3ef; background: rgba(255,255,255,.85); }
+.hero-image { position: relative; isolation: isolate; }
+.hero-image::before {
+  content: ""; position: absolute; inset: 8% -7% -6% 10%; z-index: -1;
+  border-radius: 34px; background: var(--accent-gradient); opacity: .13; transform: rotate(5deg);
+}
+.hero-image img {
+  width: min(100%, 390px); aspect-ratio: 4/5; object-fit: cover;
+  border-radius: 28px; border: 7px solid rgba(255,255,255,.92);
+  box-shadow: 0 28px 70px rgba(15,23,42,.17);
+}
+.stats { padding: 0 0 44px; }
+.stats-grid {
+  background: rgba(255,255,255,.92); border: 1px solid var(--border-light);
+  border-radius: 22px; box-shadow: var(--shadow-sm); padding: 25px 16px;
+}
+.stat h3 { font-size: clamp(1.8rem, 3vw, 2.5rem); letter-spacing: -.05em; }
+.stat p { color: var(--text-muted); font-size: .9rem; font-weight: 550; }
+section { scroll-margin-top: 88px; }
+.about, #projects, .additional, #leadership, .events, .contact { padding-top: clamp(72px, 8vw, 108px); padding-bottom: clamp(72px, 8vw, 108px); }
+.section-heading { max-width: 760px; margin-bottom: 42px; }
+.section-heading h2 { font-size: clamp(2rem, 4vw, 3.25rem); line-height: 1.12; letter-spacing: -.045em; margin-top: 10px; }
+.section-heading > p { color: var(--text-muted); font-size: 1.04rem; margin-top: 13px; }
+.about-grid { gap: clamp(28px, 6vw, 76px); align-items: start; }
+.about-text p { color: #526176; margin-bottom: 16px; }
+.skills { gap: 12px; }
+.skill {
+  padding: 17px 19px; border: 1px solid var(--border-light); border-radius: 15px;
+  background: rgba(255,255,255,.88); box-shadow: 0 5px 16px rgba(15,23,42,.025);
+  transition: transform .22s ease, border-color .22s ease, box-shadow .22s ease;
+}
+.skill:hover { transform: translateY(-3px); border-color: #c7d2fe; box-shadow: var(--shadow-sm); }
+.skill strong { font-size: .98rem; }
+.skill span { color: var(--text-muted); font-size: .9rem; }
+.projects-list { gap: 22px; }
+.project-card, .event-card, .contact-box {
+  border: 1px solid var(--border-light); border-radius: 22px; background: var(--bg-card);
+  box-shadow: var(--shadow-sm); transition: transform .25s ease, box-shadow .25s ease, border-color .25s ease;
+}
+.project-card { padding: clamp(24px, 4vw, 38px); }
+.project-card:hover, .event-card:hover { transform: translateY(-5px); box-shadow: var(--shadow-md); border-color: #cbd5e1; }
+.project-kicker { color: var(--accent-dark); font-size: .76rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; }
+.project-card h3 { font-size: clamp(1.35rem, 2.5vw, 1.8rem); letter-spacing: -.035em; line-height: 1.25; margin: 9px 0 12px; }
+.project-summary { color: #526176; }
+.project-card .tag, .project-card .tech-tag { border-radius: 999px; }
+.card-gallery { margin-top: 22px; gap: 10px; }
+.media-type-heading { color: var(--text-muted); font-size: .75rem; font-weight: 750; letter-spacing: .1em; text-transform: uppercase; margin: 12px 0 3px; }
+.media-wrapper { overflow: hidden; border-radius: 13px; background: #e9eef6; }
+.media-wrapper img { transition: transform .35s ease; }
+.card-gallery a:hover img { transform: scale(1.045); }
+.more-overlay { backdrop-filter: blur(4px); }
+.additional .project-card, .event-card { background: rgba(255,255,255,.94); }
+.contact-box { padding: clamp(28px, 5vw, 56px); }
+footer { border-top: 1px solid var(--border-light); background: rgba(255,255,255,.72); }
+.reveal { opacity: 0; transform: translateY(22px); transition: opacity .65s ease, transform .65s cubic-bezier(.2,.7,.2,1); }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+@media (max-width: 760px) {
+  .hero { padding-top: 65px; }
+  .hero-grid { gap: 38px; }
+  .hero-image img { width: min(78vw, 330px); margin-inline: auto; }
+  .hero-image::before { inset: 8% 4% -5% 16%; }
+  .stats-grid { gap: 20px 12px; }
+  .project-card { padding: 24px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .reveal { opacity: 1; transform: none; }
+}
+
+/* ── CV sections ── */
+.timeline-grid,
+.achievement-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.timeline-card,
+.achievement-card,
+.experience-card,
+.event-list-box {
+  background: rgba(255,255,255,.94);
+  border: 1px solid var(--border-light);
+  border-radius: 22px;
+  box-shadow: var(--shadow-sm);
+}
+
+.timeline-card,
+.achievement-card {
+  padding: 28px;
+}
+
+.timeline-date,
+.achievement-date,
+.leadership-date,
+.experience-date {
+  color: var(--accent-dark);
+  font-size: .76rem;
+  font-weight: 750;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-bottom: 10px;
+}
+
+.timeline-card h3,
+.achievement-card h3,
+.experience-card h3,
+.event-list-box h3 {
+  font-size: 1.18rem;
+  line-height: 1.35;
+  font-weight: 800;
+  letter-spacing: -.02em;
+}
+
+.timeline-role {
+  color: var(--text-muted);
+  margin-top: 8px;
+}
+
+.experience-card {
+  padding: clamp(26px, 4vw, 38px);
+}
+
+.experience-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 24px;
+  align-items: flex-start;
+  margin-bottom: 14px;
+}
+
+.experience-date {
+  white-space: nowrap;
+  margin-top: 3px;
+}
+
+.experience-card > p {
+  color: #526176;
+  max-width: 850px;
+}
+
+.leadership-card .leadership-date {
+  margin-bottom: 9px;
+}
+
+.event-list-box {
+  margin-top: 28px;
+  padding: 26px 28px;
+}
+
+.event-list-box h3 {
+  margin-bottom: 16px;
+}
+
+.event-chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.achievement-grid {
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.achievement-card {
+  position: relative;
+  overflow: hidden;
+}
+
+.achievement-card::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent-gradient);
+}
+
+.achievement-card p {
+  color: var(--text-muted);
+  margin-top: 7px;
+}
+
+#education,
+#experience,
+#achievements {
+  background: rgba(255,255,255,.45);
+  border-top: 1px solid var(--border-light);
+  border-bottom: 1px solid var(--border-light);
+}
+
+#skills {
+  scroll-margin-top: 88px;
+}
+
+@media (max-width: 900px) {
+  .timeline-grid { grid-template-columns: 1fr; }
+  .achievement-grid { grid-template-columns: 1fr 1fr; }
+  .experience-top { flex-direction: column; gap: 4px; }
+}
+
+@media (max-width: 760px) {
+  .nav-links { overflow-y: auto; max-height: calc(100vh - 76px); }
+  .achievement-grid { grid-template-columns: 1fr; }
+  .experience-card { padding: 24px; }
+  .timeline-card, .achievement-card { padding: 24px; }
+  .event-list-box { padding: 22px; }
+}
+
 </style>
 </head>
 
@@ -1090,9 +1355,13 @@ footer {
             <ul class="nav-links" id="navLinks">
                 <li><a href="#home">Home</a></li>
                 <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#skills">Skills</a></li>
                 <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
                 <li><a href="#leadership">Leadership</a></li>
-                <li><a href="#events">Hackathons</a></li>
+                <li><a href="#achievements">Achievements</a></li>
+                <li><a href="#events">Hackathons & Expos</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
         </nav>
@@ -1145,10 +1414,10 @@ footer {
     <section class="stats" aria-label="Highlights">
         <div class="container">
             <div class="stats-grid reveal">
-                <div class="stat"><h3>3</h3><p>Major projects</p></div>
+                <div class="stat"><h3>4</h3><p>Major projects</p></div>
                 <div class="stat"><h3>10+</h3><p>Technical projects</p></div>
                 <div class="stat"><h3>3+</h3><p>Hackathons & expos</p></div>
-                <div class="stat"><h3>2</h3><p>Leadership roles</p></div>
+                <div class="stat"><h3>4</h3><p>Leadership & activity roles</p></div>
             </div>
         </div>
     </section>
@@ -1164,19 +1433,50 @@ footer {
 
             <div class="about-grid">
                 <div class="about-text reveal">
-                    <p>I am an engineering student at NIT Nagaland, focused on electronics, embedded systems and robotics.</p>
-                    <p>I build prototypes with microcontrollers, sensors, wireless links and machine learning, then test them until they work reliably.</p>
+                    <p>I am an engineering student at NIT Nagaland, focused on Electronics, Embedded Systems and Robotics.</p>
+                    <p>I build prototypes with Microcontrollers, Sensors, Wireless links and Machine learning, then test them until they work reliably.</p>
                     <p>I learn by building: design, test, fix, repeat, until an idea becomes a functional solution.</p>
                 </div>
 
-                <div class="skills reveal">
-                    <div class="skill"><strong>Embedded Systems</strong><span>ESP32, STM32, Arduino</span></div>
-                    <div class="skill"><strong>Programming</strong><span>C, C++, Python, MATLAB</span></div>
-                    <div class="skill"><strong>IoT & Comm.</strong><span>ESP-NOW, Bluetooth, Wireless</span></div>
-                    <div class="skill"><strong>Sensors & Hardware</strong><span>GPS, IMU, Radar, ToF & Ultrasonic</span></div>
-                    <div class="skill"><strong>Artificial Intelligence</strong><span>Edge Impulse & ML Prototypes</span></div>
-                    <div class="skill"><strong>Design & Prototyping</strong><span>PCB, Circuit Design & Hardware</span></div>
+                <div class="skills reveal" id="skills">
+                    <div class="skill"><strong>Programming</strong><span>C, MySQL</span></div>
+                    <div class="skill"><strong>Microcontrollers</strong><span>Arduino, ESP32, STM32</span></div>
+                    <div class="skill"><strong>Embedded Systems</strong><span>Sensor integration, GPS, wireless communication, motor control</span></div>
+                    <div class="skill"><strong>Robotics & UAV</strong><span>RC vehicles, multirotor systems, flight controllers</span></div>
+                    <div class="skill"><strong>AI / ML</strong><span>Edge Impulse</span></div>
+                    <div class="skill"><strong>Tools</strong><span>CorelDRAW, MS Office, Canva</span></div>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education -->
+    <section id="education">
+        <div class="container">
+            <div class="section-heading reveal">
+                <div class="section-label">Education</div>
+                <h2>Academic foundation.</h2>
+                <p>My Academic path in Electronics, Science and Engineering.</p>
+            </div>
+
+            <div class="timeline-grid">
+                <article class="timeline-card reveal">
+                    <div class="timeline-date">Aug 2024 – June 2028</div>
+                    <h3>National Institute of Technology Nagaland</h3>
+                    <p class="timeline-role">B.Tech, Electronics and Communication Engineering</p>
+                </article>
+
+                <article class="timeline-card reveal">
+                    <div class="timeline-date">2021 – 2022</div>
+                    <h3>St. Xavier School, Bhiwadi</h3>
+                    <p class="timeline-role">Class 12, PCM</p>
+                </article>
+
+                <article class="timeline-card reveal">
+                    <div class="timeline-date">2019 – 2020</div>
+                    <h3>St. Xavier School, Bhiwadi</h3>
+                    <p class="timeline-role">Class 10</p>
+                </article>
             </div>
         </div>
     </section>
@@ -1187,7 +1487,7 @@ footer {
             <div class="section-heading reveal">
                 <div class="section-label">Major Projects</div>
                 <h2>Selected work.</h2>
-                <p>Engineering projects combining electronics, embedded systems, robotics and AI.</p>
+                <p>Engineering Projects Combining Electronics, Embedded Systems, Robotics and AI.</p>
             </div>
 
             <div class="projects-list">
@@ -1265,6 +1565,55 @@ footer {
                 </article>
 
                 <!-- Project 3 -->
+                <article class="project-card reveal">
+                    <div class="project-media">
+                        <div class="card-gallery"
+                             data-cloudinary-folder="Osterio"
+                             aria-label="Osterio osteoarthritis screening project photos and videos">
+                            <div class="img-placeholder"><span>Loading media…</span></div>
+                        </div>
+                    </div>
+
+                    <div class="project-details">
+                        <div class="project-kicker">Healthcare AI · Multimodal screening</div>
+                        <h3>Osterio – AI-Based Osteoarthritis Risk Marker Screening System</h3>
+
+                        <p class="project-summary">
+                            An AI-assisted screening platform that combines patient symptoms,
+                            walking-video analysis, sensor data and knee X-ray analysis to
+                            identify potential osteoarthritis risk markers, with a focus on
+                            accessible screening in remote and low-resource healthcare settings.
+                        </p>
+
+                        <dl class="project-facts">
+                            <div>
+                                <dt>Problem</dt>
+                                <dd>People in remote communities may have limited access to specialist assessment and diagnostic facilities for early osteoarthritis screening.</dd>
+                            </div>
+                            <div>
+                                <dt>Solution</dt>
+                                <dd>Combines a symptom questionnaire, camera-based gait analysis, IMU and FSR sensor readings, and AI-assisted knee X-ray analysis to generate screening findings and a digital report for healthcare review.</dd>
+                            </div>
+                            <div>
+                                <dt>Application</dt>
+                                <dd>Designed to support preliminary screening and referral in clinics, rural healthcare centres and community health camps. It is not a replacement for clinical diagnosis.</dd>
+                            </div>
+                        </dl>
+
+                        <div class="tags">
+                            <span class="tag">Artificial Intelligence</span>
+                            <span class="tag">Computer Vision</span>
+                            <span class="tag">Gait Analysis</span>
+                            <span class="tag">IMU</span>
+                            <span class="tag">FSR Sensors</span>
+                            <span class="tag">X-ray Analysis</span>
+                            <span class="tag">Healthcare</span>
+                            <span class="tag">SIH 2026 · PS 26004</span>
+                        </div>
+                    </div>
+                </article>
+
+                <!-- Project 4 -->
                 <article class="project-card no-media reveal">
                     <div class="project-details">
                         <div class="project-kicker">Electronics · Safety</div>
@@ -1334,6 +1683,38 @@ footer {
                     <h3>Technical Design & Branding</h3>
                     <p>Digital designs and technical branding for student organizations and events.</p>
                 </div>
+
+                <div class="additional-card reveal">
+                    <h3>Ultrasonic Obstacle Detection System</h3>
+                    <p>Arduino-based distance measurement and obstacle detection using an ultrasonic sensor.</p>
+                </div>
+
+                <div class="additional-card reveal">
+                    <h3>Sensor-Based Automation Projects</h3>
+                    <p>Microcontroller projects involving sensors, actuators and real-time monitoring.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience -->
+    <section id="experience">
+        <div class="container">
+            <div class="section-heading reveal">
+                <div class="section-label">Experience & Outreach</div>
+                <h2>Engineering Beyond the Lab.</h2>
+                <p>Professional and public-facing technical engagement.</p>
+            </div>
+
+            <div class="experience-card reveal">
+                <div class="experience-top">
+                    <div>
+                        <div class="project-kicker">Department of Telecommunications (DoT)</div>
+                        <h3>Sanchar Mitra</h3>
+                    </div>
+                    <span class="experience-date">Aug 2025 – Present</span>
+                </div>
+                <p>Supported telecom-service awareness, digital communication initiatives, outreach activities, and public engagement.</p>
             </div>
         </div>
     </section>
@@ -1343,24 +1724,92 @@ footer {
         <div class="container">
             <div class="section-heading reveal">
                 <div class="section-label">Leadership & Activities</div>
-                <h2>Beyond project development.</h2>
+                <h2>Beyond Project Development.</h2>
             </div>
 
             <div class="leadership-grid">
                 <div class="leadership-card reveal">
-                    <h3>Robotics Club Secretary</h3>
-                    <p>Coordinated robotics initiatives and technical projects for the club.</p>
+                    <div class="leadership-date">Aug 2026 – Present</div>
+                    <h3>Robotics Secretary, Robotics Club, NIT Nagaland</h3>
+                    <p>Leadership role within the institute's robotics community.</p>
                 </div>
 
                 <div class="leadership-card reveal">
-                    <h3>Assistant Secretary</h3>
-                    <p>Supported technical events and student activities across the institute.</p>
+                    <div class="leadership-date">Aug 2025 – Present</div>
+                    <h3>TnP Coordinator ( E.C.E), NIT Nagaland</h3>
+                    <p>A Small Part of Training and PLacement Cell.</p>
                 </div>
 
                 <div class="leadership-card reveal">
-                    <h3>Technical Event Organization</h3>
-                    <p>Helped organize competitions, demonstrations and student events.</p>
+                    <div class="leadership-date">Aug 2026 – Present</div>
+                    <h3>Internship Coordinator, NIT Nagaland</h3>
+                    <p>Student Coordinator role fot supporting Internship-Related Activities.</p>
                 </div>
+
+                <div class="leadership-card reveal">
+                    <div class="leadership-date">Feb 2026 - Present</div>
+                    <h3>Member, Institution’s Innovation Council (IIC)</h3>
+                    <p>Participated and Conducted Institute's Innovation-Focused Activities.</p>
+                </div>
+
+                <div class="leadership-card reveal">
+                    <div class="leadership-date">Aug 2025 – Aug 2026</div>
+                    <h3>Assistant Club Secretary – Robotics</h3>
+                    <p>Supported Robotics Club Activities and Technical Events.</p>
+                </div>
+            </div>
+
+            <div class="event-list-box reveal">
+                <h3>Events Organized</h3>
+                <div class="event-chip-list">
+                    <span class="tag">Clash of Wheels — RC Car Race</span>
+                    <span class="tag">Aerial Adrenaline — Drone Race</span>
+                    <span class="tag">Integration Bee</span>
+                    <span class="tag">Circuit X</span>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Achievements & Recognition -->
+    <section id="achievements">
+        <div class="container">
+            <div class="section-heading reveal">
+                <div class="section-label">Achievements & Recognition</div>
+                <h2>Milestones and Recognition.</h2>
+                <p>Awards, Exhibitions and Technical Recognition from Institute and External Platforms.</p>
+            </div>
+
+            <div class="achievement-grid">
+                <article class="achievement-card reveal">
+                    <div class="achievement-date">March 2025</div>
+                    <h3>Winner — Robo GP</h3>
+                    <p>Technical Board, NIT Nagaland</p>
+                </article>
+
+                <article class="achievement-card reveal">
+                    <div class="achievement-date">February 2025</div>
+                    <h3>1st Runner-Up — Quiz Competition</h3>
+                    <p>Science Society</p>
+                </article>
+
+                <article class="achievement-card reveal">
+                    <div class="achievement-date">February 2026</div>
+                    <h3>1st Runner-Up — Quiz Competition</h3>
+                    <p>Science Society</p>
+                </article>
+
+                <article class="achievement-card reveal">
+                    <div class="achievement-date">2026</div>
+                    <h3>Invited Exhibitor — TXG Expo Nagaland</h3>
+                    <p>Showcasing an Aerial Recognition Project.</p>
+                </article>
+
+                <article class="achievement-card reveal">
+                    <div class="achievement-date">September 2025</div>
+                    <h3>Assembly of Obstacle Avoidance Based on Multirotor UAV</h3>
+                    <p>NIELIT</p>
+                </article>
             </div>
         </div>
     </section>
@@ -1370,8 +1819,8 @@ footer {
         <div class="container">
             <div class="section-heading reveal">
                 <div class="section-label">Hackathons & Expo</div>
-                <h2>Building, competing & showcasing.</h2>
-                <p>Competitions and exhibitions where I built and presented practical solutions.</p>
+                <h2>Building, Competing & Showcasing.</h2>
+                <p>Competitions and Exhibitions where I built and Presented Practical Solutions.</p>
             </div>
 
             <div class="events-controls reveal">
@@ -1410,7 +1859,7 @@ footer {
                 </article>
 
                 <article class="event-card">
-                    <h3>TXG Expo Nagaland</h3>
+                    <h3>TXG Expo - Kohima , Nagaland</h3>
                     <div class="card-gallery"
                          data-cloudinary-folder="TxG Kohima"
                          aria-label="TXG Expo photos and videos">
@@ -1438,8 +1887,8 @@ footer {
             <div class="contact-box reveal">
                 <div>
                     <div class="section-label">Get in touch</div>
-                    <h2>Let's build something useful.</h2>
-                    <p>Interested in electronics, embedded systems, robotics or technology projects? I'd like to hear from you.</p>
+                    <h2>Let's Build Something Wonderful.</h2>
+                    <p>Interested in Electronics, Embedded Systems, Robotics or Technology Projects? I'd like to hear from you.</p>
                 </div>
 
                 <div class="contact-links">
@@ -1486,7 +1935,10 @@ footer {
             <div class="footer-right">
                 <div class="footer-links">
                     <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#education">Education</a>
                     <a href="#projects">Projects</a>
+                    <a href="#experience">Experience</a>
                     <a href="#contact">Contact</a>
                 </div>
 
