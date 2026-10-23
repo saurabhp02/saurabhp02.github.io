@@ -1,0 +1,848 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="About Saurabh Patel, Electronics and Communication Engineering student at NIT Nagaland, exploring embedded systems, robotics, IoT and AI.">
+  <title>About | Saurabh Patel</title>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Ctext x='32' y='44' font-size='36' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3ES%3C/text%3E%3C/svg%3E">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="futuristic.css">
+
+  <style>
+    /* ABOUT PAGE */
+    .about-page {
+      --about-accent: var(--accent);
+      --about-accent-2: var(--accent-secondary, #06b6d4);
+      --about-panel: var(--surface-strong, var(--bg-card));
+      --about-border: var(--border-light);
+      color: var(--text-dark);
+      padding: 65px 0 35px;
+    }
+
+    .about-page * {
+      box-sizing: border-box;
+    }
+
+    .about-page .about-hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(28px, 5vw, 58px);
+      border: 1px solid var(--about-border);
+      border-radius: 30px;
+      background:
+        radial-gradient(ellipse at 90% 5%, rgba(99,102,241,.19), transparent 42%),
+        radial-gradient(ellipse at 0% 100%, rgba(6,182,212,.11), transparent 45%),
+        var(--about-panel);
+    }
+
+    .about-page .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      border: 1px solid var(--about-border);
+      border-radius: 50px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+      color: var(--text-dark);
+    }
+
+    .about-page .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34,197,94,.65);
+    }
+
+    .about-page .hero-title {
+      max-width: 850px;
+      margin: 25px 0 17px;
+      font-size: clamp(2.35rem, 6vw, 4.7rem);
+      font-weight: 800;
+      line-height: 1.07;
+      letter-spacing: -2px;
+      color: var(--text-dark);
+    }
+
+    .about-page .gradient-text {
+      color: var(--about-accent);
+      background: linear-gradient(110deg, #818cf8, #22d3ee);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .about-page .hero-description {
+      max-width: 690px;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 1.85;
+      color: var(--text-muted);
+      font-weight: 450;
+    }
+
+    .about-page .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .about-page .hero-tag {
+      padding: 9px 14px;
+      border: 1px solid var(--about-border);
+      border-radius: 10px;
+      font-size: .88rem;
+      background: var(--about-panel);
+    }
+
+    .about-page .section-block {
+      margin-top: 65px;
+    }
+
+    .about-page .section-top {
+      margin-bottom: 27px;
+    }
+
+    .about-page .section-kicker {
+      margin-bottom: 9px;
+      color: var(--about-accent);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .about-page .section-title {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      font-weight: 800;
+      letter-spacing: -.8px;
+      color: var(--text-dark);
+    }
+
+    .about-page .section-subtitle {
+      max-width: 700px;
+      line-height: 1.8;
+      color: var(--text-muted);
+      font-weight: 450;
+    }
+
+    /* ABOUT CONTENT */
+    .about-page .intro-grid {
+      display: grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 22px;
+    }
+
+    .about-page .panel {
+      min-width: 0;
+      padding: clamp(23px, 3vw, 32px);
+      border: 1px solid var(--about-border);
+      border-radius: 23px;
+      background: var(--about-panel);
+      transition: transform .3s ease, border-color .3s ease;
+    }
+
+    .about-page .panel:hover {
+      transform: translateY(-4px);
+      border-color: rgba(129,140,248,.55);
+    }
+
+    .about-page .panel-heading {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 20px;
+    }
+
+    .about-page .panel-icon {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 47px;
+      height: 47px;
+      border: 1px solid var(--about-border);
+      border-radius: 14px;
+      background: rgba(99,102,241,.12);
+      font-size: 1.35rem;
+    }
+
+    .about-page .panel h3 {
+      margin: 0;
+      font-size: 1.15rem;
+      color: var(--text-dark);
+    }
+
+    .about-page .bio-copy {
+      margin: 0 0 15px;
+      font-size: .97rem;
+      line-height: 1.9;
+      color: var(--text-muted);
+      font-weight: 450;
+    }
+
+    .about-page .bio-copy:last-child {
+      margin-bottom: 0;
+    }
+
+    .about-page .focus-list {
+      display: grid;
+      gap: 17px;
+      margin-top: 5px;
+    }
+
+    .about-page .focus-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 13px;
+    }
+
+    .about-page .focus-mark {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 33px;
+      height: 33px;
+      border-radius: 10px;
+      background: rgba(99,102,241,.13);
+      color: #818cf8;
+      font-weight: 800;
+    }
+
+    .about-page .focus-item strong {
+      display: block;
+      margin-bottom: 4px;
+      color: var(--text-dark);
+    }
+
+    .about-page .focus-item span {
+      display: block;
+      font-size: .88rem;
+      line-height: 1.6;
+      color: var(--text-muted);
+      font-weight: 450;
+    }
+
+    /* SKILL CATEGORY CARDS */
+    .about-page .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 19px;
+    }
+
+    .about-page .skill-card {
+      min-width: 0;
+      padding: 25px;
+      border: 1px solid var(--about-border);
+      border-radius: 22px;
+      background: var(--about-panel);
+      transition: transform .3s ease, box-shadow .3s ease,
+                  border-color .3s ease;
+    }
+
+    .about-page .skill-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(99,102,241,.55);
+      box-shadow: 0 15px 38px rgba(99,102,241,.09);
+    }
+
+    .about-page .skill-card-header {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 20px;
+    }
+
+    .about-page .skill-symbol {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(99,102,241,.19), rgba(6,182,212,.13));
+      font-size: 1.35rem;
+    }
+
+    .about-page .skill-card h3 {
+      margin: 0 0 4px;
+      font-size: 1.08rem;
+      color: var(--text-dark);
+    }
+
+    .about-page .skill-card-header p {
+      margin: 0;
+      font-size: .82rem;
+      color: var(--text-muted);
+      font-weight: 450;
+    }
+
+    .about-page .skill-item {
+      margin-top: 19px;
+    }
+
+    .about-page .skill-item:first-child {
+      margin-top: 0;
+    }
+
+    .about-page .skill-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 9px;
+      font-size: .9rem;
+    }
+
+    .about-page .skill-name {
+      font-weight: 600;
+      color: var(--text-dark);
+    }
+
+    .about-page .skill-percent {
+      flex-shrink: 0;
+      color: var(--about-accent);
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .about-page .skill-track {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: color-mix(in srgb, var(--text-muted) 22%, var(--about-panel));
+    }
+
+    .about-page .skill-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #6366f1, #22d3ee);
+      transition: width 1.25s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .about-page .skill-card:nth-child(2) .skill-fill {
+      background: linear-gradient(90deg, #0ea5e9, #2dd4bf);
+    }
+
+    .about-page .skill-card:nth-child(3) .skill-fill {
+      background: linear-gradient(90deg, #8b5cf6, #ec4899);
+    }
+
+    .about-page .skill-card:nth-child(4) .skill-fill {
+      background: linear-gradient(90deg, #f59e0b, #f97316);
+    }
+
+    .about-page .skill-card:nth-child(5) .skill-fill {
+      background: linear-gradient(90deg, #14b8a6, #84cc16);
+    }
+
+    .about-page .skill-card:nth-child(6) .skill-fill {
+      background: linear-gradient(90deg, #64748b, #a78bfa);
+    }
+
+    .about-page .skill-note {
+      margin-top: 22px;
+      padding: 15px 17px;
+      border-left: 3px solid var(--about-accent);
+      border-radius: 0 12px 12px 0;
+      background: var(--about-panel);
+      font-size: .88rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      font-weight: 450;
+    }
+
+    /* WORKING STYLE */
+    .about-page .process-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 15px;
+    }
+
+    .about-page .process-card {
+      padding: 22px 18px;
+      border: 1px solid var(--about-border);
+      border-radius: 18px;
+      background: var(--about-panel);
+    }
+
+    .about-page .process-number {
+      display: block;
+      margin-bottom: 17px;
+      color: var(--about-accent);
+      font-size: 1.7rem;
+      font-weight: 800;
+    }
+
+    .about-page .process-card h3 {
+      margin: 0 0 8px;
+      font-size: 1rem;
+      color: var(--text-dark);
+    }
+
+    .about-page .process-card p {
+      margin: 0;
+      font-size: .86rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+      font-weight: 450;
+    }
+
+    .about-page .closing-note {
+      margin-top: 55px;
+      padding: clamp(26px, 4vw, 40px);
+      border: 1px solid rgba(99,102,241,.28);
+      border-radius: 23px;
+      background: linear-gradient(120deg, rgba(99,102,241,.12), rgba(6,182,212,.07));
+      text-align: center;
+    }
+
+    .about-page .closing-note h2 {
+      margin: 0 0 12px;
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      color: var(--text-dark);
+    }
+
+    .about-page .closing-note p {
+      max-width: 650px;
+      margin: 0 auto;
+      line-height: 1.8;
+      color: var(--text-muted);
+      font-weight: 450;
+    }
+
+    .about-page .page-back-wrap {
+      margin-top: 35px;
+    }
+
+    .about-page .page-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 12px 17px;
+      border: 1px solid var(--about-border);
+      border-radius: 12px;
+      text-decoration: none;
+      color: var(--text-dark);
+      transition: background .25s ease, transform .25s ease;
+    }
+
+    .about-page .page-back:hover {
+      transform: translateX(-3px);
+      background: var(--about-panel);
+    }
+
+    .about-page .reveal-about {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .about-page .reveal-about.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 850px) {
+      .about-page .intro-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-page .process-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 600px) {
+      .about-page {
+        padding-top: 35px;
+      }
+
+      .about-page .about-hero {
+        border-radius: 22px;
+      }
+
+      .about-page .hero-title {
+        letter-spacing: -1.2px;
+      }
+
+      .about-page .section-block {
+        margin-top: 45px;
+      }
+
+      .about-page .skill-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .about-page .skill-card {
+        padding: 21px;
+      }
+
+      .about-page .process-grid {
+        gap: 11px;
+      }
+
+      .about-page .process-card {
+        padding: 17px 14px;
+      }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .about-page *,
+      .about-page *::before,
+      .about-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+
+      .about-page .reveal-about {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="ambient-glow-1"></div>
+<div class="ambient-glow-2"></div>
+
+<header>
+  <div class="container">
+    <nav>
+      <a class="logo" href="index.html">Saurabh<span>.</span></a>
+
+      <button aria-expanded="false"
+              aria-label="Open navigation menu"
+              class="menu-btn" id="menuBtn">☰</button>
+
+      <ul class="nav-links" id="navLinks"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="skills.html">Skills</a></li><li><a href="experience.html">Experience</a></li><li><a class="nav-contact" href="contact.html">Contact</a></li></ul>
+    </nav>
+  </div>
+</header>
+
+<main class="page-content about-page">
+  <div class="container">
+
+    <!-- HERO -->
+    <section class="about-hero reveal-about">
+      <div class="eyebrow">
+        <span class="eyebrow-dot"></span>
+        About Me
+      </div>
+
+      <h1 class="hero-title">
+        Engineering through<br>
+        <span class="gradient-text">hands-on innovation.</span>
+      </h1>
+
+      <p class="hero-description">
+        I explore the intersection of hardware, software, robotics
+        and intelligent systems — turning engineering ideas into
+        practical prototypes through experimentation and iteration.
+      </p>
+
+      <div class="hero-tags">
+        <span class="hero-tag">Electronics &amp; Communication</span>
+        <span class="hero-tag">Electronics Manufacturing</span>
+        <span class="hero-tag">Embedded Systems</span>
+        <span class="hero-tag">Robotics &amp; UAVs</span>
+        <span class="hero-tag">IoT &amp; AI</span>
+      </div>
+    </section>
+
+    <!-- ABOUT -->
+    <section class="section-block">
+      <div class="section-top reveal-about">
+        <div class="section-kicker">The person behind the projects</div>
+        <h2 class="section-title">Curious by nature. An engineer by practice.</h2>
+        <p class="section-subtitle">
+          I believe engineering becomes meaningful when concepts
+          move beyond theory and solve real-world problems.
+        </p>
+      </div>
+
+      <div class="intro-grid">
+
+        <article class="panel reveal-about">
+          <div class="panel-heading">
+            <div class="panel-icon">👨‍💻</div>
+            <h3>A little about me</h3>
+          </div>
+
+          <p class="bio-copy">
+            I am an Electronics and Communication Engineering
+            student at NIT Nagaland, interested in embedded systems,
+            robotics, IoT and intelligent hardware solutions.
+          </p>
+
+          <p class="bio-copy">
+            I enjoy developing prototypes by combining
+            microcontrollers, sensors, wireless communication
+            and machine learning. With industrial internship exposure in
+            electronics manufacturing, assembly procedures and testing workflows
+            at Elexoplus, my interests include drone systems, safety-focused
+            electronics and connected production-ready devices.
+          </p>
+
+          <p class="bio-copy">
+            For me, the most valuable part of a project is the
+            process: understanding the problem, building a solution,
+            testing it in practice, debugging failures and improving
+            reliability.
+          </p>
+        </article>
+
+        <article class="panel reveal-about">
+          <div class="panel-heading">
+            <div class="panel-icon">🎯</div>
+            <h3>What I focus on</h3>
+          </div>
+
+          <div class="focus-list">
+            <div class="focus-item">
+              <div class="focus-mark">01</div>
+              <div>
+                <strong>Build practical systems</strong>
+                <span>Turn concepts into working electronic prototypes.</span>
+              </div>
+            </div>
+
+            <div class="focus-item">
+              <div class="focus-mark">02</div>
+              <div>
+                <strong>Connect hardware and software</strong>
+                <span>Integrate sensors, firmware and communication links.</span>
+              </div>
+            </div>
+
+            <div class="focus-item">
+              <div class="focus-mark">03</div>
+              <div>
+                <strong>Explore intelligent solutions</strong>
+                <span>Apply embedded intelligence to practical engineering challenges.</span>
+              </div>
+            </div>
+
+            <div class="focus-item">
+              <div class="focus-mark">04</div>
+              <div>
+                <strong>Learn through experimentation</strong>
+                <span>Test, debug and refine ideas instead of stopping at theory.</span>
+              </div>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- WORKING STYLE -->
+    <section class="section-block">
+      <div class="section-top reveal-about">
+        <div class="section-kicker">My approach</div>
+        <h2 class="section-title">From idea to implementation.</h2>
+        <p class="section-subtitle">
+          I approach engineering as an iterative process where
+          every test, failure and improvement teaches something useful.
+        </p>
+      </div>
+
+      <div class="process-grid">
+
+        <article class="process-card reveal-about">
+          <span class="process-number">01</span>
+          <h3>Understand</h3>
+          <p>Identify the problem, requirements and constraints before building.</p>
+        </article>
+
+        <article class="process-card reveal-about">
+          <span class="process-number">02</span>
+          <h3>Build</h3>
+          <p>Bring together circuits, microcontrollers, sensors and code.</p>
+        </article>
+
+        <article class="process-card reveal-about">
+          <span class="process-number">03</span>
+          <h3>Test &amp; Debug</h3>
+          <p>Evaluate real behaviour, diagnose errors and refine the design.</p>
+        </article>
+
+        <article class="process-card reveal-about">
+          <span class="process-number">04</span>
+          <h3>Improve</h3>
+          <p>Make the solution more reliable, practical and useful.</p>
+        </article>
+
+      </div>
+    </section>
+
+    <!-- CLOSING -->
+    <section class="closing-note reveal-about">
+      <h2>Always building. Always learning.</h2>
+      <p>
+        Every project is an opportunity to understand technology
+        more deeply, collaborate with others and turn an idea
+        into something that works beyond the drawing board.
+      </p>
+    </section>
+
+    <div class="page-back-wrap">
+      <a class="page-back" href="index.html#dashboard">
+        <span aria-hidden="true">←</span>
+        Back to Dashboard
+      </a>
+    </div>
+
+  </div>
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-inner">
+      <p>© 2026 Saurabh Patel</p>
+
+      <div class="footer-right">
+        <div class="footer-links">
+          <a href="index.html">Home</a>
+          <a href="about.html">About</a>
+          <a href="education.html">Education</a>
+          <a href="projects.html">Projects</a>
+          <a href="experience.html">Experience</a>
+          <a href="contact.html">Contact</a>
+        </div>
+
+        <div class="social-icons">
+          <a aria-label="LinkedIn"
+             href="https://www.linkedin.com/in/saurabhp04/"
+             rel="noopener noreferrer" target="_blank">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>
+            </svg>
+          </a>
+
+          <a aria-label="GitHub"
+             href="https://github.com/saurabhp02"
+             rel="noopener noreferrer" target="_blank">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3z"/>
+            </svg>
+          </a>
+
+          <a aria-label="Email"
+             href="mailto:saurabh4366@nitnagaland.ac.in">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13zm2.3.2 7.7 6.1 7.7-6.1a.5.5 0 0 0-.2-.05h-15a.5.5 0 0 0-.2.05zM20 7.9l-7.4 5.85a1 1 0 0 1-1.2 0L4 7.9v10.6c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V7.9z"/>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+<!-- WEBSITE THEME SWITCHER -->
+<div class="environment-switcher" id="environmentSwitcher">
+  <div aria-label="Choose website environment"
+       class="environment-options" id="environmentOptions"></div>
+
+  <button aria-expanded="false"
+          aria-label="Change website environment"
+          class="environment-toggle" id="environmentToggle">☀️</button>
+  <span class="environment-label" id="environmentLabel">Day</span>
+</div>
+
+<script src="script.js"></script>
+<script src="futuristic.js"></script>
+
+<script>
+(function () {
+  const page = document.querySelector(".about-page");
+  if (!page) return;
+
+  // Mark the current navigation link.
+  document.querySelectorAll(".nav-links a").forEach(function (link) {
+    const href = link.getAttribute("href");
+
+    if (href === "about.html" || href === "about.html#skills") {
+      link.classList.add("active");
+      link.setAttribute("aria-current", "page");
+    }
+  });
+
+  // Reveal sections as they enter the viewport.
+  const revealItems = page.querySelectorAll(".reveal-about");
+
+  if ("IntersectionObserver" in window) {
+    const revealObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("visible");
+          revealObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.12
+    });
+
+    revealItems.forEach(function (item) {
+      revealObserver.observe(item);
+    });
+  } else {
+    revealItems.forEach(function (item) {
+      item.classList.add("visible");
+    });
+  }
+
+  // Animate skill bars only when they become visible.
+  const skillTracks = page.querySelectorAll(".skill-track");
+
+  function animateTrack(track) {
+    const fill = track.querySelector(".skill-fill");
+    if (!fill || fill.dataset.animated === "true") return;
+
+    const rawLevel = Number(fill.dataset.level);
+    const level = Math.max(0, Math.min(100, rawLevel || 0));
+
+    fill.style.width = level + "%";
+    fill.dataset.animated = "true";
+  }
+
+  if ("IntersectionObserver" in window) {
+    const barObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateTrack(entry.target);
+          barObserver.unobserve(entry.target);
+        }
+      });
+    }, {
+      threshold: 0.25
+    });
+
+    skillTracks.forEach(function (track) {
+      barObserver.observe(track);
+    });
+  } else {
+    skillTracks.forEach(animateTrack);
+  }
+})();
+</script>
+
+</body>
+</html>

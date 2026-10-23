@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>Saurabh Patel | Portfolio</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Saurabh Patel, engineering student at NIT Nagaland. Embedded systems, robotics, IoT and AI projects.">
+<meta name="theme-color" content="#4f46e5">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Ctext x='32' y='44' font-size='36' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="futuristic.css">
+</head>
+<body>
+<div class="ambient-glow-1"></div><div class="ambient-glow-2"></div>
+<header>
+<div class="container">
+<nav>
+<a class="logo" href="index.html">Saurabh<span>.</span></a>
+<button aria-expanded="false" aria-label="Open navigation menu" class="menu-btn" id="menuBtn">☰</button>
+<ul class="nav-links" id="navLinks"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="skills.html">Skills</a></li><li><a href="experience.html">Experience</a></li><li><a class="nav-contact" href="contact.html">Contact</a></li></ul>
+</nav>
+</div>
+</header>
+<main class="page-content">
+<section class="hero" id="home">
+<div class="container">
+<div class="hero-grid">
+<div>
+<div class="eyebrow load-anim-1">
+    <span class="cyber-pulse-dot" style="display:inline-block; vertical-align:middle; margin-right:6px;"></span>
+    Electronics • Embedded Systems • Robotics • AI
+</div>
+<h1 class="load-anim-2">
+    Building ideas into <span>working systems.</span>
+</h1>
+<p class="hero-credential load-anim-3">
+    Saurabh Patel
+    <span>· Engineering student, NIT Nagaland</span>
+</p>
+<p class="hero-description load-anim-3">
+    I build embedded prototypes that combine sensing,
+    wireless communication and machine learning, from a
+    V2V mine-safety system to a fire-detecting drone.
+</p>
+<div class="hero-buttons load-anim-4">
+    <a class="btn btn-primary" href="projects.html">View Projects</a>
+    <button type="button" class="btn btn-secondary" onclick="window.CyberSuite && window.CyberSuite.openV2VSimulator()" style="border-color: var(--accent);"><span style="color:var(--accent); margin-right:6px;">⚡</span>V2V Radar Sim</button>
+    <a class="btn btn-secondary" href="view-cv.html">View CV</a>
+    <a class="btn btn-secondary" href="contact.html">Contact Me</a>
+</div>
+</div>
+<div class="hero-image load-anim-image">
+<div aria-label="Saurabh Patel profile photos" class="profile-carousel" id="profileCarousel">
+<button aria-label="Previous profile photo" class="profile-nav profile-nav-prev" id="profilePrev" type="button">‹</button>
+<div class="profile-photo-frame">
+<img alt="Portrait of Saurabh Patel" decoding="async" height="500" id="profileCarouselImage" loading="eager" src="profile/profile1.jpg" width="400"/>
+<div aria-hidden="true" class="profile-photo-loading" id="profilePhotoLoading"></div>
+</div>
+<button aria-label="Next profile photo" class="profile-nav profile-nav-next" id="profileNext" type="button">›</button>
+<div aria-label="Choose profile photo" class="profile-dots" id="profileDots"></div>
+<div aria-hidden="true" class="profile-progress">
+<span id="profileProgressBar"></span>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section aria-label="Portfolio dashboard" class="portfolio-dashboard" id="dashboard">
+<div class="container">
+<div class="dashboard-heading">
+<div>
+<div class="section-label">Explore Portfolio</div>
+<h2>Explore my work, one section at a time.</h2>
+<p>Choose a card to open a focused view. Your projects, experiences and galleries stay organized instead of appearing in one long page.</p>
+</div>
+<span class="dashboard-hint"><span class="status-dot"></span> Command Center · <kbd class="cyber-key-badge" style="cursor:pointer; font-weight:700;" onclick="window.CyberSuite && window.CyberSuite.openCommandPalette()">Ctrl+K</kbd></span>
+</div>
+<div class="dashboard-grid">
+<a class="dashboard-card" data-page="about.html" href="about.html">
+<span class="dashboard-icon">◎</span><span class="dashboard-number">01 / PROFILE</span>
+<h3>About</h3><p>My engineering interests, background and areas of focus.</p><span class="dashboard-open">Open profile <b>↗</b></span>
+</a>
+<a class="dashboard-card" data-page="projects.html" href="projects.html">
+<span class="dashboard-icon">⌘</span><span class="dashboard-number">02 / BUILD</span>
+<h3>Projects</h3>
+<div class="dashboard-project-categories"><span>Major Projects</span><span>Minor Projects</span></div>
+<p>Explore core builds and smaller experiments, from MineSafe-X and fire detection to robotics and embedded systems.</p><span class="dashboard-open">Explore projects <b>↗</b></span>
+</a>
+<a class="dashboard-card" data-page="skills.html" href="skills.html">
+<span class="dashboard-icon">▣</span><span class="dashboard-number">03 / SKILLS</span>
+<h3>Skills</h3><p>My technical toolkit, tools and hands-on engineering strengths.</p><span class="dashboard-open">View skills <b>↗</b></span>
+</a>
+<a class="dashboard-card" data-page="education.html" href="education.html">
+<span class="dashboard-icon">▤</span><span class="dashboard-number">04 / LEARN</span>
+<h3>Education</h3><p>My academic journey from school to NIT Nagaland.</p><span class="dashboard-open">View education <b>↗</b></span>
+</a>
+<a class="dashboard-card" data-page="experience.html" href="experience.html">
+<span class="dashboard-icon">↗</span><span class="dashboard-number">05 / EXPERIENCE</span>
+<h3>Experience &amp; Outreach</h3><p>Electronics manufacturing intern (Elexoplus), DoT outreach and campus roles.</p><span class="dashboard-open">View experience <b>↗</b></span>
+</a>
+<a class="dashboard-card" data-page="leadership.html" href="leadership.html">
+<span class="dashboard-icon">✳</span><span class="dashboard-number">06 / LEAD</span>
+<h3>Leadership</h3><p>Technical, coordination and student activity responsibilities.</p><span class="dashboard-open">View roles <b>↗</b></span>
+</a>
+<a class="dashboard-card" data-page="achievements.html" href="achievements.html">
+<span class="dashboard-icon">✧</span><span class="dashboard-number">07 / MILESTONES</span>
+<h3>Achievements</h3><p>Recognition, milestones and technical showcases.</p><span class="dashboard-open">See highlights <b>↗</b></span>
+</a>
+<a class="dashboard-card" data-page="events.html" href="events.html">
+<span class="dashboard-icon">▧</span><span class="dashboard-number">08 / GALLERY</span>
+<h3>Hackathons &amp; Expo</h3><p>SIH, TxG Expo, event photos and videos in one place.</p><span class="dashboard-open">Open gallery <b>↗</b></span>
+</a>
+<a class="dashboard-card" data-page="contact.html" href="contact.html">
+<span class="dashboard-icon">↗</span><span class="dashboard-number">10 / CONNECT</span>
+<h3>Contact</h3><p>Connect with me about electronics, embedded systems and projects.</p><span class="dashboard-open">Get in touch <b>↗</b></span>
+</a>
+</div>
+</div>
+</section>
+<section aria-label="Highlights" class="stats">
+<div class="container">
+<div class="stats-grid reveal">
+<div class="stat"><h3>4</h3><p>Major projects</p></div>
+<div class="stat"><h3>10+</h3><p>Technical projects</p></div>
+<div class="stat"><h3>3+</h3><p>Hackathons &amp; expos</p></div>
+<div class="stat"><h3>4</h3><p>Leadership &amp; activity roles</p></div>
+</div>
+</div>
+</section>
+</main>
+<footer>
+<div class="container">
+<div class="footer-inner">
+<p>© 2026 Saurabh Patel</p>
+<div class="footer-right">
+<div class="footer-links">
+<a href="index.html">Home</a>
+<a href="about.html">About</a>
+<a href="education.html">Education</a>
+<a href="projects.html">Projects</a>
+<a href="experience.html">Experience</a>
+<a href="contact.html">Contact</a>
+</div>
+<div class="social-icons">
+<a aria-label="LinkedIn" href="https://www.linkedin.com/in/saurabhp04/" rel="noopener noreferrer" target="_blank">
+<svg viewbox="0 0 24 24">
+<path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"></path>
+</svg>
+</a>
+<a aria-label="GitHub" href="https://github.com/" rel="noopener noreferrer" target="_blank">
+<svg viewbox="0 0 24 24">
+<path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-1.08-.74.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3z"></path>
+</svg>
+</a>
+<a aria-label="Email" href="mailto:saurabh4366@nitnagaland.ac.in">
+<svg viewbox="0 0 24 24">
+<path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13zm2.3.2 7.7 6.1 7.7-6.1a.5.5 0 0 0-.2-.05h-15a.5.5 0 0 0-.2.05zM20 7.9l-7.4 5.85a1 1 0 0 1-1.2 0L4 7.9v10.6c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V7.9z"></path>
+</svg>
+</a>
+</div>
+</div>
+</div>
+</div>
+</footer>
+<div class="environment-switcher" id="environmentSwitcher">
+<div aria-label="Choose website environment" class="environment-options" id="environmentOptions"></div>
+<button aria-expanded="false" aria-label="Change website environment" class="environment-toggle" id="environmentToggle">☀️</button>
+<span class="environment-label" id="environmentLabel">Day</span>
+</div>
+<script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+<script src="media-data.js"></script>
+<script src="script.js"></script>
+<script src="futuristic.js"></script>
+<script>document.querySelectorAll(".nav-links a").forEach(function(a){if(a.getAttribute("href")==='index.html'){a.setAttribute("aria-current","page");a.classList.add("active");}});</script>
+</body>
+</html>

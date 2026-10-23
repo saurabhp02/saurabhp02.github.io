@@ -1,0 +1,470 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Achievements | Saurabh Patel</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Achievements, awards, hackathon recognition, technical competitions and exhibitions of Saurabh Patel, Electronics and Communication Engineering student at NIT Nagaland.">
+    <meta name="theme-color" content="#4f46e5">
+
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Ctext x='32' y='44' font-size='36' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3ES%3C/text%3E%3C/svg%3E">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/glightbox/dist/css/glightbox.min.css">
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="futuristic.css">
+
+    <style>
+        /* Achievement image */
+        .achievement-card-featured {
+            overflow: hidden;
+        }
+
+        .achievement-image-link {
+            display: block;
+            margin-bottom: 20px;
+            overflow: hidden;
+            border-radius: 12px;
+            background: rgba(127, 127, 127, 0.08);
+        }
+
+        .achievement-image-link[hidden] {
+            display: none;
+        }
+
+        .achievement-image {
+            display: block;
+            width: 100%;
+            aspect-ratio: 16 / 9;
+            object-fit: cover;
+            transition: transform 0.45s ease;
+        }
+
+        .achievement-card:hover .achievement-image {
+            transform: scale(1.035);
+        }
+
+        .achievement-badge {
+            display: inline-flex;
+            align-items: center;
+            width: fit-content;
+            margin: 0 0 12px;
+            padding: 6px 11px;
+            border: 1px solid rgba(99, 102, 241, 0.3);
+            border-radius: 999px;
+            background: rgba(99, 102, 241, 0.10);
+            color: var(--accent, #6366f1);
+            font-size: 0.8rem;
+            font-weight: 700;
+        }
+
+        .achievement-organizer {
+            font-weight: 500;
+            opacity: 0.85;
+        }
+
+        .achievement-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+            margin-top: 16px;
+        }
+
+        .achievement-tags span {
+            padding: 6px 10px;
+            border: 1px solid rgba(127, 127, 127, 0.22);
+            border-radius: 8px;
+            font-size: 0.76rem;
+            opacity: 0.9;
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            .achievement-image {
+                transition: none;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="ambient-glow-1"></div>
+    <div class="ambient-glow-2"></div>
+
+    <!-- Navigation -->
+    <header>
+        <div class="container">
+            <nav>
+                <a class="logo" href="index.html">Saurabh<span>.</span></a>
+
+                <button
+                    aria-expanded="false"
+                    aria-label="Open navigation menu"
+                    class="menu-btn"
+                    id="menuBtn">
+                    ☰
+                </button>
+
+                <ul class="nav-links" id="navLinks"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="skills.html">Skills</a></li><li><a href="experience.html">Experience</a></li><li><a class="nav-contact" href="contact.html">Contact</a></li></ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Main content -->
+    <main class="page-content">
+
+        <section id="achievements">
+            <div class="container">
+
+                <div class="section-heading reveal">
+                    <div class="section-label">
+                        Achievements &amp; Recognition
+                    </div>
+
+                    <h2>Milestones and Recognition.</h2>
+
+                    <p>
+                        Awards, competitions, exhibitions and technical
+                        recognition from institutional and external platforms.
+                    </p>
+                </div>
+
+                <div class="achievement-grid">
+
+                    <!-- 1. Code For Nagaland 2026 -->
+                    <article class="achievement-card reveal achievement-card-featured">
+
+                        <a
+                            class="achievement-image-link glightbox"
+                            data-folder="Portfolio/Hackathons and expo/Code For Nagaland"
+                            href="#"
+                            data-gallery="achievements"
+                            data-title="Ostereo-AI — 2nd Place, Code For Nagaland 2026"
+                            aria-label="View Code For Nagaland achievement photograph"
+                            hidden>
+
+                            <img
+                                class="achievement-image"
+                                src=""
+                                alt="Ostereo-AI team at Code For Nagaland 2026"
+                                loading="lazy">
+                        </a>
+
+                        <div class="achievement-date">
+                            October 15–16, 2026
+                        </div>
+
+                        <span class="achievement-badge">
+                            2nd Place · Wildcard Track
+                        </span>
+
+                        <h3>
+                            Ostereo-AI — Runner-Up, Code For Nagaland 2026
+                        </h3>
+
+                        <p class="achievement-organizer">
+                            NEXUSCIPHERGUARD INDIA in collaboration with
+                            ICFAI University Nagaland
+                        </p>
+
+                        <p>
+                            Secured second place in the Wildcard Track at
+                            Code For Nagaland 2026, a 26-hour hackathon
+                            featuring 113 students from eight colleges
+                            and universities, with a total prize pool
+                            of ₹1 lakh.
+                        </p>
+
+                        <p>
+                            Our team developed an AI-Based Osteoarthritis
+                            Risk Marker Screening System designed to support
+                            early risk screening, particularly in remote
+                            and resource-constrained healthcare settings.
+                            The proposed solution combines symptom assessment,
+                            walking-pattern analysis and AI-assisted medical
+                            image analysis to identify potential risk markers
+                            and support timely medical referral.
+                        </p>
+
+                        <p>
+                            The challenge tested our technical knowledge,
+                            teamwork, rapid prototyping and problem-solving
+                            under tight deadlines. This achievement reflects
+                            our commitment to applying artificial intelligence
+                            to meaningful healthcare challenges.
+                        </p>
+
+                        <div class="achievement-tags">
+                            <span>Artificial Intelligence</span>
+                            <span>Healthcare Technology</span>
+                            <span>Innovation</span>
+                            <span>Hackathon</span>
+                        </div>
+
+                    </article>
+
+                    <!-- 2. Robo GP -->
+                    <article class="achievement-card reveal">
+                        <a
+                            class="achievement-image-link glightbox"
+                            data-folder="Portfolio/Achievements/Robo-GP"
+                            href="#"
+                            data-gallery="achievements"
+                            data-title="Winner — Robo GP"
+                            aria-label="View Robo GP achievement photograph"
+                            hidden>
+                            <img
+                                class="achievement-image"
+                                src=""
+                                alt="Robo GP winner certificate"
+                                loading="lazy">
+                        </a>
+
+                        <div class="achievement-date">March 2025</div>
+
+                        <h3>Winner — Robo GP</h3>
+
+                        <p>Technical Board, NIT Nagaland</p>
+                    </article>
+
+                    <!-- 3. Quiz Competition 2025 -->
+                    <article class="achievement-card reveal">
+                        <div class="achievement-date">February 2025</div>
+
+                        <h3>1st Runner-Up — Quiz Competition</h3>
+
+                        <p>Science Society</p>
+                    </article>
+
+                    <!-- 4. Quiz Competition 2026 -->
+                    <article class="achievement-card reveal">
+                        <div class="achievement-date">February 2026</div>
+
+                        <h3>1st Runner-Up — Quiz Competition</h3>
+
+                        <p>Science Society</p>
+                    </article>
+
+                    <!-- 5. TXG Expo -->
+                    <article class="achievement-card reveal">
+                        <a
+                            class="achievement-image-link glightbox"
+                            data-folder="Portfolio/Achievements/TxG Expo"
+                            href="#"
+                            data-gallery="achievements"
+                            data-title="Invited Exhibitor — TXG Expo Nagaland"
+                            aria-label="View TXG Expo achievement photograph"
+                            hidden>
+                            <img
+                                class="achievement-image"
+                                src=""
+                                alt="Aerial Recognition Project showcased at TXG Expo"
+                                loading="lazy">
+                        </a>
+
+                        <div class="achievement-date">2026</div>
+
+                        <h3>Invited Exhibitor — TXG Expo Nagaland</h3>
+
+                        <p>
+                            Showcased an Aerial Recognition Project,
+                            demonstrating the application of technology
+                            to real-world challenges.
+                        </p>
+                    </article>
+
+                    <!-- 6. NIELIT -->
+                    <article class="achievement-card reveal">
+                        <a
+                            class="achievement-image-link glightbox"
+                            data-folder="Portfolio/Achievements/UAV_Multirotot_NIELIT"
+                            href="#"
+                            data-gallery="achievements"
+                            data-title="Assembly of Obstacle Avoidance Based on Multirotor UAV — NIELIT"
+                            aria-label="View NIELIT multirotor UAV achievement image"
+                            hidden>
+                            <img
+                                class="achievement-image"
+                                src=""
+                                alt="NIELIT multirotor UAV achievement"
+                                loading="lazy">
+                        </a>
+
+                        <div class="achievement-date">September 2025</div>
+
+                        <h3>
+                            Assembly of Obstacle Avoidance Based on
+                            Multirotor UAV
+                        </h3>
+
+                        <p>NIELIT</p>
+                    </article>
+
+                </div>
+            </div>
+        </section>
+
+        <div class="container">
+            <a class="page-back" href="index.html#dashboard">
+                ← Back to Dashboard
+            </a>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-inner">
+
+                <p>© 2026 Saurabh Patel</p>
+
+                <div class="footer-right">
+
+                    <div class="footer-links">
+                        <a href="index.html">Home</a>
+                        <a href="about.html">About</a>
+                        <a href="education.html">Education</a>
+                        <a href="projects.html">Projects</a>
+                        <a href="experience.html">Experience</a>
+                        <a href="contact.html">Contact</a>
+                    </div>
+
+                    <div class="social-icons">
+
+                        <a
+                            aria-label="LinkedIn"
+                            href="https://www.linkedin.com/in/saurabhp04/"
+                            rel="noopener noreferrer"
+                            target="_blank">
+
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.86 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.46v6.28zM5.34 7.43a2.06 2.06 0 1 1 0-4.13 2.06 2.06 0 0 1 0 4.13zM7.12 20.45H3.56V9h3.56v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45c.98 0 1.78-.77 1.78-1.73V1.73C24 .77 23.2 0 22.22 0z"/>
+                            </svg>
+                        </a>
+
+                        <a
+                            aria-label="GitHub"
+                            href="https://github.com/"
+                            rel="noopener noreferrer"
+                            target="_blank">
+
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 .3a12 12 0 0 0-3.8 23.38c.6.12.83-.26.83-.57v-2c-3.34.73-4.04-1.6-4.04-1.6-.55-1.4-1.34-1.77-1.34-1.77-.74-1.08.09-.73.09-.73 1.2.09 1.83 1.24 1.83 1.24 1.07 1.83 2.8 1.3 3.49 1 .1-.78.42-1.3.76-1.6-2.67-.3-5.47-1.33-5.47-5.93 0-1.31.47-2.38 1.24-3.22-.14-.3-.54-1.52.1-3.18 0 0 1-.32 3.3 1.23a11.5 11.5 0 0 1 6 0c2.28-1.55 3.29-1.23 3.29-1.23.64 1.66.24 2.88.12 3.18.77.84 1.23 1.91 1.23 3.22 0 4.61-2.8 5.63-5.48 5.92.42.36.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .3z"/>
+                            </svg>
+                        </a>
+
+                        <a
+                            aria-label="Email"
+                            href="mailto:saurabh4366@nitnagaland.ac.in">
+
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M2 5.5A2.5 2.5 0 0 1 4.5 3h15A2.5 2.5 0 0 1 22 5.5v13a2.5 2.5 0 0 1-2.5 2.5h-15A2.5 2.5 0 0 1 2 18.5v-13zm2.3.2 7.7 6.1 7.7-6.1a.5.5 0 0 0-.2-.05h-15a.5.5 0 0 0-.2.05zM20 7.9l-7.4 5.85a1 1 0 0 1-1.2 0L4 7.9v10.6c0 .28.22.5.5.5h15a.5.5 0 0 0 .5-.5V7.9z"/>
+                            </svg>
+                        </a>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Website environment switcher -->
+    <div class="environment-switcher" id="environmentSwitcher">
+
+        <div
+            aria-label="Choose website environment"
+            class="environment-options"
+            id="environmentOptions"></div>
+
+        <button
+            aria-expanded="false"
+            aria-label="Change website environment"
+            class="environment-toggle"
+            id="environmentToggle">
+            ☀️
+        </button>
+
+        <span class="environment-label" id="environmentLabel">Day</span>
+
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdn.jsdelivr.net/gh/mcstudios/glightbox/dist/js/glightbox.min.js"></script>
+    <script src="media-data.js"></script>
+    <script src="script.js"></script>
+    <script src="futuristic.js"></script>
+
+    <script>
+        // Populate achievement photos only when their matching folder has an image.
+        (async function loadAchievementImages() {
+            try {
+                const data = await window.getPortfolioMedia();
+                const mediaItems = Array.isArray(data)
+                    ? data
+                    : Array.isArray(data.media)
+                        ? data.media
+                        : Array.isArray(data.assets)
+                            ? data.assets
+                            : [];
+
+                document.querySelectorAll(".achievement-image-link[data-folder]").forEach(link => {
+                    const folderPath = link.dataset.folder.replace(/\\/g, "/").replace(/\/$/, "");
+                    const match = mediaItems.find(item => {
+                        const resourceType = item?.resource_type || item?.resourceType;
+                        const imageUrl = item?.secure_url || item?.url || item?.src;
+                        const folders = [item?.folder, item?.path, item?.asset_folder, item?.folder_path]
+                            .filter(Boolean)
+                            .map(value => String(value).replace(/\\/g, "/").replace(/\/$/, ""));
+
+                        return imageUrl &&
+                            (!resourceType || resourceType === "image") &&
+                            folders.some(folder =>
+                                folder === folderPath || folder.endsWith("/" + folderPath)
+                            );
+                    });
+
+                    if (!match) return;
+
+                    const image = link.querySelector("img");
+                    const imageUrl = match.secure_url || match.url || match.src;
+                    link.href = imageUrl;
+                    image.onerror = () => {
+                        console.error("Achievement image could not be loaded:", imageUrl);
+                    };
+                    image.src = imageUrl;
+                    link.hidden = false;
+                });
+            } catch (error) {
+                console.error("Unable to load achievement images from media.json:", error);
+            }
+        })();
+    </script>
+
+
+    <script>
+        // Highlight the current navigation page.
+        document.querySelectorAll(".nav-links a").forEach(function (link) {
+            if (link.getAttribute("href") === "achievements.html") {
+                link.setAttribute("aria-current", "page");
+                link.classList.add("active");
+            }
+        });
+
+        // Enable clickable achievement photographs.
+        if (typeof GLightbox === "function") {
+            GLightbox({
+                selector: ".glightbox",
+                touchNavigation: true,
+                loop: false,
+                closeButton: true
+            });
+        }
+    </script>
+
+</body>
+</html>

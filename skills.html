@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#4f46e5">
+  <meta name="description" content="Skills and technical toolkit of Saurabh Patel, an electronics and embedded systems engineering student at NIT Nagaland.">
+  <title>Skills | Saurabh Patel</title>
+
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='16' fill='%234f46e5'/%3E%3Ctext x='32' y='44' font-size='36' font-family='Arial' font-weight='700' text-anchor='middle' fill='white'%3ES%3C/text%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <link rel="stylesheet" href="futuristic.css">
+
+  <style>
+    .skills-page {
+      --skills-accent: var(--accent-dark);
+      --skills-accent-2: var(--accent);
+      --skills-panel: var(--surface-strong, var(--bg-card));
+      --skills-border: var(--border-light);
+      padding: 65px 0 35px;
+      color: var(--text-dark);
+    }
+
+    .skills-page * { box-sizing: border-box; }
+
+    .skills-page .skills-hero {
+      position: relative;
+      overflow: hidden;
+      padding: clamp(28px, 5vw, 58px);
+      border: 1px solid var(--skills-border);
+      border-radius: 30px;
+      background:
+        radial-gradient(ellipse at 90% 5%, rgba(99,102,241,.19), transparent 42%),
+        radial-gradient(ellipse at 0% 100%, rgba(6,182,212,.11), transparent 45%),
+        var(--skills-panel);
+    }
+
+    .skills-page .eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 9px;
+      padding: 8px 13px;
+      border: 1px solid var(--skills-border);
+      border-radius: 50px;
+      font-size: .78rem;
+      font-weight: 700;
+      letter-spacing: 1.4px;
+      text-transform: uppercase;
+    }
+
+    .skills-page .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 12px rgba(34,197,94,.65);
+    }
+
+    .skills-page .hero-title {
+      max-width: 850px;
+      margin: 25px 0 17px;
+      font-size: clamp(2.35rem, 6vw, 4.7rem);
+      font-weight: 800;
+      line-height: 1.07;
+      letter-spacing: -2px;
+    }
+
+    .skills-page .gradient-text {
+      color: var(--skills-accent);
+      background: linear-gradient(110deg, #818cf8, #22d3ee);
+      background-clip: text;
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+
+    .skills-page .hero-description {
+      max-width: 690px;
+      font-size: clamp(1rem, 2vw, 1.15rem);
+      line-height: 1.85;
+      opacity: .8;
+    }
+
+    .skills-page .hero-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 26px;
+    }
+
+    .skills-page .hero-tag {
+      padding: 9px 14px;
+      border: 1px solid var(--skills-border);
+      border-radius: 10px;
+      font-size: .88rem;
+      background: var(--skills-panel);
+    }
+
+    .skills-page .section-block {
+      margin-top: 65px;
+    }
+
+    .skills-page .section-top {
+      margin-bottom: 27px;
+    }
+
+    .skills-page .section-kicker {
+      margin-bottom: 9px;
+      color: var(--skills-accent);
+      font-size: .78rem;
+      font-weight: 800;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+    }
+
+    .skills-page .section-title {
+      margin: 0 0 10px;
+      font-size: clamp(1.8rem, 4vw, 2.65rem);
+      font-weight: 800;
+      letter-spacing: -.8px;
+    }
+
+    .skills-page .section-subtitle {
+      max-width: 700px;
+      line-height: 1.8;
+      color: var(--text-muted);
+    }
+
+    .skills-page .skill-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 19px;
+    }
+
+    .skills-page .skill-card {
+      min-width: 0;
+      padding: 25px;
+      border: 1px solid var(--skills-border);
+      border-radius: 22px;
+      background: var(--skills-panel);
+      transition: transform .3s ease, box-shadow .3s ease, border-color .3s ease;
+    }
+
+    .skills-page .skill-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(99,102,241,.55);
+      box-shadow: 0 15px 38px rgba(99,102,241,.09);
+    }
+
+    .skills-page .skill-card-header {
+      display: flex;
+      align-items: center;
+      gap: 13px;
+      margin-bottom: 20px;
+    }
+
+    .skills-page .skill-symbol {
+      display: grid;
+      place-items: center;
+      flex-shrink: 0;
+      width: 46px;
+      height: 46px;
+      border-radius: 14px;
+      background: linear-gradient(135deg, rgba(99,102,241,.19), rgba(6,182,212,.13));
+      font-size: 1.35rem;
+    }
+
+    .skills-page .skill-card h3 {
+      margin: 0 0 4px;
+      font-size: 1.08rem;
+    }
+
+    .skills-page .skill-card-header p {
+      margin: 0;
+      font-size: .82rem;
+      color: var(--text-muted);
+    }
+
+    .skills-page .skill-item {
+      margin-top: 19px;
+    }
+
+    .skills-page .skill-item:first-child {
+      margin-top: 0;
+    }
+
+    .skills-page .skill-meta {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 9px;
+      font-size: .9rem;
+    }
+
+    .skills-page .skill-name {
+      font-weight: 600;
+    }
+
+    .skills-page .skill-percent {
+      flex-shrink: 0;
+      color: var(--skills-accent);
+      font-weight: 800;
+      font-variant-numeric: tabular-nums;
+    }
+
+    .skills-page .skill-track {
+      height: 8px;
+      overflow: hidden;
+      border-radius: 20px;
+      background: color-mix(in srgb, var(--text-muted) 22%, var(--skills-panel));
+    }
+
+    .skills-page .skill-fill {
+      width: 0;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #6366f1, #22d3ee);
+      transition: width 1.25s cubic-bezier(.2,.7,.2,1);
+    }
+
+    .skills-page .skill-card:nth-child(2) .skill-fill {
+      background: linear-gradient(90deg, #0ea5e9, #2dd4bf);
+    }
+
+    .skills-page .skill-card:nth-child(3) .skill-fill {
+      background: linear-gradient(90deg, #8b5cf6, #ec4899);
+    }
+
+    .skills-page .skill-card:nth-child(4) .skill-fill {
+      background: linear-gradient(90deg, #f59e0b, #f97316);
+    }
+
+    .skills-page .skill-card:nth-child(5) .skill-fill {
+      background: linear-gradient(90deg, #14b8a6, #84cc16);
+    }
+
+    .skills-page .skill-card:nth-child(6) .skill-fill {
+      background: linear-gradient(90deg, #64748b, #a78bfa);
+    }
+
+    .skills-page .skill-card:nth-child(7) .skill-fill {
+      background: linear-gradient(90deg, #059669, #10b981);
+    }
+
+    .skills-page .skill-note {
+      margin-top: 22px;
+      padding: 15px 17px;
+      border-left: 3px solid var(--skills-accent);
+      border-radius: 0 12px 12px 0;
+      background: var(--skills-panel);
+      font-size: .88rem;
+      line-height: 1.7;
+      color: var(--text-muted);
+    }
+
+    .skills-page .reveal-about {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity .65s ease, transform .65s ease;
+    }
+
+    .skills-page .reveal-about.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 850px) {
+      .skills-page .skill-grid { grid-template-columns: 1fr; }
+    }
+
+    @media (max-width: 600px) {
+      .skills-page { padding-top: 35px; }
+      .skills-page .skills-hero { border-radius: 22px; }
+      .skills-page .hero-title { letter-spacing: -1.2px; }
+      .skills-page .section-block { margin-top: 45px; }
+      .skills-page .skill-card { padding: 21px; }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .skills-page *,
+      .skills-page *::before,
+      .skills-page *::after {
+        scroll-behavior: auto !important;
+        transition-duration: .01ms !important;
+        animation-duration: .01ms !important;
+      }
+
+      .skills-page .reveal-about {
+        opacity: 1;
+        transform: none;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="ambient-glow-1"></div>
+  <div class="ambient-glow-2"></div>
+
+  <header>
+    <div class="container">
+      <nav>
+        <a class="logo" href="index.html">Saurabh<span>.</span></a>
+        <button aria-expanded="false" aria-label="Open navigation menu" class="menu-btn" id="menuBtn">☰</button>
+        <ul class="nav-links" id="navLinks"><li><a href="index.html">Home</a></li><li><a href="about.html">About</a></li><li><a href="projects.html">Projects</a></li><li><a href="skills.html" aria-current="page" class="active">Skills</a></li><li><a href="experience.html">Experience</a></li><li><a class="nav-contact" href="contact.html">Contact</a></li></ul>
+      </nav>
+    </div>
+  </header>
+
+  <main class="page-content skills-page">
+    <div class="container">
+      <section class="skills-hero reveal-about">
+        <div class="eyebrow"><span class="eyebrow-dot"></span>Technical Toolkit</div>
+        <h1 class="hero-title">Building practical systems with <span class="gradient-text">core engineering skills.</span></h1>
+        <p class="hero-description">
+          My work blends electronics, embedded development, robotics and data-driven experimentation.
+          I enjoy turning raw ideas into working devices through hands-on design, iteration and testing.
+        </p>
+        <div class="hero-tags">
+          <span class="hero-tag">Embedded Systems</span>
+          <span class="hero-tag">Electronics Manufacturing</span>
+          <span class="hero-tag">Robotics &amp; UAV</span>
+          <span class="hero-tag">IoT</span>
+          <span class="hero-tag">AI &amp; Edge ML</span>
+          <span class="hero-tag">Hardware Prototyping</span>
+        </div>
+      </section>
+
+      <section class="section-block">
+        <div class="section-top reveal-about">
+          <div class="section-kicker">Core strengths</div>
+          <h2 class="section-title">Skills &amp; proficiency</h2>
+          <p class="section-subtitle">
+            A snapshot of the tools, systems and concepts I work with most often. These values are self-assessed and reflect practical exposure rather than formal certifications.
+          </p>
+        </div>
+
+        <div class="skill-grid">
+          <article class="skill-card reveal-about">
+            <div class="skill-card-header">
+              <div class="skill-symbol">💻</div>
+              <div>
+                <h3>Programming</h3>
+                <p>Code and problem-solving</p>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">C</span><span class="skill-percent" data-level="70">70%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="C proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70"><div class="skill-fill" data-level="70"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">MySQL</span><span class="skill-percent" data-level="55">55%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="MySQL proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="55"><div class="skill-fill" data-level="55"></div></div>
+            </div>
+          </article>
+
+          <article class="skill-card reveal-about">
+            <div class="skill-card-header">
+              <div class="skill-symbol">⚙️</div>
+              <div>
+                <h3>Embedded Systems</h3>
+                <p>Microcontrollers and hardware</p>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">Arduino</span><span class="skill-percent" data-level="80">80%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="Arduino proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"><div class="skill-fill" data-level="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">ESP32</span><span class="skill-percent" data-level="80">80%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="ESP32 proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"><div class="skill-fill" data-level="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">STM32</span><span class="skill-percent" data-level="55">55%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="STM32 proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="55"><div class="skill-fill" data-level="55"></div></div>
+            </div>
+          </article>
+
+          <article class="skill-card reveal-about">
+            <div class="skill-card-header">
+              <div class="skill-symbol">📡</div>
+              <div>
+                <h3>Hardware &amp; IoT</h3>
+                <p>Integration and communication</p>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">Raspberry Pi</span><span class="skill-percent" data-level="70">70%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="Raspberry Pi proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70"><div class="skill-fill" data-level="70"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">GPS &amp; Telemetry</span><span class="skill-percent" data-level="70">70%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="GPS and telemetry proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70"><div class="skill-fill" data-level="70"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">Wireless Communication</span><span class="skill-percent" data-level="70">70%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="Wireless communication proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="70"><div class="skill-fill" data-level="70"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">Motor Control</span><span class="skill-percent" data-level="65">65%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="Motor control proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="65"><div class="skill-fill" data-level="65"></div></div>
+            </div>
+          </article>
+
+          <article class="skill-card reveal-about">
+            <div class="skill-card-header">
+              <div class="skill-symbol">🚁</div>
+              <div>
+                <h3>Robotics &amp; UAV</h3>
+                <p>Robotic and aerial systems</p>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">RC Vehicle Systems</span><span class="skill-percent" data-level="75">75%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="RC vehicle systems proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"><div class="skill-fill" data-level="75"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">Multirotor Systems</span><span class="skill-percent" data-level="65">65%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="Multirotor systems proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="65"><div class="skill-fill" data-level="65"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">IMU &amp; Sensor Integration</span><span class="skill-percent" data-level="65">65%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="IMU and sensor integration proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="65"><div class="skill-fill" data-level="65"></div></div>
+            </div>
+          </article>
+
+          <article class="skill-card reveal-about">
+            <div class="skill-card-header">
+              <div class="skill-symbol">🧠</div>
+              <div>
+                <h3>AI / ML</h3>
+                <p>Machine learning on edge devices</p>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">Edge Impulse</span><span class="skill-percent" data-level="65">65%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="Edge Impulse proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="65"><div class="skill-fill" data-level="65"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">Edge AI Prototyping</span><span class="skill-percent" data-level="60">60%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="Edge AI prototyping proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60"><div class="skill-fill" data-level="60"></div></div>
+            </div>
+          </article>
+
+          <article class="skill-card reveal-about">
+            <div class="skill-card-header">
+              <div class="skill-symbol">🛠️</div>
+              <div>
+                <h3>Tools &amp; Development</h3>
+                <p>Design and project workflows</p>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">Arduino IDE</span><span class="skill-percent" data-level="80">80%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="Arduino IDE proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"><div class="skill-fill" data-level="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">CorelDRAW &amp; Canva</span><span class="skill-percent" data-level="75">75%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="CorelDRAW and Canva proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"><div class="skill-fill" data-level="75"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">Git &amp; GitHub</span><span class="skill-percent" data-level="60">60%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="Git and GitHub proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="60"><div class="skill-fill" data-level="60"></div></div>
+            </div>
+          </article>
+
+          <article class="skill-card reveal-about">
+            <div class="skill-card-header">
+              <div class="skill-symbol">🏭</div>
+              <div>
+                <h3>Manufacturing &amp; Assembly</h3>
+                <p>Electronics production &amp; testing</p>
+              </div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">Electronic Assembly</span><span class="skill-percent" data-level="85">85%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="Electronic assembly proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="85"><div class="skill-fill" data-level="85"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">Electronics Manufacturing</span><span class="skill-percent" data-level="80">80%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="Electronics manufacturing proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"><div class="skill-fill" data-level="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">System Testing &amp; Operations</span><span class="skill-percent" data-level="80">80%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="System testing proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="80"><div class="skill-fill" data-level="80"></div></div>
+            </div>
+            <div class="skill-item">
+              <div class="skill-meta"><span class="skill-name">Production Workflows</span><span class="skill-percent" data-level="75">75%</span></div>
+              <div class="skill-track" role="progressbar" aria-label="Production workflows proficiency" aria-valuemin="0" aria-valuemax="100" aria-valuenow="75"><div class="skill-fill" data-level="75"></div></div>
+            </div>
+          </article>
+        </div>
+
+        <div class="skill-note reveal-about">
+          <strong>Note:</strong> These percentages are illustrative self-assessments and can be updated as your hands-on confidence grows. If you want, you can remove or replace any category to reflect the technologies you use most in your current projects.
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-inner">
+        <p>© 2026 Saurabh Patel</p>
+        <div class="footer-right">
+          <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="about.html">About</a>
+            <a href="education.html">Education</a>
+            <a href="projects.html">Projects</a>
+            <a href="experience.html">Experience</a>
+            <a href="contact.html">Contact</a>
+          </div>
+          <div class="social-icons">
+            <a aria-label="LinkedIn" href="https://www.linkedin.com/in/saurabhp04/" rel="noopener noreferrer" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M6.94 8.5A1.56 1.56 0 1 1 6.9 5.38 1.56 1.56 0 0 1 6.94 8.5ZM5.4 9.8h3.1V18H5.4zm5.14 0h2.97v1.14h.04c.41-.78 1.42-1.6 2.93-1.6 3.13 0 3.71 2.06 3.71 4.74V18h-3.1v-16.8h3.1v2.13c1.19-1.1 2.8-2.28 5.75-2.28 5.53 0 6.52 3.64 6.52 8.39V18h-3.1v-16.8h3.1"/></svg>
+            </a>
+            <a aria-label="GitHub" href="https://github.com/saurabhp02" rel="noopener noreferrer" target="_blank">
+              <svg viewBox="0 0 24 24"><path d="M12 .5a12 12 0 0 0-3.79 23.4c.6.11.82-.26.82-.58v-2.08c-3.34.73-4.04-1.59-4.04-1.59-.54-1.38-1.32-1.75-1.32-1.75-1.08-.74.08-.72.08-.72 1.2.08 1.83 1.23 1.83 1.23 1.06 1.81 2.78 1.29 3.46.99.11-.77.42-1.29.76-1.59-2.66-.3-5.47-1.33-5.47-5.92 0-1.31.47-2.38 1.23-3.22-.12-.3-.53-1.52.12-3.17 0 0 1-.32 3.28 1.2a11.4 11.4 0 0 1 6 0c2.27-1.52 3.27-1.2 3.27-1.2.65 1.65.24 2.87.12 3.17.77.84 1.23 1.91 1.23 3.22 0 4.6-2.82 5.61-5.5 5.91.43.37.81 1.1.81 2.22v3.29c0 .32.22.7.83.58A12 12 0 0 0 12 .5Z"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <div class="environment-switcher" id="environmentSwitcher">
+    <div aria-label="Choose website environment" class="environment-options" id="environmentOptions"></div>
+    <button aria-expanded="false" aria-label="Change website environment" class="environment-toggle" id="environmentToggle" type="button">☀️</button>
+    <span class="environment-label" id="environmentLabel">Day</span>
+  </div>
+
+  <script src="script.js"></script>
+  <script src="futuristic.js"></script>
+
+  <script>
+  (function () {
+    const page = document.querySelector(".skills-page");
+    if (!page) return;
+
+    document.querySelectorAll(".nav-links a").forEach(function (link) {
+      const href = link.getAttribute("href");
+      if (href === "skills.html") {
+        link.classList.add("active");
+        link.setAttribute("aria-current", "page");
+      }
+    });
+
+    const revealItems = page.querySelectorAll(".reveal-about");
+
+    if ("IntersectionObserver" in window) {
+      const revealObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("visible");
+            revealObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+
+      revealItems.forEach(function (item) {
+        revealObserver.observe(item);
+      });
+    } else {
+      revealItems.forEach(function (item) {
+        item.classList.add("visible");
+      });
+    }
+
+    const skillTracks = page.querySelectorAll(".skill-track");
+
+    function animateTrack(track) {
+      const fill = track.querySelector(".skill-fill");
+      if (!fill || fill.dataset.animated === "true") return;
+
+      const rawLevel = Number(fill.dataset.level);
+      const level = Math.max(0, Math.min(100, rawLevel || 0));
+
+      fill.style.width = level + "%";
+      fill.dataset.animated = "true";
+    }
+
+    if ("IntersectionObserver" in window) {
+      const barObserver = new IntersectionObserver(function (entries) {
+        entries.forEach(function (entry) {
+          if (entry.isIntersecting) {
+            animateTrack(entry.target);
+            barObserver.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.25 });
+
+      skillTracks.forEach(function (track) {
+        barObserver.observe(track);
+      });
+    } else {
+      skillTracks.forEach(animateTrack);
+    }
+  })();
+  </script>
+</body>
+</html>
