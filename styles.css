@@ -23,6 +23,7 @@
 html {
     scroll-behavior: smooth;
     scroll-padding-top: 90px;
+    overscroll-behavior-y: contain;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
@@ -37,6 +38,7 @@ body {
     color: var(--text-dark);
     line-height: 1.7;
     overflow-x: hidden;
+    overscroll-behavior-y: contain;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
