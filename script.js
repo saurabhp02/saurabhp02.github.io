@@ -1153,6 +1153,9 @@ document.getElementById("toggleEvents")
     let h = 0;
     let dpr = 1;
     let last = 0;
+    let animId = null;
+    let lastWidth = window.innerWidth;
+    let resizeTimer = null;
 
     let nodes = [];
     let traces = [];
@@ -1524,16 +1527,46 @@ document.getElementById("toggleEvents")
         }
 
         if (shouldAnimateBackdrop()) {
-            requestAnimationFrame(draw);
+            animId = requestAnimationFrame(draw);
+        } else {
+            animId = null;
         }
     }
 
-    window.addEventListener("resize", rebuild, {
+    function startAnimation() {
+        if (!animId && shouldAnimateBackdrop()) {
+            animId = requestAnimationFrame(draw);
+        }
+    }
+
+    function stopAnimation() {
+        if (animId) {
+            cancelAnimationFrame(animId);
+            animId = null;
+        }
+    }
+
+    function handleResize() {
+        const currentWidth = window.innerWidth;
+        // On Android / mobile browsers, scrolling hides/shows the top browser URL address bar,
+        // which triggers a window 'resize' event on every scroll gesture.
+        // We only rebuild when innerWidth actually changes (e.g. orientation change or window resize).
+        if (Math.abs(currentWidth - lastWidth) > 16) {
+            window.clearTimeout(resizeTimer);
+            resizeTimer = window.setTimeout(function () {
+                lastWidth = window.innerWidth;
+                rebuild();
+            }, 200);
+        }
+    }
+
+    window.addEventListener("resize", handleResize, {
         passive: true
     });
 
+    lastWidth = window.innerWidth;
     rebuild();
-    requestAnimationFrame(draw);
+    startAnimation();
 
     let previousTheme = document.documentElement.getAttribute("data-theme");
     const observer = new MutationObserver(function () {
@@ -1542,6 +1575,7 @@ document.getElementById("toggleEvents")
         previousTheme = theme;
 
         if (artDirectedThemes.has(theme)) {
+            stopAnimation();
             canvas.hidden = true;
             ctx.clearRect(0, 0, w, h);
             return;
@@ -1551,7 +1585,7 @@ document.getElementById("toggleEvents")
         canvas.classList.remove("theme-refresh");
         void canvas.offsetWidth;
         canvas.classList.add("theme-refresh");
-        requestAnimationFrame(draw);
+        startAnimation();
     });
 
     observer.observe(document.documentElement, {
