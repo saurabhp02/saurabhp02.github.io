@@ -1127,6 +1127,9 @@ document.getElementById("toggleEvents")
     const reduceMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
     ).matches;
+    const mobileViewport = window.matchMedia(
+        "(max-width: 768px), (pointer: coarse)"
+    );
 
     // No pointer-driven tilt on the profile carousel.
     const carousel = document.getElementById("profileCarousel");
@@ -1179,6 +1182,7 @@ document.getElementById("toggleEvents")
 
     function shouldAnimateBackdrop() {
         return !reduceMotion &&
+            !mobileViewport.matches &&
             !artDirectedThemes.has(document.documentElement.dataset.theme);
     }
 
@@ -1235,7 +1239,10 @@ document.getElementById("toggleEvents")
     }
 
     function rebuild() {
-        dpr = Math.min(window.devicePixelRatio || 1, 2);
+        dpr = Math.min(
+            window.devicePixelRatio || 1,
+            mobileViewport.matches ? 1 : 2
+        );
 
         w = window.innerWidth;
         h = window.innerHeight;
@@ -1534,8 +1541,13 @@ document.getElementById("toggleEvents")
     }
 
     function startAnimation() {
-        if (!animId && shouldAnimateBackdrop()) {
-            animId = requestAnimationFrame(draw);
+        if (shouldAnimateBackdrop()) {
+            if (!animId) {
+                animId = requestAnimationFrame(draw);
+            }
+        } else {
+            stopAnimation();
+            draw(0);
         }
     }
 
@@ -1556,12 +1568,21 @@ document.getElementById("toggleEvents")
             resizeTimer = window.setTimeout(function () {
                 lastWidth = window.innerWidth;
                 rebuild();
+                startAnimation();
             }, 200);
         }
     }
 
     window.addEventListener("resize", handleResize, {
         passive: true
+    });
+
+    document.addEventListener("visibilitychange", function () {
+        if (document.hidden) {
+            stopAnimation();
+        } else {
+            startAnimation();
+        }
     });
 
     lastWidth = window.innerWidth;
@@ -1718,4 +1739,3 @@ document.getElementById("toggleEvents")
         setupFreshPdfLinks();
     }
 })();
-
