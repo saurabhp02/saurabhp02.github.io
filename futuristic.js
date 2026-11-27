@@ -263,11 +263,8 @@
 
     // Theme Switchers
     { title: "Theme: Mission Control", desc: "Dark cyber-tactical telemetry mode", category: "Themes", icon: "⌁", theme: "missioncontrol" },
-    { title: "Theme: VisionOS / Spatial Glass", desc: "Ultra-sleek frosted glassmorphism", category: "Themes", icon: "◈", theme: "visionos" },
-    { title: "Theme: Neural Network", desc: "Deep purple & cyber-node styling", category: "Themes", icon: "⌘", theme: "neural" },
-    { title: "Theme: Retro Terminal", desc: "CRT phosphor green command terminal", category: "Themes", icon: ">_", theme: "terminal" },
-    { title: "Theme: Obsidian Luxury", desc: "Gold & rich midnight black aesthetic", category: "Themes", icon: "◆", theme: "obsidian" },
-    { title: "Theme: Blueprint Engineering", desc: "Technical CAD blueprint styling", category: "Themes", icon: "⌗", theme: "blueprint" },
+    { title: "Theme: Solar Flare", desc: "Warm energetic solar glow", category: "Themes", icon: "🔆", theme: "solarflare" },
+    { title: "Theme: Rose Mode", desc: "Soft elegant rose aesthetic", category: "Themes", icon: "🌸", theme: "rose" },
     { title: "Theme: Night Mode", desc: "Deep blue dark mode", category: "Themes", icon: "🌙", theme: "night" },
     { title: "Theme: Day Mode", desc: "Crisp modern light mode", category: "Themes", icon: "☀️", theme: "day" },
 
