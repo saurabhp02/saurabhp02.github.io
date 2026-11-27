@@ -314,6 +314,30 @@ window.PORTFOLIO_MEDIA = [
   {
     "name": "Events Organised",
     "folder": "Portfolio/Leadership/Events_Organised",
+    "public_id": "StockRise-TechAvinya2026_1",
+    "secure_url": "https://res.cloudinary.com/r0fodugx/image/upload/v1795277077/StockRise-TechAvinya2026_1.jpg",
+    "resource_type": "image",
+    "format": "jpg",
+    "width": 1700,
+    "height": 2049,
+    "duration": null,
+    "created_at": "2026-11-21T16:04:37Z"
+  },
+  {
+    "name": "Events Organised",
+    "folder": "Portfolio/Leadership/Events_Organised",
+    "public_id": "Organisers-TechAvinya2026_1",
+    "secure_url": "https://res.cloudinary.com/r0fodugx/image/upload/v1795276995/Organisers-TechAvinya2026_1.jpg",
+    "resource_type": "image",
+    "format": "jpg",
+    "width": 1672,
+    "height": 2200,
+    "duration": null,
+    "created_at": "2026-11-21T16:03:15Z"
+  },
+  {
+    "name": "Events Organised",
+    "folder": "Portfolio/Leadership/Events_Organised",
     "public_id": "Corganiser_TECH_AVINYA",
     "secure_url": "https://res.cloudinary.com/r0fodugx/image/upload/v1792644990/Corganiser_TECH_AVINYA.jpg",
     "resource_type": "image",
@@ -382,6 +406,18 @@ window.PORTFOLIO_MEDIA = [
     "height": 1254,
     "duration": null,
     "created_at": "2026-10-04T05:48:23Z"
+  },
+  {
+    "name": "Sanchar Mitra",
+    "folder": "Portfolio/Experience_and_Outreach/Sanchar_Mitra",
+    "public_id": "SancharMitra2026_1",
+    "secure_url": "https://res.cloudinary.com/r0fodugx/image/upload/v1795276944/SancharMitra2026_1.jpg",
+    "resource_type": "image",
+    "format": "jpg",
+    "width": 1677,
+    "height": 2200,
+    "duration": null,
+    "created_at": "2026-11-21T16:02:24Z"
   },
   {
     "name": "Aerial Fire Recgonition",
