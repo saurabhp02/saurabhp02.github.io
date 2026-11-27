@@ -45,6 +45,36 @@ window.getPortfolioMedia = getPortfolioMedia;
         backLink.innerHTML = '<span aria-hidden="true">←</span><span>Back to Dashboard</span>';
         backLink.setAttribute('aria-label', 'Back to portfolio dashboard');
 
+        // Prevent touch scroll / swipe from accidentally triggering the back link on mobile
+        let touchStartX = 0;
+        let touchStartY = 0;
+        let touchMoved = false;
+
+        backLink.addEventListener('touchstart', function (e) {
+            touchMoved = false;
+            if (e.touches && e.touches[0]) {
+                touchStartX = e.touches[0].clientX;
+                touchStartY = e.touches[0].clientY;
+            }
+        }, { passive: true });
+
+        backLink.addEventListener('touchmove', function (e) {
+            if (e.touches && e.touches[0]) {
+                const dx = Math.abs(e.touches[0].clientX - touchStartX);
+                const dy = Math.abs(e.touches[0].clientY - touchStartY);
+                if (dx > 8 || dy > 8) {
+                    touchMoved = true;
+                }
+            }
+        }, { passive: true });
+
+        backLink.addEventListener('click', function (e) {
+            if (touchMoved) {
+                e.preventDefault();
+                e.stopPropagation();
+            }
+        });
+
         const label = document.createElement('span');
         label.className = 'view-current-label';
         label.textContent = document.title.split('|')[0].trim() || 'Portfolio';
@@ -666,7 +696,11 @@ document.getElementById("toggleEvents")
                     asset.path
                 ].filter(Boolean).join(" ").toLowerCase();
 
-                return searchable.includes(wanted);
+                return (
+                    searchable.includes(wanted) ||
+                    searchable.includes(wanted.replace(/_/g, " ")) ||
+                    searchable.includes(wanted.replace(/\s+/g, "_"))
+                );
             });
 
             if (!matching.length) {
@@ -872,19 +906,9 @@ document.getElementById("toggleEvents")
     const themes = [
         { id: "day", name: "Day", icon: "☀️" },
         { id: "night", name: "Night", icon: "🌙" },
-        { id: "netflix", name: "Netflix", icon: "▶" },
         { id: "rose", name: "Rose", icon: "🌸" },
         { id: "solarflare", name: "Solar Flare", icon: "🔆" },
-        { id: "visionos", name: "VisionOS / Spatial Glass", icon: "◈" },
-        { id: "missioncontrol", name: "Mission Control", icon: "⌁" },
-        { id: "terminal", name: "Retro Terminal", icon: ">_" },
-        { id: "swiss", name: "Swiss Editorial", icon: "▤" },
-        { id: "blueprint", name: "Blueprint Engineering", icon: "⌗" },
-        { id: "obsidian", name: "Obsidian / Luxury", icon: "◆" },
-        { id: "isometric", name: "Isometric World", icon: "◇" },
-        { id: "neural", name: "Neural Network", icon: "⌘" },
-        { id: "zen", name: "Zen / Japanese Minimal", icon: "◯" },
-        { id: "y2kchrome", name: "Y2K Chrome", icon: "✦" }
+        { id: "missioncontrol", name: "Mission Control", icon: "⌁" }
     ];
     const themesById = new Map(themes.map(function (theme) {
         return [theme.id, theme];
@@ -965,76 +989,6 @@ document.getElementById("toggleEvents")
 
     applyTheme(saved, false);
 
-    const terminalRoutes = {
-        home: "index.html",
-        about: "about.html",
-        projects: "projects.html",
-        skills: "skills.html",
-        education: "education.html",
-        experience: "experience.html",
-        leadership: "leadership.html",
-        achievements: "achievements.html",
-        events: "events.html",
-        cv: "view-cv.html",
-        contact: "contact.html"
-    };
-
-    let terminalDock = null;
-    let terminalOutput = null;
-
-    function ensureTerminalDock() {
-        if (terminalDock || !document.querySelector("main")) return;
-
-        terminalDock = document.createElement("section");
-        terminalDock.className = "terminal-command-dock";
-        terminalDock.setAttribute("aria-label", "Terminal navigation");
-        terminalDock.innerHTML =
-            '<form class="terminal-command-form">' +
-            '<label for="terminalCommandInput">PORTFOLIO TERMINAL</label>' +
-            '<div class="terminal-command-line"><span aria-hidden="true">&gt;</span>' +
-            '<input id="terminalCommandInput" name="command" autocomplete="off" ' +
-            'placeholder="type help, projects, skills, or contact" ' +
-            'aria-label="Portfolio command">' +
-            '<button type="submit">Run</button></div>' +
-            '<p class="terminal-command-output" aria-live="polite">Type help to list navigation commands.</p>' +
-            '</form>';
-
-        document.querySelector("main").prepend(terminalDock);
-        terminalOutput = terminalDock.querySelector(".terminal-command-output");
-        terminalDock.querySelector("form").addEventListener("submit", function (event) {
-            event.preventDefault();
-            const input = terminalDock.querySelector("input");
-            const command = input.value.trim().toLowerCase().replace(/\.html$/, "");
-
-            if (command === "help") {
-                terminalOutput.textContent =
-                    "Commands: " + Object.keys(terminalRoutes).join(", ");
-                return;
-            }
-
-            const route = terminalRoutes[command];
-            if (!route) {
-                terminalOutput.textContent =
-                    "Unknown command. Type help to see available pages.";
-                return;
-            }
-
-            window.location.href = route;
-        });
-    }
-
-    function updateTerminalDock() {
-        if (document.documentElement.dataset.theme === "terminal") {
-            ensureTerminalDock();
-        }
-    }
-
-    updateTerminalDock();
-    new MutationObserver(updateTerminalDock).observe(document.documentElement, {
-        attributes: true,
-        attributeFilter: ["data-theme"]
-    });
-
     toggle.addEventListener("click", function (event) {
         event.stopPropagation();
 
@@ -1085,7 +1039,7 @@ document.getElementById("toggleEvents")
         ".dashboard-card, .project-card, .additional-card, .event-card, " +
         ".timeline-card, .achievement-card, .experience-card, .leadership-card"
     );
-    const depthThemes = new Set(["visionos", "y2kchrome"]);
+    const depthThemes = new Set();
 
     cards.forEach(function (card) {
         card.addEventListener("pointermove", function (event) {
@@ -1127,9 +1081,6 @@ document.getElementById("toggleEvents")
     const reduceMotion = window.matchMedia(
         "(prefers-reduced-motion: reduce)"
     ).matches;
-    const mobileViewport = window.matchMedia(
-        "(max-width: 768px), (pointer: coarse)"
-    );
 
     // No pointer-driven tilt on the profile carousel.
     const carousel = document.getElementById("profileCarousel");
@@ -1156,8 +1107,9 @@ document.getElementById("toggleEvents")
     let h = 0;
     let dpr = 1;
     let last = 0;
-    let animId = null;
-    let lastWidth = window.innerWidth;
+    let isMobile = false;
+    let isLoopRunning = false;
+    let lastWidth = 0;
     let resizeTimer = null;
 
     let nodes = [];
@@ -1165,16 +1117,7 @@ document.getElementById("toggleEvents")
     let pulses = [];
     let chips = [];
     const artDirectedThemes = new Set([
-        "visionos",
-        "missioncontrol",
-        "terminal",
-        "swiss",
-        "blueprint",
-        "obsidian",
-        "isometric",
-        "neural",
-        "zen",
-        "y2kchrome"
+        "missioncontrol"
     ]);
     canvas.hidden = artDirectedThemes.has(
         document.documentElement.dataset.theme
@@ -1182,7 +1125,7 @@ document.getElementById("toggleEvents")
 
     function shouldAnimateBackdrop() {
         return !reduceMotion &&
-            !mobileViewport.matches &&
+            !document.hidden &&
             !artDirectedThemes.has(document.documentElement.dataset.theme);
     }
 
@@ -1197,6 +1140,23 @@ document.getElementById("toggleEvents")
     function cssNumber(name, fallback) {
         const value = parseFloat(cssColor(name, ""));
         return Number.isFinite(value) ? value : fallback;
+    }
+
+    // Cache CSS variables to avoid running getComputedStyle 6x every frame at 60fps
+    let cachedPrimary = "#1d4ed8";
+    let cachedSecondary = "#2563eb";
+    let cachedGridStep = 32;
+    let cachedGridAlpha = 0.075;
+    let cachedTraceAlpha = 0.27;
+    let cachedChipAlpha = 0.28;
+
+    function updateCachedStyles() {
+        cachedPrimary = cssColor("--circuit-primary", "#1d4ed8");
+        cachedSecondary = cssColor("--circuit-secondary", "#2563eb");
+        cachedGridStep = cssNumber("--circuit-grid-step", 32);
+        cachedGridAlpha = cssNumber("--circuit-grid-alpha", 0.075);
+        cachedTraceAlpha = cssNumber("--circuit-trace-alpha", 0.27);
+        cachedChipAlpha = cssNumber("--circuit-chip-alpha", 0.28);
     }
 
     function hexToRgb(value) {
@@ -1239,13 +1199,13 @@ document.getElementById("toggleEvents")
     }
 
     function rebuild() {
-        dpr = Math.min(
-            window.devicePixelRatio || 1,
-            mobileViewport.matches ? 1 : 2
-        );
-
         w = window.innerWidth;
         h = window.innerHeight;
+        lastWidth = w;
+        isMobile = w < 768 || ('ontouchstart' in window);
+
+        // Cap DPR to 1 on mobile to prevent GPU buffer exhaustion and crash/reload cycles
+        dpr = isMobile ? 1 : Math.min(window.devicePixelRatio || 1, 2);
 
         canvas.width = Math.floor(w * dpr);
         canvas.height = Math.floor(h * dpr);
@@ -1255,10 +1215,12 @@ document.getElementById("toggleEvents")
 
         ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-        const count = Math.min(
-            60,
-            Math.max(24, Math.floor(w * h / 32000))
-        );
+        updateCachedStyles();
+
+        // Responsive element densities: lightweight on mobile, rich on desktop
+        const count = isMobile
+            ? Math.min(16, Math.max(8, Math.floor(w * h / 70000)))
+            : Math.min(60, Math.max(24, Math.floor(w * h / 32000)));
 
         nodes = Array.from({ length: count }, function () {
             return {
@@ -1274,8 +1236,13 @@ document.getElementById("toggleEvents")
         const snapToGrid = function (value) {
             return Math.round(value / circuitGrid) * circuitGrid;
         };
+
+        const chipCount = isMobile
+            ? Math.min(4, Math.max(2, Math.floor(w / 220)))
+            : Math.min(10, Math.max(5, Math.floor(w / 180)));
+
         chips = Array.from({
-            length: Math.min(10, Math.max(5, Math.floor(w / 180)))
+            length: chipCount
         }, function () {
             return {
                 x: snapToGrid(36 + Math.random() * Math.max(1, w - 72)),
@@ -1289,10 +1256,13 @@ document.getElementById("toggleEvents")
         });
 
         traces = [];
+        const maxTraces = isMobile
+            ? Math.min(10, Math.max(6, Math.floor(w / 64)))
+            : Math.min(32, Math.max(16, Math.floor(w / 48)));
 
         for (
             let i = 0;
-            i < Math.min(32, Math.max(16, Math.floor(w / 48)));
+            i < maxTraces;
             i++
         ) {
             const chip = chips[i % chips.length];
@@ -1319,7 +1289,8 @@ document.getElementById("toggleEvents")
         pulses = [];
 
         if (!reduceMotion) {
-            for (let i = 0; i < 16; i++) {
+            const pulseCount = isMobile ? 4 : 16;
+            for (let i = 0; i < pulseCount; i++) {
                 pulses.push({
                     trace: Math.floor(
                         Math.random() * Math.max(1, traces.length)
@@ -1367,17 +1338,22 @@ document.getElementById("toggleEvents")
     }
 
     function draw(timestamp) {
+        if (!shouldAnimateBackdrop()) {
+            isLoopRunning = false;
+            return;
+        }
+
         const dt = Math.min(40, timestamp - last || 16);
         last = timestamp;
 
         ctx.clearRect(0, 0, w, h);
 
-        const primary = cssColor("--circuit-primary", "#1d4ed8");
-        const secondary = cssColor("--circuit-secondary", "#2563eb");
-        const gridStep = cssNumber("--circuit-grid-step", 32);
-        const gridAlpha = cssNumber("--circuit-grid-alpha", 0.075);
-        const traceAlpha = cssNumber("--circuit-trace-alpha", 0.27);
-        const chipAlpha = cssNumber("--circuit-chip-alpha", 0.28);
+        const primary = cachedPrimary;
+        const secondary = cachedSecondary;
+        const gridStep = cachedGridStep;
+        const gridAlpha = cachedGridAlpha;
+        const traceAlpha = cachedTraceAlpha;
+        const chipAlpha = cachedChipAlpha;
 
         // Fine copper grid with stronger board-registration lines.
         ctx.lineWidth = 1;
@@ -1522,81 +1498,78 @@ document.getElementById("toggleEvents")
                 const point = pointOnTrace(trace, pulse.t);
 
                 ctx.fillStyle = rgba(secondary, Math.min(1, traceAlpha * 2.6));
-                ctx.shadowBlur = 10;
-                ctx.shadowColor = secondary;
+
+                // Disable expensive shadowBlur on mobile devices
+                if (!isMobile) {
+                    ctx.shadowBlur = 8;
+                    ctx.shadowColor = secondary;
+                }
 
                 ctx.beginPath();
                 ctx.arc(point[0], point[1], 2.2, 0, Math.PI * 2);
                 ctx.fill();
 
-                ctx.shadowBlur = 0;
+                if (!isMobile) {
+                    ctx.shadowBlur = 0;
+                }
             });
         }
 
         if (shouldAnimateBackdrop()) {
-            animId = requestAnimationFrame(draw);
+            isLoopRunning = true;
+            requestAnimationFrame(draw);
         } else {
-            animId = null;
+            isLoopRunning = false;
         }
     }
 
-    function startAnimation() {
-        if (shouldAnimateBackdrop()) {
-            if (!animId) {
-                animId = requestAnimationFrame(draw);
-            }
-        } else {
-            stopAnimation();
-            draw(0);
+    function startAnimationLoop() {
+        if (!isLoopRunning && shouldAnimateBackdrop()) {
+            isLoopRunning = true;
+            last = performance.now();
+            requestAnimationFrame(draw);
         }
     }
 
-    function stopAnimation() {
-        if (animId) {
-            cancelAnimationFrame(animId);
-            animId = null;
+    // On mobile devices (Android), scrolling up and down hides/shows the browser URL bar,
+    // which constantly changes window.innerHeight and fires "resize" events on every scroll gesture.
+    // If window.innerWidth has NOT changed, ignore the event completely to avoid canvas buffer reallocations.
+    function handleWindowResize() {
+        const curWidth = window.innerWidth;
+        if (curWidth === lastWidth) {
+            return;
         }
-    }
 
-    function handleResize() {
-        const currentWidth = window.innerWidth;
-        // On Android / mobile browsers, scrolling hides/shows the top browser URL address bar,
-        // which triggers a window 'resize' event on every scroll gesture.
-        // We only rebuild when innerWidth actually changes (e.g. orientation change or window resize).
-        if (Math.abs(currentWidth - lastWidth) > 16) {
-            window.clearTimeout(resizeTimer);
-            resizeTimer = window.setTimeout(function () {
-                lastWidth = window.innerWidth;
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(function () {
+            if (window.innerWidth !== lastWidth) {
                 rebuild();
-                startAnimation();
-            }, 200);
-        }
+                startAnimationLoop();
+            }
+        }, 150);
     }
 
-    window.addEventListener("resize", handleResize, {
+    window.addEventListener("resize", handleWindowResize, {
         passive: true
     });
 
     document.addEventListener("visibilitychange", function () {
-        if (document.hidden) {
-            stopAnimation();
-        } else {
-            startAnimation();
+        if (!document.hidden) {
+            startAnimationLoop();
         }
     });
 
-    lastWidth = window.innerWidth;
     rebuild();
-    startAnimation();
+    startAnimationLoop();
 
     let previousTheme = document.documentElement.getAttribute("data-theme");
     const observer = new MutationObserver(function () {
         const theme = document.documentElement.getAttribute("data-theme");
         if (theme === previousTheme) return;
         previousTheme = theme;
+        updateCachedStyles();
 
         if (artDirectedThemes.has(theme)) {
-            stopAnimation();
             canvas.hidden = true;
             ctx.clearRect(0, 0, w, h);
             return;
@@ -1606,7 +1579,7 @@ document.getElementById("toggleEvents")
         canvas.classList.remove("theme-refresh");
         void canvas.offsetWidth;
         canvas.classList.add("theme-refresh");
-        startAnimation();
+        startAnimationLoop();
     });
 
     observer.observe(document.documentElement, {
@@ -1713,29 +1686,5 @@ document.getElementById("toggleEvents")
         );
     } else {
         initializeContactForm();
-    }
-})();
-
-// Ensure local PDF documents (e.g. Internship Certificate, CV) always fetch the latest file from folder
-(function () {
-    function setupFreshPdfLinks() {
-        const pdfLinks = document.querySelectorAll('a[href*=".pdf"]');
-        pdfLinks.forEach(function (link) {
-            link.addEventListener("click", function () {
-                if (window.location.protocol.startsWith("http")) {
-                    const originalHref = link.getAttribute("href");
-                    if (originalHref && !originalHref.startsWith("http") && !originalHref.startsWith("//")) {
-                        const cleanPath = originalHref.split("?")[0];
-                        link.href = cleanPath + "?v=" + Date.now();
-                    }
-                }
-            });
-        });
-    }
-
-    if (document.readyState === "loading") {
-        document.addEventListener("DOMContentLoaded", setupFreshPdfLinks);
-    } else {
-        setupFreshPdfLinks();
     }
 })();
