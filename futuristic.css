@@ -667,3 +667,41 @@
   color: #fff;
   box-shadow: 0 0 15px rgba(244, 63, 94, 0.6);
 }
+
+/* Mobile Optimization for Cyber HUD */
+@media (max-width: 768px) {
+  .cyber-hud-bar {
+    padding: 4px 0;
+    font-size: 0.72rem;
+    touch-action: pan-y;
+  }
+  .cyber-hud-container {
+    width: 95%;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+    gap: 8px;
+    padding-bottom: 2px;
+  }
+  .cyber-hud-container::-webkit-scrollbar {
+    display: none;
+  }
+  .cyber-telemetry-tag:first-of-type {
+    display: none; /* Hide verbose station coordinates on mobile */
+  }
+  .cyber-hud-btn .cyber-key-badge {
+    display: none; /* Hide Ctrl+K shortcut badge on mobile */
+  }
+  .cyber-hud-left,
+  .cyber-hud-right {
+    flex-wrap: nowrap;
+    gap: 8px;
+    flex-shrink: 0;
+  }
+  .cyber-hud-btn {
+    padding: 3px 8px;
+    font-size: 0.7rem;
+    touch-action: manipulation;
+  }
+}
